@@ -845,7 +845,7 @@ footer em { color: var(--accent2); font-style: italic; }
       <div class="debrief-box">
         <h4>AI Debrief Prompt — use after 5+ rejections</h4>
         <div class="debrief-prompt-txt" id="debrief-txt">"I've been rejected from <span class="tmpl">[X]</span> positions. Here are the details: <span class="tmpl">[paste your rejection log]</span>. Can you identify any patterns — is there a consistent stage where I'm losing out, a type of company where I'm performing worse, and what that might indicate about what to fix?"</div>
-        <button class="debrief-copy-btn" onclick="copyDebriefPrompt()">Copy debrief prompt</button>
+        <button class="debrief-copy-btn" onclick="copyDebriefPrompt(this)">Copy debrief prompt</button>
       </div>
     </div>
   </div>
@@ -963,34 +963,55 @@ function toggleStep(el,idx){
   document.getElementById('tracker-progress').textContent=stepsDone.filter(Boolean).length+' / 8 complete';
 }
 
+// COPY UTILITY — works on file://, http, and https
+function doClipboard(txt, onSuccess){
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(txt).then(onSuccess).catch(()=>fallbackCopy(txt,onSuccess));
+  } else {
+    fallbackCopy(txt, onSuccess);
+  }
+}
+function fallbackCopy(txt, onSuccess){
+  const ta=document.createElement('textarea');
+  ta.value=txt; ta.style.cssText='position:fixed;top:-9999px;left:-9999px;opacity:0;';
+  document.body.appendChild(ta); ta.focus(); ta.select();
+  try{ document.execCommand('copy'); onSuccess(); } catch(e){ console.warn('Copy failed',e); }
+  document.body.removeChild(ta);
+}
+
 // COPY BUTTONS
 function copyNode(btn){
-  const txt=(btn.closest('.node').querySelector('.node-prompt').innerText||'').trim();
-  navigator.clipboard.writeText(txt).then(()=>{
-    btn.textContent='✓ Copied';btn.classList.add('copied');
+  const prompt=btn.closest('.node').querySelector('.node-prompt');
+  const txt=(prompt.innerText||prompt.textContent||'').trim();
+  doClipboard(txt, ()=>{
+    btn.textContent='✓ Copied'; btn.classList.add('copied');
     logPrompt(txt);
-    setTimeout(()=>{btn.textContent='Copy';btn.classList.remove('copied');},2000);
+    setTimeout(()=>{ btn.textContent='Copy'; btn.classList.remove('copied'); }, 2000);
   });
 }
 function copyMini(btn){
-  const parent=btn.closest('[class]');
-  const p=parent.querySelector('p');
-  const txt=(p?p.innerText:parent.innerText).trim();
-  navigator.clipboard.writeText(txt).then(()=>{
-    const orig=btn.textContent;btn.textContent='✓';btn.classList.add('copied');
-    setTimeout(()=>{btn.textContent=orig;btn.classList.remove('copied');},1800);
+  // Walk up to a meaningful card container, not just any element with a class
+  const card = btn.closest('.post5-prompt, .burnout-card, .hopeless-prompt, .net-card, .offer-card, .checkin-prompt-card, .debrief-box');
+  const p = card ? card.querySelector('p') : null;
+  const txt = (p ? (p.innerText||p.textContent) : (card ? (card.innerText||card.textContent) : '')).trim();
+  doClipboard(txt, ()=>{
+    const orig=btn.textContent; btn.textContent='✓'; btn.classList.add('copied');
+    setTimeout(()=>{ btn.textContent=orig; btn.classList.remove('copied'); }, 1800);
   });
 }
 function copyBurnout(btn){
   const txt=(btn.closest('.burnout-card').querySelector('p').innerText||'').trim();
-  navigator.clipboard.writeText(txt).then(()=>{
-    const orig=btn.textContent;btn.textContent='✓ Copied';
-    setTimeout(()=>{btn.textContent=orig;},1800);
+  doClipboard(txt, ()=>{
+    const orig=btn.textContent; btn.textContent='✓ Copied';
+    setTimeout(()=>{ btn.textContent=orig; }, 1800);
   });
 }
-function copyDebriefPrompt(){
-  const txt=(document.getElementById('debrief-txt').innerText||'').trim();
-  navigator.clipboard.writeText(txt);
+function copyDebriefPrompt(btn){
+  const el=document.getElementById('debrief-txt');
+  const txt=(el.innerText||el.textContent||'').trim();
+  doClipboard(txt, ()=>{
+    if(btn){ const o=btn.textContent; btn.textContent='✓ Copied'; setTimeout(()=>btn.textContent=o,1800); }
+  });
 }
 
 // PROMPT HISTORY
