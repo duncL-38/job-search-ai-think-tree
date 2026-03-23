@@ -23,183 +23,157 @@
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'DM Mono', monospace; background: var(--bg); color: var(--text); min-height: 100vh; }
 
-body {
-  font-family: 'DM Mono', monospace;
-  background: var(--bg);
-  color: var(--text);
-  min-height: 100vh;
-}
-
-/* ── HEADER ── */
-header {
-  padding: 48px 48px 28px;
-  border-bottom: 1px solid var(--border);
-}
+header { padding: 48px 48px 28px; border-bottom: 1px solid var(--border); }
 .eyebrow { font-size: 10px; letter-spacing: .22em; color: var(--accent); text-transform: uppercase; margin-bottom: 10px; }
-h1 { font-family: 'Playfair Display', serif; font-size: clamp(26px,4.5vw,50px); line-height: 1.1; }
+h1 { font-family: 'Playfair Display', serif; font-size: clamp(24px,4.5vw,50px); line-height: 1.1; }
 h1 span { color: var(--accent); }
 .subtitle { font-size: 12px; color: var(--muted); max-width: 640px; line-height: 1.7; margin-top: 10px; }
 .subtitle em { color: var(--accent2); font-style: italic; }
 
-/* ── TIPS SIDEBAR TOGGLE ── */
-.tips-bar {
-  background: #0f0f14;
-  border-bottom: 1px solid var(--border);
-  padding: 0 48px;
-}
-.tips-toggle {
-  display: flex; align-items: center; gap: 10px;
-  padding: 12px 0; cursor: pointer; user-select: none;
-  font-size: 11px; color: var(--accent3); letter-spacing: .12em; text-transform: uppercase;
-  border: none; background: none; font-family: inherit; width: 100%;
-}
-.tips-toggle .arrow { transition: transform .3s; display: inline-block; }
-.tips-toggle.open .arrow { transform: rotate(90deg); }
-.tips-body {
-  display: none; padding: 16px 0 20px;
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px;
-  display: none;
-}
+/* FLOATING SIDE BUTTONS */
+.float-btns { position: fixed; left: 12px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 8px; z-index: 200; }
+.float-btn { width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--border); background: var(--surface2); font-size: 17px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all .2s; position: relative; }
+.float-btn:hover { border-color: var(--muted); background: var(--surface); transform: scale(1.12); }
+.float-btn .fb-tip { position: absolute; left: 50px; background: var(--surface); border: 1px solid var(--border); border-radius: 3px; padding: 4px 10px; font-size: 10px; color: var(--text); white-space: nowrap; pointer-events: none; opacity: 0; transition: opacity .15s; letter-spacing: .04em; font-family: 'DM Mono', monospace; }
+.float-btn:hover .fb-tip { opacity: 1; }
+
+/* TIPS BAR */
+.tips-bar { background: #0f0f14; border-bottom: 1px solid var(--border); padding: 0 48px; }
+.tips-toggle { display: flex; align-items: center; gap: 10px; padding: 12px 0; cursor: pointer; user-select: none; font-size: 11px; color: var(--accent3); letter-spacing: .12em; text-transform: uppercase; border: none; background: none; font-family: inherit; width: 100%; }
+.tips-toggle .arrow, .fill-toggle .arrow, .history-toggle .arrow { transition: transform .3s; display: inline-block; }
+.tips-toggle.open .arrow, .fill-toggle.open .arrow, .history-toggle.open .arrow { transform: rotate(90deg); }
+.tips-body { display: none; padding: 16px 0 20px; grid-template-columns: repeat(auto-fit,minmax(210px,1fr)); gap: 12px; }
 .tips-body.visible { display: grid; }
-.tip-card {
-  background: var(--surface); border: 1px solid var(--border);
-  border-left: 2px solid var(--accent3);
-  border-radius: 3px; padding: 12px 14px;
-}
+.tip-card { background: var(--surface); border: 1px solid var(--border); border-left: 2px solid var(--accent3); border-radius: 3px; padding: 12px 14px; }
 .tip-card h4 { font-size: 10px; color: var(--accent3); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 6px; }
 .tip-card p { font-size: 11px; color: var(--muted); line-height: 1.6; }
 
-/* ── LEGEND ── */
-.legend {
-  display: flex; gap: 20px; padding: 12px 48px;
-  border-bottom: 1px solid var(--border); flex-wrap: wrap;
-}
+/* FILL-IN FORM */
+.fill-bar { background: #0c0c10; border-bottom: 1px solid var(--border); padding: 0 48px; }
+.fill-toggle { display: flex; align-items: center; gap: 10px; padding: 12px 0; cursor: pointer; user-select: none; font-size: 11px; color: var(--accent2); letter-spacing: .12em; text-transform: uppercase; border: none; background: none; font-family: inherit; width: 100%; }
+.fill-body { display: none; padding: 14px 0 20px; }
+.fill-body.visible { display: block; }
+.fill-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(190px,1fr)); gap: 10px; margin-bottom: 10px; }
+.fill-field label { display: block; font-size: 9px; color: var(--accent2); letter-spacing: .14em; text-transform: uppercase; margin-bottom: 5px; }
+.fill-field input { width: 100%; background: var(--surface); border: 1px solid var(--border); border-radius: 3px; padding: 8px 10px; color: var(--text); font-family: inherit; font-size: 12px; outline: none; transition: border-color .2s; }
+.fill-field input:focus { border-color: var(--accent2); }
+.fill-field input::placeholder { color: var(--muted2); }
+.fill-note { font-size: 10px; color: var(--muted); margin-top: 8px; }
+
+/* RECOMMENDED ORDER */
+.rec-order { background: rgba(184,240,88,.04); border: 1px solid rgba(184,240,88,.15); border-left: 3px solid var(--accent); border-radius: 3px; margin: 14px 48px 0; padding: 14px 18px; }
+.rec-order h4 { font-size: 9px; color: var(--accent); letter-spacing: .18em; text-transform: uppercase; margin-bottom: 8px; }
+.rec-order p { font-size: 11px; color: var(--muted); line-height: 1.7; }
+.rec-order strong { color: var(--text); }
+.rec-order .skip-note { font-size: 10px; color: var(--accent3); margin-top: 6px; }
+
+/* QUIZ */
+.quiz-wrap { margin: 14px 48px 0; border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
+.quiz-header { padding: 12px 16px; background: var(--surface2); border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 10px; cursor: pointer; user-select: none; }
+.quiz-header h3 { font-size: 11px; color: var(--text); letter-spacing: .1em; text-transform: uppercase; }
+.quiz-header .qh-badge { font-size: 9px; color: var(--accent); background: rgba(184,240,88,.1); border: 1px solid rgba(184,240,88,.2); border-radius: 20px; padding: 2px 8px; margin-left: auto; }
+.quiz-header .qh-arrow { transition: transform .25s; font-size: 11px; color: var(--muted); }
+.quiz-header.open .qh-arrow { transform: rotate(90deg); }
+.quiz-body { display: none; padding: 20px; background: #0e0e12; }
+.quiz-body.visible { display: block; }
+.quiz-step { display: none; }
+.quiz-step.active { display: block; }
+.quiz-q { font-size: 13px; color: var(--text); margin-bottom: 14px; line-height: 1.5; }
+.quiz-q span { color: var(--accent); }
+.quiz-options { display: flex; flex-direction: column; gap: 8px; }
+.quiz-opt { background: var(--surface); border: 1px solid var(--border); border-radius: 3px; padding: 10px 14px; cursor: pointer; font-family: inherit; font-size: 12px; color: var(--muted); text-align: left; transition: all .18s; }
+.quiz-opt:hover { border-color: var(--accent); color: var(--text); }
+.quiz-result { display: none; background: rgba(184,240,88,.06); border: 1px solid rgba(184,240,88,.2); border-radius: 3px; padding: 16px 18px; }
+.quiz-result.visible { display: block; }
+.quiz-result h4 { font-size: 11px; color: var(--accent); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 8px; }
+.quiz-result p { font-size: 12px; color: var(--text); line-height: 1.7; }
+.quiz-result .qr-path { color: var(--accent2); }
+.quiz-restart { margin-top: 12px; background: none; border: 1px solid var(--border); color: var(--muted); font-family: inherit; font-size: 10px; padding: 5px 12px; border-radius: 3px; cursor: pointer; letter-spacing: .08em; transition: all .2s; }
+.quiz-restart:hover { border-color: var(--muted); color: var(--text); }
+
+/* LEGEND */
+.legend { display: flex; gap: 20px; padding: 14px 48px; border-bottom: 1px solid var(--border); flex-wrap: wrap; align-items: center; }
 .legend-item { display: flex; align-items: center; gap: 7px; font-size: 10px; color: var(--muted); letter-spacing: .05em; }
 .legend-dot { width: 9px; height: 9px; border-radius: 2px; }
 .legend-sep { color: var(--muted2); font-size: 10px; }
 
-/* ── MAIN LAYOUT ── */
-.tree { padding: 40px 48px 80px; max-width: 1080px; margin: 0 auto; }
+/* TRACKER */
+.tracker-bar { position: sticky; top: 0; z-index: 100; background: rgba(13,13,15,.96); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); padding: 10px 48px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.tracker-label { font-size: 9px; color: var(--muted); letter-spacing: .15em; text-transform: uppercase; flex-shrink: 0; }
+.tracker-steps { display: flex; gap: 6px; flex-wrap: wrap; }
+.tracker-step { display: flex; align-items: center; gap: 5px; font-size: 10px; color: var(--muted); cursor: pointer; padding: 3px 8px; border: 1px solid var(--border); border-radius: 20px; transition: all .2s; user-select: none; }
+.tracker-step:hover { border-color: var(--muted); color: var(--text); }
+.tracker-step.done { border-color: var(--accent); color: var(--accent); background: rgba(184,240,88,.08); }
+.tracker-step .check { font-size: 9px; }
+.tracker-progress { font-size: 10px; color: var(--muted); margin-left: auto; }
 
-/* ── PHASE WRAPPER ── */
+/* TREE */
+.tree { padding: 40px 48px 60px; max-width: 1080px; margin: 0 auto; }
+
+/* PHASE */
 .phase { display: flex; gap: 28px; }
 .spine { display: flex; flex-direction: column; align-items: center; width: 36px; flex-shrink: 0; }
-.spine-dot {
-  width: 14px; height: 14px; border-radius: 50%;
-  border: 2px solid var(--accent); background: var(--bg);
-  flex-shrink: 0; z-index: 2; margin-top: 2px;
-}
+.spine-dot { width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--accent); background: var(--bg); flex-shrink: 0; z-index: 2; margin-top: 2px; }
 .spine-dot.blue { border-color: var(--accent2); }
 .spine-dot.orange { border-color: var(--accent3); }
 .spine-dot.purple { border-color: var(--accent4); }
 .spine-dot.filled { background: var(--accent); }
 .spine-line { width: 2px; background: var(--border); flex: 1; min-height: 20px; }
 .phase-body { flex: 1; padding-bottom: 36px; }
-
-/* ── PHASE LABEL ── */
-.phase-lbl {
-  font-size: 9px; letter-spacing: .2em; text-transform: uppercase;
-  color: var(--accent); margin-bottom: 14px; margin-top: 0;
-}
+.phase-lbl { font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
 .phase-lbl.blue { color: var(--accent2); }
 .phase-lbl.orange { color: var(--accent3); }
 .phase-lbl.purple { color: var(--accent4); }
 
-/* ── NODE CARD ── */
-.node {
-  background: var(--surface); border: 1px solid var(--border);
-  border-left: 2.5px solid var(--accent);
-  border-radius: 3px; padding: 16px 18px; margin-bottom: 10px;
-  transition: transform .18s, border-color .18s;
-}
+/* NODE */
+.node { background: var(--surface); border: 1px solid var(--border); border-left: 2.5px solid var(--accent); border-radius: 3px; padding: 28px 18px 16px; margin-bottom: 10px; transition: transform .18s, border-color .18s; position: relative; }
 .node:hover { transform: translateX(3px); border-color: var(--muted); }
 .node.blue { border-left-color: var(--accent2); }
 .node.orange { border-left-color: var(--accent3); }
 .node.purple { border-left-color: var(--accent4); }
 .node.end { border-left-color: var(--accent); border-color: var(--accent); background: #0f190f; }
-
-.node-prompt { font-size: 12.5px; color: var(--text); line-height: 1.65; margin-bottom: 10px; }
+.node-prompt { font-size: 12.5px; color: var(--text); line-height: 1.65; margin-bottom: 8px; }
 .node-prompt .tmpl { color: var(--accent2); font-style: italic; }
-
-.node-footer { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.copy-btn { position: absolute; top: 8px; right: 8px; background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 3px; color: var(--muted); font-size: 10px; padding: 3px 8px; cursor: pointer; font-family: inherit; letter-spacing: .06em; transition: all .18s; white-space: nowrap; }
+.copy-btn:hover { background: rgba(184,240,88,.08); border-color: var(--accent); color: var(--accent); }
+.copy-btn.copied { color: var(--accent); border-color: var(--accent); }
+.do-note { font-size: 11px; color: var(--accent3); line-height: 1.5; border-top: 1px solid var(--border); padding-top: 8px; margin-top: 8px; }
+.do-note strong { font-size: 9px; letter-spacing: .12em; text-transform: uppercase; display: block; margin-bottom: 3px; color: var(--accent3); opacity: .7; }
+.node-footer { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-top: 8px; }
 .node-purpose { font-size: 11px; color: var(--muted); line-height: 1.5; flex: 1; min-width: 180px; }
 .node-meta { display: flex; gap: 6px; flex-wrap: wrap; flex-shrink: 0; align-items: center; }
-
-.tag {
-  font-size: 9px; padding: 2px 7px; border-radius: 2px;
-  letter-spacing: .06em; text-transform: uppercase; font-weight: 500;
-}
+.tag { font-size: 9px; padding: 2px 7px; border-radius: 2px; letter-spacing: .06em; text-transform: uppercase; font-weight: 500; }
 .tag.discover { background: rgba(184,240,88,.1); color: var(--accent); border: 1px solid rgba(184,240,88,.2); }
 .tag.craft { background: rgba(88,196,240,.1); color: var(--accent2); border: 1px solid rgba(88,196,240,.2); }
 .tag.research { background: rgba(240,168,88,.1); color: var(--accent3); border: 1px solid rgba(240,168,88,.2); }
 .tag.iterate { background: rgba(200,150,240,.1); color: var(--accent4); border: 1px solid rgba(200,150,240,.2); }
-
-.freq {
-  font-size: 9px; padding: 2px 7px; border-radius: 2px;
-  background: rgba(255,255,255,.04); color: var(--muted2);
-  border: 1px solid var(--border); letter-spacing: .04em;
-  white-space: nowrap;
-}
-
-/* ── ARROW ── */
+.freq { font-size: 9px; padding: 2px 7px; border-radius: 2px; background: rgba(255,255,255,.04); color: var(--muted2); border: 1px solid var(--border); letter-spacing: .04em; white-space: nowrap; }
 .arrow-down { color: var(--muted2); font-size: 18px; margin: 2px 0 2px 6px; line-height: 1; }
-
-/* ── TWO COLUMN BRANCH ── */
 .branch-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
 .branch-col-label { font-size: 9px; color: var(--muted); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 7px; }
-
-/* ── DIVIDER LABEL ── */
-.div-label {
-  display: flex; align-items: center; gap: 10px;
-  margin: 14px 0 14px; font-size: 9px; color: var(--muted2); letter-spacing: .12em; text-transform: uppercase;
-}
+.div-label { display: flex; align-items: center; gap: 10px; margin: 14px 0; font-size: 9px; color: var(--muted2); letter-spacing: .12em; text-transform: uppercase; }
 .div-label::before, .div-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
 
-/* ── IF/THEN DECISION BRANCH ── */
-.decision-block {
-  border: 1px solid var(--border); border-radius: 3px;
-  background: #0f0f14; margin: 10px 0 14px; overflow: hidden;
-}
-.decision-header {
-  padding: 9px 14px; background: rgba(255,255,255,.02);
-  border-bottom: 1px solid var(--border);
-  font-size: 9px; color: var(--muted); letter-spacing: .14em; text-transform: uppercase;
-  display: flex; align-items: center; gap: 8px; cursor: pointer; user-select: none;
-}
+/* DECISION */
+.decision-block { border: 1px solid var(--border); border-radius: 3px; background: #0f0f14; margin: 10px 0 14px; overflow: hidden; }
+.decision-header { padding: 9px 14px; background: rgba(255,255,255,.02); border-bottom: 1px solid var(--border); font-size: 9px; color: var(--muted); letter-spacing: .14em; text-transform: uppercase; display: flex; align-items: center; gap: 8px; cursor: pointer; user-select: none; }
 .decision-header .dh-arrow { transition: transform .25s; }
 .decision-header.open .dh-arrow { transform: rotate(90deg); }
 .decision-rows { display: none; }
 .decision-rows.visible { display: block; }
-.decision-row {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 0;
-  border-bottom: 1px solid var(--border);
-}
+.decision-row { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--border); }
 .decision-row:last-child { border-bottom: none; }
-.decision-if {
-  padding: 10px 14px; border-right: 1px solid var(--border);
-  font-size: 11px; color: var(--muted); line-height: 1.5;
-}
+.decision-if { padding: 10px 14px; border-right: 1px solid var(--border); font-size: 11px; color: var(--muted); line-height: 1.5; }
 .decision-if strong { color: var(--accent3); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; display: block; margin-bottom: 3px; }
-.decision-then {
-  padding: 10px 14px;
-  font-size: 11px; color: var(--text); line-height: 1.5;
-}
+.decision-then { padding: 10px 14px; font-size: 11px; color: var(--text); line-height: 1.5; }
 .decision-then strong { color: var(--accent); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; display: block; margin-bottom: 3px; }
 .decision-then .tmpl { color: var(--accent2); font-style: italic; }
 
-/* ── NOT WORKING CALLOUT ── */
-.not-working {
-  border: 1px solid rgba(240,88,112,.2); border-left: 2.5px solid var(--accent-red);
-  background: rgba(240,88,112,.04); border-radius: 3px;
-  margin: 10px 0 14px; overflow: hidden;
-}
-.nw-header {
-  padding: 8px 14px; display: flex; align-items: center; gap: 8px;
-  cursor: pointer; user-select: none;
-  font-size: 9px; color: var(--accent-red); letter-spacing: .14em; text-transform: uppercase;
-  border-bottom: 1px solid rgba(240,88,112,.15);
-}
+/* NOT WORKING */
+.not-working { border: 1px solid rgba(240,88,112,.2); border-left: 2.5px solid var(--accent-red); background: rgba(240,88,112,.04); border-radius: 3px; margin: 10px 0 14px; overflow: hidden; }
+.nw-header { padding: 8px 14px; display: flex; align-items: center; gap: 8px; cursor: pointer; user-select: none; font-size: 9px; color: var(--accent-red); letter-spacing: .14em; text-transform: uppercase; border-bottom: 1px solid rgba(240,88,112,.15); }
 .nw-header .nw-arrow { transition: transform .25s; }
 .nw-header.open .nw-arrow { transform: rotate(90deg); }
 .nw-body { display: none; padding: 12px 14px; }
@@ -208,67 +182,164 @@ h1 span { color: var(--accent); }
 .nw-body li { font-size: 11px; color: var(--muted); line-height: 1.5; padding-left: 14px; position: relative; }
 .nw-body li::before { content: '→'; position: absolute; left: 0; color: var(--accent-red); }
 
-/* ── POST-PHASE 5 BRANCHES ── */
-.post5-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 14px; }
-.post5-card {
-  border: 1px solid var(--border); border-radius: 3px;
-  background: var(--surface); overflow: hidden;
-}
-.post5-header {
-  padding: 10px 12px; font-size: 9px; letter-spacing: .12em;
-  text-transform: uppercase; font-weight: 500;
-  border-bottom: 1px solid var(--border);
-}
+/* HISTORY */
+.history-section { max-width: 1080px; margin: 0 auto; padding: 0 48px; border-top: 1px solid var(--border); }
+.history-toggle { display: flex; align-items: center; gap: 10px; padding: 12px 0; cursor: pointer; user-select: none; font-size: 11px; color: var(--accent4); letter-spacing: .12em; text-transform: uppercase; border: none; background: none; font-family: inherit; width: 100%; }
+.history-body { display: none; padding: 0 0 20px; }
+.history-body.visible { display: block; }
+.history-empty { font-size: 11px; color: var(--muted2); padding: 12px 0; }
+.history-list { display: flex; flex-direction: column; gap: 8px; max-height: 340px; overflow-y: auto; padding-right: 4px; }
+.history-list::-webkit-scrollbar { width: 4px; }
+.history-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+.history-item { background: var(--surface); border: 1px solid var(--border); border-radius: 3px; padding: 10px 12px; }
+.history-item .hi-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+.history-item .hi-phase { font-size: 9px; color: var(--accent4); letter-spacing: .1em; text-transform: uppercase; }
+.history-item .hi-time { font-size: 9px; color: var(--muted2); }
+.history-item .hi-prompt-text { font-size: 11px; color: var(--muted); line-height: 1.5; }
+.history-item .hi-note { font-size: 11px; color: var(--text); background: var(--surface2); border: 1px solid var(--border); border-radius: 2px; padding: 6px 8px; margin-top: 6px; min-height: 36px; width: 100%; font-family: inherit; resize: vertical; outline: none; }
+.history-item .hi-note:focus { border-color: var(--accent4); }
+.history-item .hi-del { background: none; border: none; color: var(--muted2); cursor: pointer; font-size: 11px; padding: 0; margin-left: 8px; transition: color .2s; font-family: inherit; }
+.history-item .hi-del:hover { color: var(--accent-red); }
+.history-clear { margin-top: 8px; background: none; border: 1px solid var(--border); color: var(--muted2); font-family: inherit; font-size: 10px; padding: 4px 10px; border-radius: 3px; cursor: pointer; letter-spacing: .08em; transition: all .2s; }
+.history-clear:hover { border-color: var(--accent-red); color: var(--accent-red); }
+
+/* POST-PHASE 5 */
+.post5-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-top: 14px; }
+.post5-card { border: 1px solid var(--border); border-radius: 3px; background: var(--surface); overflow: hidden; }
+.post5-header { padding: 10px 12px; font-size: 9px; letter-spacing: .12em; text-transform: uppercase; font-weight: 500; border-bottom: 1px solid var(--border); }
 .post5-header.green { color: var(--accent); background: rgba(184,240,88,.05); border-left: 2px solid var(--accent); }
 .post5-header.blue { color: var(--accent2); background: rgba(88,196,240,.05); border-left: 2px solid var(--accent2); }
 .post5-header.orange { color: var(--accent3); background: rgba(240,168,88,.05); border-left: 2px solid var(--accent3); }
 .post5-body { padding: 12px; }
-.post5-prompt {
-  font-size: 11px; color: var(--text); line-height: 1.6; margin-bottom: 8px;
-  border: 1px solid var(--border); border-radius: 2px; padding: 8px 10px;
-  background: var(--surface2);
-}
+.post5-prompt { font-size: 11px; color: var(--text); line-height: 1.6; margin-bottom: 8px; border: 1px solid var(--border); border-radius: 2px; padding: 22px 10px 8px; background: var(--surface2); position: relative; }
 .post5-prompt .tmpl { color: var(--accent2); font-style: italic; }
 .post5-note { font-size: 10px; color: var(--muted); line-height: 1.5; }
 
-/* ── PROGRESS TRACKER ── */
-.tracker-bar {
-  position: sticky; top: 0; z-index: 100;
-  background: rgba(13,13,15,.95); backdrop-filter: blur(8px);
-  border-bottom: 1px solid var(--border);
-  padding: 10px 48px; display: flex; align-items: center; gap: 16px;
-  flex-wrap: wrap;
-}
-.tracker-label { font-size: 9px; color: var(--muted); letter-spacing: .15em; text-transform: uppercase; flex-shrink: 0; }
-.tracker-steps { display: flex; gap: 6px; flex-wrap: wrap; }
-.tracker-step {
-  display: flex; align-items: center; gap: 5px;
-  font-size: 10px; color: var(--muted); cursor: pointer;
-  padding: 3px 8px; border: 1px solid var(--border); border-radius: 20px;
-  transition: all .2s; user-select: none;
-}
-.tracker-step:hover { border-color: var(--muted); color: var(--text); }
-.tracker-step.done { border-color: var(--accent); color: var(--accent); background: rgba(184,240,88,.08); }
-.tracker-step .check { font-size: 9px; }
-.tracker-progress { font-size: 10px; color: var(--muted); margin-left: auto; }
+/* DISCLAIMER */
+.disclaimer { margin: 0 48px 40px; border: 1px solid rgba(240,88,112,.2); border-left: 3px solid var(--accent-red); background: rgba(240,88,112,.03); border-radius: 3px; padding: 16px 20px; max-width: 1080px; margin-left: auto; margin-right: auto; }
+.disclaimer h4 { font-size: 9px; color: var(--accent-red); letter-spacing: .18em; text-transform: uppercase; margin-bottom: 10px; }
+.disclaimer-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 10px; }
+.disc-item { font-size: 11px; color: var(--muted); line-height: 1.6; padding-left: 16px; position: relative; }
+.disc-item::before { content: '⚠'; position: absolute; left: 0; color: var(--accent-red); font-size: 9px; top: 2px; }
+.disc-item strong { color: var(--text); }
+.disc-footer { font-size: 10px; color: var(--muted2); margin-top: 12px; border-top: 1px solid rgba(240,88,112,.1); padding-top: 10px; line-height: 1.6; }
+.disc-footer a { color: var(--accent2); text-decoration: none; }
+.disc-footer a:hover { text-decoration: underline; }
 
-/* ── FOOTER ── */
-footer {
-  text-align: center; padding: 28px 48px 48px;
-  border-top: 1px solid var(--border);
-  font-size: 10px; color: var(--muted2); line-height: 1.7;
-}
+/* MODAL */
+.modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.76); backdrop-filter: blur(4px); z-index: 500; align-items: center; justify-content: center; padding: 20px; }
+.modal-overlay.visible { display: flex; }
+.modal { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; width: 100%; max-width: 680px; max-height: 85vh; overflow-y: auto; position: relative; }
+.modal::-webkit-scrollbar { width: 4px; }
+.modal::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+.modal-header { padding: 18px 20px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; background: var(--surface); z-index: 1; }
+.modal-header h3 { font-size: 13px; color: var(--text); letter-spacing: .06em; }
+.modal-close { background: none; border: 1px solid var(--border); color: var(--muted); width: 28px; height: 28px; border-radius: 3px; cursor: pointer; font-size: 14px; display: flex; align-items: center; justify-content: center; transition: all .2s; flex-shrink: 0; font-family: inherit; }
+.modal-close:hover { border-color: var(--accent-red); color: var(--accent-red); }
+.modal-body { padding: 20px; }
+.mcopy { position: absolute; top: 6px; right: 6px; background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 3px; color: var(--muted); font-size: 9px; padding: 2px 7px; cursor: pointer; font-family: inherit; letter-spacing: .06em; transition: all .18s; }
+.mcopy:hover { border-color: var(--accent); color: var(--accent); }
+.mcopy.copied { color: var(--accent); border-color: var(--accent); }
+
+/* BURNOUT MODAL */
+.burnout-intro { font-size: 12px; color: var(--muted); line-height: 1.7; margin-bottom: 16px; padding: 12px 14px; background: var(--surface2); border-radius: 3px; border-left: 2px solid var(--accent3); }
+.burnout-prompts { display: flex; flex-direction: column; gap: 10px; }
+.burnout-card { background: var(--surface2); border: 1px solid var(--border); border-left: 2px solid var(--accent3); border-radius: 3px; padding: 12px 14px 12px; }
+.burnout-card h4 { font-size: 9px; color: var(--accent3); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 6px; }
+.burnout-card p { font-size: 12px; color: var(--text); line-height: 1.7; }
+.burnout-card .tmpl { color: var(--accent2); font-style: italic; }
+.burnout-copy { display: inline-block; margin-top: 8px; background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 3px; color: var(--muted); font-size: 9px; padding: 3px 8px; cursor: pointer; font-family: inherit; letter-spacing: .06em; transition: all .18s; }
+.burnout-copy:hover { border-color: var(--accent); color: var(--accent); }
+
+/* HOPELESS MODAL */
+.hopeless-content { text-align: center; padding: 10px 0; }
+.hopeless-emoji-big { font-size: 48px; margin-bottom: 14px; display: block; }
+.hopeless-content h3 { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--text); margin-bottom: 8px; }
+.hopeless-content p { font-size: 12px; color: var(--muted); line-height: 1.7; margin-bottom: 18px; max-width: 480px; margin-left: auto; margin-right: auto; }
+.hopeless-prompt { background: rgba(184,240,88,.06); border: 1px solid rgba(184,240,88,.2); border-radius: 3px; padding: 24px 18px 16px; text-align: left; margin-bottom: 14px; position: relative; }
+.hopeless-prompt p { font-size: 13px; color: var(--text); line-height: 1.8; }
+.hopeless-prompt .tmpl { color: var(--accent2); font-style: italic; }
+.hopeless-note { font-size: 11px; color: var(--muted); line-height: 1.6; }
+
+/* REJECTION TRACKER */
+.reject-form { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+.reject-form input, .reject-form select, .reject-form textarea { background: var(--surface2); border: 1px solid var(--border); border-radius: 3px; padding: 8px 10px; color: var(--text); font-family: inherit; font-size: 12px; outline: none; transition: border-color .2s; }
+.reject-form input:focus, .reject-form select:focus, .reject-form textarea:focus { border-color: var(--accent4); }
+.reject-form select option { background: var(--surface2); }
+.reject-form label { font-size: 9px; color: var(--muted); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 3px; display: block; }
+.reject-form textarea { resize: vertical; min-height: 56px; }
+.reject-add-btn { background: var(--accent4); color: #000; border: none; border-radius: 3px; padding: 8px 16px; font-family: inherit; font-size: 11px; font-weight: 500; cursor: pointer; letter-spacing: .06em; transition: opacity .2s; }
+.reject-add-btn:hover { opacity: .85; }
+.reject-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+.reject-item { background: var(--surface2); border: 1px solid var(--border); border-radius: 3px; padding: 10px 12px; display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+.reject-item-info h5 { font-size: 12px; color: var(--text); margin-bottom: 3px; }
+.reject-item-info p { font-size: 10px; color: var(--muted); }
+.reject-item-stage { font-size: 9px; padding: 2px 7px; border-radius: 2px; background: rgba(200,150,240,.1); color: var(--accent4); border: 1px solid rgba(200,150,240,.2); white-space: nowrap; }
+.debrief-box { background: rgba(200,150,240,.05); border: 1px solid rgba(200,150,240,.2); border-radius: 3px; padding: 14px; }
+.debrief-box h4 { font-size: 9px; color: var(--accent4); letter-spacing: .14em; text-transform: uppercase; margin-bottom: 8px; }
+.debrief-prompt-txt { font-size: 12px; color: var(--text); line-height: 1.7; }
+.debrief-prompt-txt .tmpl { color: var(--accent2); font-style: italic; }
+.debrief-copy-btn { display: inline-block; margin-top: 10px; background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 3px; color: var(--muted); font-size: 9px; padding: 3px 8px; cursor: pointer; font-family: inherit; letter-spacing: .06em; transition: all .18s; }
+.debrief-copy-btn:hover { border-color: var(--accent4); color: var(--accent4); }
+
+/* WEEKLY CHECK-IN */
+.checkin-form { display: flex; flex-direction: column; gap: 10px; margin-bottom: 14px; }
+.checkin-form input, .checkin-form select { background: var(--surface2); border: 1px solid var(--border); border-radius: 3px; padding: 8px 10px; color: var(--text); font-family: inherit; font-size: 12px; outline: none; }
+.checkin-form input:focus, .checkin-form select:focus { border-color: var(--accent); }
+.checkin-form label { font-size: 9px; color: var(--muted); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 3px; display: block; }
+.checkin-form select option { background: var(--surface2); }
+.checkin-gen-btn { background: var(--accent); color: #000; border: none; border-radius: 3px; padding: 8px 16px; font-family: inherit; font-size: 11px; font-weight: 500; cursor: pointer; letter-spacing: .06em; transition: opacity .2s; }
+.checkin-gen-btn:hover { opacity: .85; }
+.checkin-results { display: flex; flex-direction: column; gap: 8px; }
+.checkin-prompt-card { background: var(--surface2); border: 1px solid var(--border); border-left: 2px solid var(--accent); border-radius: 3px; padding: 22px 14px 12px; position: relative; }
+.checkin-prompt-card p { font-size: 12px; color: var(--text); line-height: 1.7; }
+.checkin-prompt-card .tmpl { color: var(--accent2); font-style: italic; }
+.checkin-prompt-card .cp-num { font-size: 9px; color: var(--accent); letter-spacing: .14em; text-transform: uppercase; margin-bottom: 5px; }
+
+/* NETWORKING + OFFERS TABS */
+.modal-tabs { display: flex; border-bottom: 1px solid var(--border); }
+.modal-tab { padding: 10px 18px; font-size: 11px; color: var(--muted); cursor: pointer; border: none; border-bottom: 2px solid transparent; margin-bottom: -1px; letter-spacing: .08em; background: none; font-family: inherit; transition: all .2s; }
+.modal-tab:hover { color: var(--text); }
+.modal-tab.active { color: var(--accent2); border-bottom-color: var(--accent2); }
+.modal-tab-body { display: none; padding: 18px 20px; }
+.modal-tab-body.active { display: block; }
+.net-section { margin-bottom: 20px; }
+.net-section h4 { font-size: 9px; color: var(--accent2); letter-spacing: .16em; text-transform: uppercase; margin-bottom: 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.net-card { background: var(--surface2); border: 1px solid var(--border); border-left: 2px solid var(--accent2); border-radius: 3px; padding: 22px 12px 12px; margin-bottom: 8px; position: relative; }
+.net-card p { font-size: 12px; color: var(--text); line-height: 1.7; }
+.net-card .tmpl { color: var(--accent2); font-style: italic; }
+.net-card .nc-label { font-size: 9px; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 5px; }
+.offer-section { margin-bottom: 20px; }
+.offer-section h4 { font-size: 9px; color: var(--accent3); letter-spacing: .16em; text-transform: uppercase; margin-bottom: 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.offer-card { background: var(--surface2); border: 1px solid var(--border); border-left: 2px solid var(--accent3); border-radius: 3px; padding: 22px 12px 12px; margin-bottom: 8px; position: relative; }
+.offer-card p { font-size: 12px; color: var(--text); line-height: 1.7; }
+.offer-card .tmpl { color: var(--accent2); font-style: italic; }
+.offer-card .oc-label { font-size: 9px; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 5px; }
+
+footer { text-align: center; padding: 20px 48px 40px; font-size: 10px; color: var(--muted2); line-height: 1.7; border-top: 1px solid var(--border); }
 footer em { color: var(--accent2); font-style: italic; }
 
-@media (max-width: 700px) {
-  header, .tips-bar, .legend, .tree, .tracker-bar, footer { padding-left: 20px; padding-right: 20px; }
-  .branch-grid, .post5-grid { grid-template-columns: 1fr; }
-  .decision-row { grid-template-columns: 1fr; }
-  .decision-if { border-right: none; border-bottom: 1px solid var(--border); }
+@media(max-width:700px){
+  header,.tips-bar,.fill-bar,.legend,.tracker-bar,.tree,.history-section,.disclaimer,footer{padding-left:20px;padding-right:20px;}
+  .rec-order,.quiz-wrap{margin-left:16px;margin-right:16px;}
+  .branch-grid,.post5-grid{grid-template-columns:1fr;}
+  .decision-row{grid-template-columns:1fr;}
+  .decision-if{border-right:none;border-bottom:1px solid var(--border);}
+  .float-btns{left:4px;}
+  .float-btn .fb-tip{display:none;}
 }
 </style>
 </head>
 <body>
+
+<!-- FLOATING SIDE BUTTONS -->
+<div class="float-btns">
+  <button class="float-btn" onclick="openModal('burnout-modal')">🔋<span class="fb-tip">Feeling burned out?</span></button>
+  <button class="float-btn" onclick="openModal('hopeless-modal')">😶<span class="fb-tip">This feels hopeless</span></button>
+  <button class="float-btn" onclick="openModal('reject-modal')">📋<span class="fb-tip">Rejection Tracker</span></button>
+  <button class="float-btn" onclick="openModal('checkin-modal')">📅<span class="fb-tip">Weekly Check-In</span></button>
+  <button class="float-btn" onclick="openModal('network-modal')">🤝<span class="fb-tip">Networking &amp; Offers</span></button>
+</div>
 
 <!-- HEADER -->
 <header>
@@ -277,80 +348,126 @@ footer em { color: var(--accent2); font-style: italic; }
   <p class="subtitle">A prompt-by-prompt path from "I'm ready to start" to "I've applied to 20+ positions — what's next?" Fill in the <em>[bracketed templates]</em> with your own details before sending each prompt to your AI tool.</p>
 </header>
 
-<!-- TIPS SIDEBAR -->
+<!-- TIPS BAR -->
 <div class="tips-bar">
-  <button class="tips-toggle" onclick="toggleTips(this)">
-    <span class="arrow">▶</span> Tips: How to get better answers from your AI tool
-  </button>
+  <button class="tips-toggle" onclick="toggleSec(this,'tips-body')"><span class="arrow">▶</span> Tips: How to get better answers from your AI tool</button>
   <div class="tips-body" id="tips-body">
-    <div class="tip-card">
-      <h4>Always paste your real resume</h4>
-      <p>Don't summarize it — paste the full text. The AI can only tailor advice to what you actually give it.</p>
+    <div class="tip-card"><h4>Always paste your real resume</h4><p>Don't summarize it — paste the full text. The AI can only tailor advice to what you actually give it.</p></div>
+    <div class="tip-card"><h4>Be specific about your city &amp; field</h4><p>Salary ranges, titles, and expectations vary widely by location and industry. Always include both.</p></div>
+    <div class="tip-card"><h4>Share your constraints honestly</h4><p>Employment gaps, no degree, career switching — tell the AI. It will give you better, more realistic advice.</p></div>
+    <div class="tip-card"><h4>More context = better output</h4><p>If a response feels generic, add more detail. The AI only knows what you tell it.</p></div>
+    <div class="tip-card"><h4>Iterate, don't start over</h4><p>Say "make the tone less formal" or "shorten this by half" — you don't need a whole new prompt every time.</p></div>
+    <div class="tip-card"><h4>Paste the full job description</h4><p>For any crafting prompt, include the complete JD — not just the title. Keywords matter enormously.</p></div>
+  </div>
+</div>
+
+<!-- FILL-IN FORM -->
+<div class="fill-bar">
+  <button class="fill-toggle" onclick="toggleSec(this,'fill-body')"><span class="arrow">▶</span> ✏ Fill in your details once — highlights your info throughout the page</button>
+  <div class="fill-body" id="fill-body">
+    <div class="fill-grid">
+      <div class="fill-field"><label>Target Field / Industry</label><input id="fi-field" placeholder="e.g. UX Design" oninput="fillTemplates()"></div>
+      <div class="fill-field"><label>Target Job Title</label><input id="fi-title" placeholder="e.g. Junior UX Designer" oninput="fillTemplates()"></div>
+      <div class="fill-field"><label>City / Remote</label><input id="fi-city" placeholder="e.g. Austin, TX / Remote" oninput="fillTemplates()"></div>
+      <div class="fill-field"><label>Experience Level</label><input id="fi-exp" placeholder="e.g. 1 year / no experience" oninput="fillTemplates()"></div>
+      <div class="fill-field"><label>Background / Education</label><input id="fi-bg" placeholder="e.g. Self-taught, bootcamp grad" oninput="fillTemplates()"></div>
     </div>
-    <div class="tip-card">
-      <h4>Be specific about your city & field</h4>
-      <p>Salary ranges, titles, and expectations vary widely by location and industry. Always include both.</p>
+    <p class="fill-note">Your entries highlight in green throughout the page as a reminder of what to swap in. You still copy the full prompt into your AI tool.</p>
+  </div>
+</div>
+
+<!-- RECOMMENDED ORDER -->
+<div class="rec-order">
+  <h4>📌 Recommended Order &amp; How to Use This Page</h4>
+  <p>Start at <strong>Phase 1</strong> and work downward — each phase builds on the last. <strong>Phase 2</strong> (materials) should be done before you apply anywhere. <strong>Phase 3</strong> (research) should be repeated for every company. <strong>Phase 4</strong> starts once you're actively applying. Use the <strong>Copy</strong> button on any prompt, then paste it directly into your AI tool.</p>
+  <p class="skip-note">⚡ Already have a resume? Skip to Phase 2's ATS Check → Phase 3 → Phase 4. Applying for weeks with no results? Jump straight to Phase 4's diagnostic, then Phase 5.</p>
+</div>
+
+<!-- QUIZ -->
+<div class="quiz-wrap">
+  <div class="quiz-header" onclick="toggleQuiz(this)">
+    <h3>🧭 Not sure where to start? Take the quick quiz</h3>
+    <span class="qh-badge">3 questions</span>
+    <span class="qh-arrow">▶</span>
+  </div>
+  <div class="quiz-body" id="quiz-body">
+    <div class="quiz-step active" id="qs-0">
+      <div class="quiz-q">Question 1 of 3 — <span>What's your experience level?</span></div>
+      <div class="quiz-options">
+        <button class="quiz-opt" onclick="quizAnswer(0,0)">I have no professional experience yet</button>
+        <button class="quiz-opt" onclick="quizAnswer(0,1)">I have some experience but I'm early in my career (1–3 years)</button>
+        <button class="quiz-opt" onclick="quizAnswer(0,2)">I'm switching careers from a different field</button>
+        <button class="quiz-opt" onclick="quizAnswer(0,3)">I've been searching for a while and nothing is working</button>
+      </div>
     </div>
-    <div class="tip-card">
-      <h4>Share your constraints honestly</h4>
-      <p>Employment gaps, no degree, career switching — tell the AI. It will give you better, realistic advice.</p>
+    <div class="quiz-step" id="qs-1">
+      <div class="quiz-q">Question 2 of 3 — <span>Do you have a resume ready?</span></div>
+      <div class="quiz-options">
+        <button class="quiz-opt" onclick="quizAnswer(1,0)">No — I need to build one from scratch</button>
+        <button class="quiz-opt" onclick="quizAnswer(1,1)">Yes, but it's outdated or needs work</button>
+        <button class="quiz-opt" onclick="quizAnswer(1,2)">Yes — it's polished and ready to go</button>
+      </div>
     </div>
-    <div class="tip-card">
-      <h4>More context = better output</h4>
-      <p>If a response feels generic, add more detail to your prompt. The AI only knows what you tell it.</p>
+    <div class="quiz-step" id="qs-2">
+      <div class="quiz-q">Question 3 of 3 — <span>What's your biggest challenge right now?</span></div>
+      <div class="quiz-options">
+        <button class="quiz-opt" onclick="quizAnswer(2,0)">I don't know what jobs to target</button>
+        <button class="quiz-opt" onclick="quizAnswer(2,1)">I'm applying but getting zero callbacks</button>
+        <button class="quiz-opt" onclick="quizAnswer(2,2)">I'm getting interviews but no offers</button>
+        <button class="quiz-opt" onclick="quizAnswer(2,3)">I feel overwhelmed and don't know where to start</button>
+      </div>
     </div>
-    <div class="tip-card">
-      <h4>Iterate, don't start over</h4>
-      <p>Say "make the tone less formal" or "shorten this by half" — you don't need a new prompt every time.</p>
-    </div>
-    <div class="tip-card">
-      <h4>Paste the full job description</h4>
-      <p>For any crafting prompt, include the complete JD — not just the title. Keywords matter enormously.</p>
+    <div class="quiz-result" id="quiz-result">
+      <h4>Your recommended starting point</h4>
+      <p id="quiz-result-text"></p>
+      <button class="quiz-restart" onclick="resetQuiz()">↺ Retake quiz</button>
     </div>
   </div>
 </div>
 
 <!-- LEGEND -->
-<div class="legend">
+<div class="legend" style="margin-top:14px;">
   <div class="legend-item"><div class="legend-dot" style="background:rgba(184,240,88,.6)"></div>Discover</div>
   <div class="legend-item"><div class="legend-dot" style="background:rgba(88,196,240,.6)"></div>Craft</div>
   <div class="legend-item"><div class="legend-dot" style="background:rgba(240,168,88,.6)"></div>Research</div>
   <div class="legend-item"><div class="legend-dot" style="background:rgba(200,150,240,.6)"></div>Iterate</div>
   <span class="legend-sep">·</span>
   <div class="legend-item"><div class="legend-dot" style="background:rgba(240,88,112,.5)"></div>Not working?</div>
-  <div class="legend-item"><div class="legend-dot" style="background:rgba(240,168,88,.5); border-radius:50%"></div>If / Then branch</div>
-  <div class="legend-item" style="font-size:10px; color:var(--muted);">⬜ = do once &nbsp; ♻ = per application</div>
+  <div class="legend-item"><div class="legend-dot" style="background:rgba(240,168,88,.5);border-radius:50%"></div>If/Then</div>
+  <div class="legend-item" style="font-size:10px;color:var(--muted);">⬜ once &nbsp; ♻ per application</div>
 </div>
 
-<!-- PROGRESS TRACKER -->
+<!-- TRACKER -->
 <div class="tracker-bar">
-  <span class="tracker-label">My Progress:</span>
-  <div class="tracker-steps" id="tracker-steps">
-    <div class="tracker-step" onclick="toggleStep(this, 0)"><span class="check">○</span> Phase 1</div>
-    <div class="tracker-step" onclick="toggleStep(this, 1)"><span class="check">○</span> Resume</div>
-    <div class="tracker-step" onclick="toggleStep(this, 2)"><span class="check">○</span> Cover Letter</div>
-    <div class="tracker-step" onclick="toggleStep(this, 3)"><span class="check">○</span> ATS Check</div>
-    <div class="tracker-step" onclick="toggleStep(this, 4)"><span class="check">○</span> Research</div>
-    <div class="tracker-step" onclick="toggleStep(this, 5)"><span class="check">○</span> Applying</div>
-    <div class="tracker-step" onclick="toggleStep(this, 6)"><span class="check">○</span> Outreach</div>
-    <div class="tracker-step" onclick="toggleStep(this, 7)"><span class="check">○</span> Phase 5</div>
+  <span class="tracker-label">Progress:</span>
+  <div class="tracker-steps">
+    <div class="tracker-step" onclick="toggleStep(this,0)"><span class="check">○</span> Phase 1</div>
+    <div class="tracker-step" onclick="toggleStep(this,1)"><span class="check">○</span> Resume</div>
+    <div class="tracker-step" onclick="toggleStep(this,2)"><span class="check">○</span> Cover Letter</div>
+    <div class="tracker-step" onclick="toggleStep(this,3)"><span class="check">○</span> ATS Check</div>
+    <div class="tracker-step" onclick="toggleStep(this,4)"><span class="check">○</span> Research</div>
+    <div class="tracker-step" onclick="toggleStep(this,5)"><span class="check">○</span> Applying</div>
+    <div class="tracker-step" onclick="toggleStep(this,6)"><span class="check">○</span> Outreach</div>
+    <div class="tracker-step" onclick="toggleStep(this,7)"><span class="check">○</span> Phase 5</div>
   </div>
   <span class="tracker-progress" id="tracker-progress">0 / 8 complete</span>
 </div>
 
-<!-- TREE -->
+<!-- ══════════ TREE ══════════ -->
 <div class="tree">
 
-  <!-- ══ PHASE 1 ══ -->
+  <!-- PHASE 1 -->
   <div class="phase">
     <div class="spine"><div class="spine-dot"></div><div class="spine-line"></div></div>
     <div class="phase-body">
       <div class="phase-lbl">Phase 1 — Orientation</div>
 
       <div class="node">
-        <div class="node-prompt">"I'm looking to start applying for jobs. I have <span class="tmpl">[X years / no professional experience]</span> in <span class="tmpl">[your field, e.g. graphic design / data analysis / nursing]</span>. My background includes <span class="tmpl">[relevant education, skills, or projects]</span>. Can you give me a realistic overview of entry-level job titles I should be targeting and what employers typically expect at my level?"</div>
+        <button class="copy-btn" onclick="copyNode(this)">Copy</button>
+        <div class="node-prompt">"I'm looking to start applying for jobs. I have <span class="tmpl" data-key="exp">[X years / no professional experience]</span> in <span class="tmpl" data-key="field">[your field]</span>. My background includes <span class="tmpl" data-key="bg">[relevant education, skills, or projects]</span>. Can you give me a realistic overview of entry-level job titles I should be targeting and what employers typically expect at my level?"</div>
+        <div class="do-note"><strong>What to do with the answer</strong>Save the list of job titles — these become your search keywords on LinkedIn, Indeed, and Google Jobs. If any title is unfamiliar, ask the AI to explain what that role does day-to-day before deciding to pursue it.</div>
         <div class="node-footer">
-          <div class="node-purpose">Sets the foundation — gets you a realistic map of the landscape so you don't waste time chasing the wrong titles.</div>
+          <div class="node-purpose">Sets the foundation — gets you a realistic map so you don't chase the wrong titles.</div>
           <div class="node-meta"><span class="tag discover">Discover</span><span class="freq">⬜ Once</span></div>
         </div>
       </div>
@@ -358,50 +475,36 @@ footer em { color: var(--accent2); font-style: italic; }
       <div class="arrow-down">↓</div>
 
       <div class="node">
-        <div class="node-prompt">"Based on those job titles, what are the 5–7 most important hard skills and 3–4 soft skills I should highlight? Which do I likely already have given my background in <span class="tmpl">[your background]</span>? List what I'm missing too."</div>
+        <button class="copy-btn" onclick="copyNode(this)">Copy</button>
+        <div class="node-prompt">"Based on those job titles, what are the 5–7 most important hard skills and 3–4 soft skills I should highlight? Which do I likely already have given my background in <span class="tmpl" data-key="bg">[your background]</span>? List what I'm missing too."</div>
+        <div class="do-note"><strong>What to do with the answer</strong>Make two columns: "Have" and "Need to build." For anything in "Need," follow up: "What's the fastest free way to learn [skill] with proof I can show employers?"</div>
         <div class="node-footer">
-          <div class="node-purpose">Identifies your skill gaps and strengths before you write a single word of your resume.</div>
+          <div class="node-purpose">Identifies your skill gaps and strengths before writing a single word of your resume.</div>
           <div class="node-meta"><span class="tag discover">Discover</span><span class="freq">⬜ Once</span></div>
         </div>
       </div>
 
-      <!-- IF/THEN BRANCH -->
       <div class="decision-block">
-        <div class="decision-header" onclick="toggleDecision(this)">
-          <span class="dh-arrow">▶</span> If / Then — Which path fits your situation?
-        </div>
+        <div class="decision-header" onclick="toggleDec(this)"><span class="dh-arrow">▶</span> If / Then — Which path fits your situation?</div>
         <div class="decision-rows">
-          <div class="decision-row">
-            <div class="decision-if"><strong>If</strong>You have no work experience at all</div>
-            <div class="decision-then"><strong>Then try</strong>"I have no professional experience. What projects, volunteer work, or coursework could I highlight instead? Give me 3 prompts I can use to build a portfolio from scratch for <span class="tmpl">[field]</span>."</div>
-          </div>
-          <div class="decision-row">
-            <div class="decision-if"><strong>If</strong>You're switching careers from a different field</div>
-            <div class="decision-then"><strong>Then try</strong>"I'm transitioning from <span class="tmpl">[old field]</span> to <span class="tmpl">[new field]</span>. What transferable skills should I emphasize, and how do I frame my experience so it doesn't look like a liability?"</div>
-          </div>
-          <div class="decision-row">
-            <div class="decision-if"><strong>If</strong>You have an employment gap</div>
-            <div class="decision-then"><strong>Then try</strong>"I have a <span class="tmpl">[X month/year]</span> gap in my resume due to <span class="tmpl">[reason, e.g. caregiving / health / layoff]</span>. How should I address this honestly without hurting my chances?"</div>
-          </div>
+          <div class="decision-row"><div class="decision-if"><strong>If</strong>You have no work experience at all</div><div class="decision-then"><strong>Then try</strong>"I have no professional experience. What projects, volunteer work, or coursework could I highlight instead? Give me 3 prompts to build a portfolio from scratch for <span class="tmpl">[field]</span>."</div></div>
+          <div class="decision-row"><div class="decision-if"><strong>If</strong>You're switching careers</div><div class="decision-then"><strong>Then try</strong>"I'm transitioning from <span class="tmpl">[old field]</span> to <span class="tmpl">[new field]</span>. What transferable skills should I emphasize, and how do I frame my experience so it doesn't look like a liability?"</div></div>
+          <div class="decision-row"><div class="decision-if"><strong>If</strong>You have an employment gap</div><div class="decision-then"><strong>Then try</strong>"I have a <span class="tmpl">[X month/year]</span> gap due to <span class="tmpl">[reason]</span>. How should I address this honestly without hurting my chances?"</div></div>
         </div>
       </div>
 
-      <!-- NOT WORKING -->
       <div class="not-working">
         <div class="nw-header" onclick="toggleNW(this)"><span class="nw-arrow">▶</span> ⚠ Not getting useful answers from Phase 1?</div>
-        <div class="nw-body">
-          <ul>
-            <li>The AI's job title suggestions feel too broad → add "focus on roles available in <span style="color:var(--accent2);font-style:italic">[your city]</span> at companies with under 500 employees"</li>
-            <li>Skills list feels generic → paste an actual job posting you found and ask it to analyze that specific one</li>
-            <li>You don't know what field you want → try "compare these 3 career paths for someone with my background: <span style="color:var(--accent2);font-style:italic">[A, B, C]</span>"</li>
-          </ul>
-        </div>
+        <div class="nw-body"><ul>
+          <li>Titles feel too broad → add "focus on roles available in <span style="color:var(--accent2);font-style:italic">[your city]</span> at companies under 500 employees"</li>
+          <li>Skills list feels generic → paste an actual job posting and ask it to analyze that specific one instead</li>
+          <li>Don't know what field you want → try "compare these 3 career paths for someone with my background: <span style="color:var(--accent2);font-style:italic">[A, B, C]</span>"</li>
+        </ul></div>
       </div>
-
     </div>
   </div>
 
-  <!-- ══ PHASE 2 ══ -->
+  <!-- PHASE 2 -->
   <div class="phase">
     <div class="spine"><div class="spine-dot blue"></div><div class="spine-line"></div></div>
     <div class="phase-body">
@@ -411,35 +514,31 @@ footer em { color: var(--accent2); font-style: italic; }
         <div>
           <div class="branch-col-label">Resume</div>
           <div class="node blue">
-            <div class="node-prompt">"Help me write a resume summary (3 sentences max) for a <span class="tmpl">[target job title]</span> role. I am a <span class="tmpl">[recent grad / career changer / self-taught]</span> with experience in <span class="tmpl">[skills/projects]</span>. Make it confident and results-oriented."</div>
-            <div class="node-footer">
-              <div class="node-purpose">The first 3 lines decide if a recruiter reads further.</div>
-              <div class="node-meta"><span class="tag craft">Craft</span><span class="freq">⬜ Once</span></div>
-            </div>
+            <button class="copy-btn" onclick="copyNode(this)">Copy</button>
+            <div class="node-prompt">"Help me write a resume summary (3 sentences max) for a <span class="tmpl" data-key="title">[target job title]</span> role. I am a <span class="tmpl" data-key="bg">[recent grad / career changer / self-taught]</span> with experience in <span class="tmpl">[skills/projects]</span>. Make it confident and results-oriented."</div>
+            <div class="do-note"><strong>What to do with the answer</strong>Paste it at the top of your resume. Then ask: "Give me 2 alternate versions — one more formal, one more casual." Pick the tone that best matches the companies you're targeting.</div>
+            <div class="node-footer"><div class="node-purpose">The first 3 lines decide if a recruiter reads further.</div><div class="node-meta"><span class="tag craft">Craft</span><span class="freq">⬜ Once</span></div></div>
           </div>
           <div class="node blue">
-            <div class="node-prompt">"Here are my bullet points from <span class="tmpl">[job/project]</span>: <span class="tmpl">[paste bullets]</span>. Rewrite them using strong action verbs and add quantified impact wherever possible. Keep each under 15 words."</div>
-            <div class="node-footer">
-              <div class="node-purpose">Transforms vague descriptions into achievement statements ATS and humans love.</div>
-              <div class="node-meta"><span class="tag craft">Craft</span><span class="freq">⬜ Once</span></div>
-            </div>
+            <button class="copy-btn" onclick="copyNode(this)">Copy</button>
+            <div class="node-prompt">"Here are my bullet points from <span class="tmpl">[job/project]</span>: <span class="tmpl">[paste bullets]</span>. Rewrite them using strong action verbs and quantified impact wherever possible. Keep each under 15 words."</div>
+            <div class="do-note"><strong>What to do with the answer</strong>Replace your old bullets one section at a time. If the AI can't quantify something, say: "I don't have numbers — what's a realistic way to estimate impact so I can add them?"</div>
+            <div class="node-footer"><div class="node-purpose">Transforms vague descriptions into achievement statements.</div><div class="node-meta"><span class="tag craft">Craft</span><span class="freq">⬜ Once</span></div></div>
           </div>
         </div>
         <div>
           <div class="branch-col-label">Cover Letter</div>
           <div class="node blue">
-            <div class="node-prompt">"Write a cover letter opening paragraph for a <span class="tmpl">[job title]</span> at <span class="tmpl">[company name]</span>. Don't start with 'I am excited...' — make it specific to <span class="tmpl">[something real about the company or role]</span>."</div>
-            <div class="node-footer">
-              <div class="node-purpose">Most cover letters are generic — this hooks the reader immediately.</div>
-              <div class="node-meta"><span class="tag craft">Craft</span><span class="freq">♻ Per application</span></div>
-            </div>
+            <button class="copy-btn" onclick="copyNode(this)">Copy</button>
+            <div class="node-prompt">"Write a cover letter opening paragraph for a <span class="tmpl" data-key="title">[job title]</span> at <span class="tmpl">[company name]</span>. Don't start with 'I am excited...' — make it specific to <span class="tmpl">[something real about the company or role]</span>."</div>
+            <div class="do-note"><strong>What to do with the answer</strong>Use this as the hook only. Ask the AI to write the middle paragraph (your top 2 experiences) and the closing separately — it's easier to edit in pieces than as one long block.</div>
+            <div class="node-footer"><div class="node-purpose">Most cover letters are generic — this hooks the reader immediately.</div><div class="node-meta"><span class="tag craft">Craft</span><span class="freq">♻ Per application</span></div></div>
           </div>
           <div class="node blue">
+            <button class="copy-btn" onclick="copyNode(this)">Copy</button>
             <div class="node-prompt">"Here is the job description: <span class="tmpl">[paste JD]</span>. Here is my resume: <span class="tmpl">[paste resume]</span>. Write a full cover letter that mirrors the JD language and highlights my top 2 most relevant experiences."</div>
-            <div class="node-footer">
-              <div class="node-purpose">Tailors your letter to the exact role — the single biggest factor in effectiveness.</div>
-              <div class="node-meta"><span class="tag craft">Craft</span><span class="freq">♻ Per application</span></div>
-            </div>
+            <div class="do-note"><strong>What to do with the answer</strong>Read it out loud. If any sentence sounds like something you'd never say, flag it: "Rewrite this sentence to sound more like how I actually speak — less formal."</div>
+            <div class="node-footer"><div class="node-purpose">Tailors your letter to the exact role — the biggest factor in effectiveness.</div><div class="node-meta"><span class="tag craft">Craft</span><span class="freq">♻ Per application</span></div></div>
           </div>
         </div>
       </div>
@@ -447,127 +546,92 @@ footer em { color: var(--accent2); font-style: italic; }
       <div class="div-label">Then — ATS Keyword Check</div>
 
       <div class="node blue">
+        <button class="copy-btn" onclick="copyNode(this)">Copy</button>
         <div class="node-prompt">"Here is a job description: <span class="tmpl">[paste JD]</span>. Here is my resume: <span class="tmpl">[paste resume]</span>. Identify the top keywords from the JD missing from my resume and suggest where I can naturally incorporate them without keyword stuffing."</div>
-        <div class="node-footer">
-          <div class="node-purpose">Many companies filter before a human reads your resume. This bridges that gap.</div>
-          <div class="node-meta"><span class="tag craft">Craft</span><span class="freq">♻ Per application</span></div>
-        </div>
+        <div class="do-note"><strong>What to do with the answer</strong>Add the top 3–5 keywords only. Don't cram them all in — a keyword-stuffed resume reads as unnatural to human reviewers even if it passes ATS filters.</div>
+        <div class="node-footer"><div class="node-purpose">Many companies filter before a human reads your resume. This bridges that gap.</div><div class="node-meta"><span class="tag craft">Craft</span><span class="freq">♻ Per application</span></div></div>
       </div>
 
-      <!-- IF/THEN -->
       <div class="decision-block">
-        <div class="decision-header" onclick="toggleDecision(this)">
-          <span class="dh-arrow">▶</span> If / Then — Tailoring your materials
-        </div>
+        <div class="decision-header" onclick="toggleDec(this)"><span class="dh-arrow">▶</span> If / Then — Tailoring your materials</div>
         <div class="decision-rows">
-          <div class="decision-row">
-            <div class="decision-if"><strong>If</strong>You're applying to a large corporate company</div>
-            <div class="decision-then"><strong>Then try</strong>"Adjust my resume to sound more structured and metric-driven. Corporate recruiters want to see scale and process."</div>
-          </div>
-          <div class="decision-row">
-            <div class="decision-if"><strong>If</strong>You're applying to a startup</div>
-            <div class="decision-then"><strong>Then try</strong>"Rewrite my summary to sound scrappy and versatile. Startups want generalists who can wear multiple hats."</div>
-          </div>
-          <div class="decision-row">
-            <div class="decision-if"><strong>If</strong>You have no degree</div>
-            <div class="decision-then"><strong>Then try</strong>"Help me write a resume that leads with skills and projects instead of education. How do I de-emphasize the education section without it looking suspicious?"</div>
-          </div>
+          <div class="decision-row"><div class="decision-if"><strong>If</strong>Applying to a large corporate company</div><div class="decision-then"><strong>Then try</strong>"Adjust my resume to sound more structured and metric-driven. Corporate recruiters want to see scale and process."</div></div>
+          <div class="decision-row"><div class="decision-if"><strong>If</strong>Applying to a startup</div><div class="decision-then"><strong>Then try</strong>"Rewrite my summary to sound scrappy and versatile. Startups want generalists who can wear multiple hats."</div></div>
+          <div class="decision-row"><div class="decision-if"><strong>If</strong>You have no degree</div><div class="decision-then"><strong>Then try</strong>"Help me build a resume that leads with skills and projects instead of education, without the education section looking like it's being hidden."</div></div>
         </div>
       </div>
 
-      <!-- NOT WORKING -->
       <div class="not-working">
-        <div class="nw-header" onclick="toggleNW(this)"><span class="nw-arrow">▶</span> ⚠ Not happy with the AI's resume or cover letter output?</div>
-        <div class="nw-body">
-          <ul>
-            <li>Output sounds too generic → say "this sounds like every other resume — rewrite it to sound more like a real human wrote it"</li>
-            <li>Cover letter feels stiff → add "write this in a warm, direct tone — not corporate jargon"</li>
-            <li>Bullets don't reflect what you actually did → paste a description of the project in your own words first, then ask it to turn that into bullet points</li>
-            <li>ATS keywords feel forced → ask "which 3 are the most critical and where is the most natural place to add each one?"</li>
-          </ul>
-        </div>
+        <div class="nw-header" onclick="toggleNW(this)"><span class="nw-arrow">▶</span> ⚠ Not happy with the resume or cover letter output?</div>
+        <div class="nw-body"><ul>
+          <li>Output sounds generic → say "this sounds like every other resume — rewrite it to sound more like a real human wrote it"</li>
+          <li>Cover letter feels stiff → add "write this in a warm, direct tone — no corporate jargon"</li>
+          <li>Bullets don't reflect what you did → paste a description of the project in your own words first, then ask it to turn that into bullets</li>
+        </ul></div>
       </div>
-
     </div>
   </div>
 
-  <!-- ══ PHASE 3 ══ -->
+  <!-- PHASE 3 -->
   <div class="phase">
     <div class="spine"><div class="spine-dot orange"></div><div class="spine-line"></div></div>
     <div class="phase-body">
-      <div class="phase-lbl orange">Phase 3 — Target & Research</div>
+      <div class="phase-lbl orange">Phase 3 — Target &amp; Research</div>
 
       <div class="node orange">
-        <div class="node-prompt">"I'm applying to <span class="tmpl">[company name]</span> for a <span class="tmpl">[job title]</span> role. What do you know about this company's culture, values, and recent news? What 2–3 talking points should I weave into my application to show I've done my homework?"</div>
-        <div class="node-footer">
-          <div class="node-purpose">Shows genuine interest. Targeted applications outperform mass-blast ones dramatically.</div>
-          <div class="node-meta"><span class="tag research">Research</span><span class="freq">♻ Per company</span></div>
-        </div>
+        <button class="copy-btn" onclick="copyNode(this)">Copy</button>
+        <div class="node-prompt">"I'm applying to <span class="tmpl">[company name]</span> for a <span class="tmpl" data-key="title">[job title]</span> role. What do you know about this company's culture, values, and recent news? What 2–3 talking points should I weave into my application?"</div>
+        <div class="do-note"><strong>What to do with the answer</strong>Add one talking point to your cover letter opening and one to your "why this company" answer for interviews. Verify any specific facts (funding, leadership) on the company's actual website — AI company data can be outdated.</div>
+        <div class="node-footer"><div class="node-purpose">Shows genuine interest. Targeted applications dramatically outperform mass-blasts.</div><div class="node-meta"><span class="tag research">Research</span><span class="freq">♻ Per company</span></div></div>
       </div>
 
       <div class="arrow-down">↓</div>
 
       <div class="branch-grid">
         <div class="node orange">
-          <div class="node-prompt">"What are the most common interview questions for a <span class="tmpl">[job title]</span> role? Give me a framework for answering each one and an example I can adapt based on my experience in <span class="tmpl">[background]</span>."</div>
-          <div class="node-footer">
-            <div class="node-purpose">Prep before you apply — not after you hear back. Shortens panic time.</div>
-            <div class="node-meta"><span class="tag research">Research</span><span class="freq">⬜ Once per role type</span></div>
-          </div>
+          <button class="copy-btn" onclick="copyNode(this)">Copy</button>
+          <div class="node-prompt">"What are the most common interview questions for a <span class="tmpl" data-key="title">[job title]</span> role? Give me a framework for answering each and an example I can adapt based on my experience in <span class="tmpl" data-key="bg">[background]</span>."</div>
+          <div class="do-note"><strong>What to do with the answer</strong>Write out your actual answers using STAR (Situation, Task, Action, Result). Then paste each back and ask: "Is this answer compelling or does it sound rehearsed? How can I improve it?"</div>
+          <div class="node-footer"><div class="node-purpose">Prep before you apply, not after. Shortens panic time significantly.</div><div class="node-meta"><span class="tag research">Research</span><span class="freq">⬜ Once per role type</span></div></div>
         </div>
         <div class="node orange">
-          <div class="node-prompt">"What salary range should I expect for a <span class="tmpl">[job title]</span> in <span class="tmpl">[city or remote]</span> with <span class="tmpl">[experience level]</span>? What non-salary perks should I also negotiate for?"</div>
-          <div class="node-footer">
-            <div class="node-purpose">Know your number before you're asked. Never negotiate blind.</div>
-            <div class="node-meta"><span class="tag research">Research</span><span class="freq">⬜ Once</span></div>
-          </div>
+          <button class="copy-btn" onclick="copyNode(this)">Copy</button>
+          <div class="node-prompt">"What salary range should I expect for a <span class="tmpl" data-key="title">[job title]</span> in <span class="tmpl" data-key="city">[city or remote]</span> with <span class="tmpl" data-key="exp">[experience level]</span>? What non-salary perks should I also negotiate for?"</div>
+          <div class="do-note"><strong>What to do with the answer</strong>Cross-reference these numbers on Glassdoor, LinkedIn Salary, and Levels.fyi (for tech). AI salary data can be 1–2 years stale. Use it as a starting estimate only — always verify before negotiating.</div>
+          <div class="node-footer"><div class="node-purpose">Know your number before you're asked. Never negotiate blind.</div><div class="node-meta"><span class="tag research">Research</span><span class="freq">⬜ Once</span></div></div>
         </div>
       </div>
 
-      <!-- IF/THEN -->
       <div class="decision-block">
-        <div class="decision-header" onclick="toggleDecision(this)">
-          <span class="dh-arrow">▶</span> If / Then — What kind of company are you targeting?
-        </div>
+        <div class="decision-header" onclick="toggleDec(this)"><span class="dh-arrow">▶</span> If / Then — What kind of company are you targeting?</div>
         <div class="decision-rows">
-          <div class="decision-row">
-            <div class="decision-if"><strong>If</strong>The company has Glassdoor reviews</div>
-            <div class="decision-then"><strong>Then try</strong>"The Glassdoor reviews for <span class="tmpl">[company]</span> mention <span class="tmpl">[theme, e.g. 'poor work-life balance']</span>. What questions should I ask in the interview to understand if this is still an issue?"</div>
-          </div>
-          <div class="decision-row">
-            <div class="decision-if"><strong>If</strong>It's a company you don't know much about</div>
-            <div class="decision-then"><strong>Then try</strong>"I know very little about <span class="tmpl">[company]</span>. What questions should I be googling to understand if this is a good place to work before I invest time applying?"</div>
-          </div>
+          <div class="decision-row"><div class="decision-if"><strong>If</strong>The company has Glassdoor reviews</div><div class="decision-then"><strong>Then try</strong>"The Glassdoor reviews for <span class="tmpl">[company]</span> mention <span class="tmpl">[theme]</span>. What questions should I ask in the interview to understand if this is still an issue?"</div></div>
+          <div class="decision-row"><div class="decision-if"><strong>If</strong>It's a company you don't know much about</div><div class="decision-then"><strong>Then try</strong>"I know very little about <span class="tmpl">[company]</span>. What search terms and sources should I use to understand if this is a good place to work before investing time applying?"</div></div>
         </div>
       </div>
 
-      <!-- NOT WORKING -->
       <div class="not-working">
         <div class="nw-header" onclick="toggleNW(this)"><span class="nw-arrow">▶</span> ⚠ Research phase feeling overwhelming or shallow?</div>
-        <div class="nw-body">
-          <ul>
-            <li>AI doesn't know the specific company → ask it to help you research the right way: "What search terms and sources should I use to learn about <span style="color:var(--accent2);font-style:italic">[company]</span> before applying?"</li>
-            <li>Interview prep answers feel rehearsed → say "make this sound more natural and conversational, like I'm telling a story"</li>
-            <li>Salary range is unclear for your area → ask for ranges by company size: "What's the range at startups vs. mid-size vs. enterprise for this role?"</li>
-          </ul>
-        </div>
+        <div class="nw-body"><ul>
+          <li>AI doesn't know the specific company → ask "what search terms should I use to research <span style="color:var(--accent2);font-style:italic">[company]</span> before applying?"</li>
+          <li>Interview prep answers feel rehearsed → say "make this sound more natural, like I'm telling a story to a friend"</li>
+          <li>Salary range is unclear → ask for ranges by company size: "What's the range at startups vs. mid-size vs. enterprise for this role?"</li>
+        </ul></div>
       </div>
-
     </div>
   </div>
 
-  <!-- ══ PHASE 4 ══ -->
+  <!-- PHASE 4 -->
   <div class="phase">
     <div class="spine"><div class="spine-dot purple"></div><div class="spine-line"></div></div>
     <div class="phase-body">
-      <div class="phase-lbl purple">Phase 4 — Apply & Iterate</div>
+      <div class="phase-lbl purple">Phase 4 — Apply &amp; Iterate</div>
 
       <div class="node purple">
-        <div class="node-prompt">"I've applied to <span class="tmpl">[5–10]</span> jobs and haven't heard back from most. Here are the types of roles I've applied to: <span class="tmpl">[list roles/industries]</span>. Can you review my resume summary and top bullet points for red flags or weaknesses that might be hurting my response rate?"</div>
-        <div class="node-footer">
-          <div class="node-purpose">Early diagnostic. Catch problems early before you waste more applications.</div>
-          <div class="node-meta"><span class="tag iterate">Iterate</span><span class="freq">After 5–10 apps</span></div>
-        </div>
+        <button class="copy-btn" onclick="copyNode(this)">Copy</button>
+        <div class="node-prompt">"I've applied to <span class="tmpl">[5–10]</span> jobs and haven't heard back from most. Here are the roles I've applied to: <span class="tmpl" data-key="field">[list roles/industries]</span>. Review my resume summary and top bullet points for red flags that might be hurting my response rate."</div>
+        <div class="do-note"><strong>What to do with the answer</strong>Don't make all suggested changes at once. Pick the top 2–3 highest-impact edits, update your resume, apply to 5 more jobs, then evaluate again. Changing everything at once makes it impossible to know what worked.</div>
+        <div class="node-footer"><div class="node-purpose">Early diagnostic. Catch problems before wasting more applications.</div><div class="node-meta"><span class="tag iterate">Iterate</span><span class="freq">After 5–10 apps</span></div></div>
       </div>
 
       <div class="arrow-down">↓</div>
@@ -576,152 +640,499 @@ footer em { color: var(--accent2); font-style: italic; }
         <div>
           <div class="branch-col-label">Outreach</div>
           <div class="node purple">
+            <button class="copy-btn" onclick="copyNode(this)">Copy</button>
             <div class="node-prompt">"Help me write a LinkedIn connection message to a <span class="tmpl">[job title / recruiter / hiring manager]</span> at <span class="tmpl">[company]</span>. Keep it under 5 sentences, don't ask for a job directly, and make it feel genuine — not scripted."</div>
-            <div class="node-footer">
-              <div class="node-purpose">Warm outreach dramatically increases callback rate. Most jobs are filled through people.</div>
-              <div class="node-meta"><span class="tag craft">Craft</span><span class="freq">♻ Per contact</span></div>
-            </div>
+            <div class="do-note"><strong>What to do with the answer</strong>Read it and ask: "Does this sound like me?" If not, tell the AI your natural speaking style ("I'm usually direct / laid-back / formal") and ask it to rewrite accordingly.</div>
+            <div class="node-footer"><div class="node-purpose">Warm outreach dramatically increases callback rate.</div><div class="node-meta"><span class="tag craft">Craft</span><span class="freq">♻ Per contact</span></div></div>
           </div>
         </div>
         <div>
           <div class="branch-col-label">Follow-Up</div>
           <div class="node purple">
-            <div class="node-prompt">"I applied to <span class="tmpl">[company]</span> <span class="tmpl">[X weeks]</span> ago and haven't heard back. Write a brief, polite follow-up email. Don't sound desperate. Include a specific reason I'm still interested."</div>
-            <div class="node-footer">
-              <div class="node-purpose">Following up sets you apart — most applicants never do it.</div>
-              <div class="node-meta"><span class="tag craft">Craft</span><span class="freq">♻ Per application</span></div>
-            </div>
+            <button class="copy-btn" onclick="copyNode(this)">Copy</button>
+            <div class="node-prompt">"I applied to <span class="tmpl">[company]</span> <span class="tmpl">[X weeks]</span> ago and haven't heard back. Write a brief polite follow-up email. Don't sound desperate. Include a specific reason I'm still interested."</div>
+            <div class="do-note"><strong>What to do with the answer</strong>Send it only if it's under 5 sentences. If longer, ask: "Cut this in half." Brevity signals confidence. Wait at least 1–2 weeks before a second follow-up, and never follow up more than twice total.</div>
+            <div class="node-footer"><div class="node-purpose">Following up sets you apart — most applicants never do it.</div><div class="node-meta"><span class="tag craft">Craft</span><span class="freq">♻ Per application</span></div></div>
           </div>
         </div>
       </div>
 
-      <!-- IF/THEN -->
       <div class="decision-block">
-        <div class="decision-header" onclick="toggleDecision(this)">
-          <span class="dh-arrow">▶</span> If / Then — What's happening after you apply?
-        </div>
+        <div class="decision-header" onclick="toggleDec(this)"><span class="dh-arrow">▶</span> If / Then — What's happening after you apply?</div>
         <div class="decision-rows">
-          <div class="decision-row">
-            <div class="decision-if"><strong>If</strong>You're getting to phone screens but failing them</div>
-            <div class="decision-then"><strong>Then try</strong>"I keep failing phone screens for <span class="tmpl">[job title]</span> roles. Here's how my last one went: <span class="tmpl">[describe it]</span>. What am I doing wrong and how should I answer differently?"</div>
-          </div>
-          <div class="decision-row">
-            <div class="decision-if"><strong>If</strong>You're getting zero callbacks at all</div>
-            <div class="decision-then"><strong>Then try</strong>"I've applied to <span class="tmpl">[X]</span> jobs with a 0% response rate. Review my resume for the top 3 reasons a recruiter might immediately pass on me."</div>
-          </div>
-          <div class="decision-row">
-            <div class="decision-if"><strong>If</strong>You feel like you're applying into a void</div>
-            <div class="decision-then"><strong>Then try</strong>"What are 5 ways to find job opportunities for <span class="tmpl">[field]</span> that don't involve submitting applications on job boards? I want to try a different channel."</div>
-          </div>
+          <div class="decision-row"><div class="decision-if"><strong>If</strong>Getting to phone screens but failing them</div><div class="decision-then"><strong>Then try</strong>"I keep failing phone screens for <span class="tmpl">[job title]</span> roles. Here's how my last one went: <span class="tmpl">[describe it]</span>. What am I doing wrong and how should I answer differently?"</div></div>
+          <div class="decision-row"><div class="decision-if"><strong>If</strong>Getting zero callbacks at all</div><div class="decision-then"><strong>Then try</strong>"I've applied to <span class="tmpl">[X]</span> jobs with a 0% response rate. Review my resume for the top 3 reasons a recruiter might immediately pass on me."</div></div>
+          <div class="decision-row"><div class="decision-if"><strong>If</strong>Applying feels like shouting into a void</div><div class="decision-then"><strong>Then try</strong>"What are 5 ways to find jobs for <span class="tmpl">[field]</span> that don't involve submitting on job boards? I want to try a completely different channel."</div></div>
         </div>
       </div>
 
-      <!-- NOT WORKING -->
       <div class="not-working">
         <div class="nw-header" onclick="toggleNW(this)"><span class="nw-arrow">▶</span> ⚠ Outreach and follow-ups not landing?</div>
-        <div class="nw-body">
-          <ul>
-            <li>LinkedIn messages getting ignored → ask the AI "what's wrong with this message?" and paste it — sometimes one word is killing the tone</li>
-            <li>Not sure who to contact → "Who is the best person to cold-message at a <span style="color:var(--accent2);font-style:italic">[company size]</span> company when applying for <span style="color:var(--accent2);font-style:italic">[role]</span> — recruiter, hiring manager, or team lead?"</li>
-            <li>Follow-up feels awkward → ask for 3 different tones: casual, professional, and enthusiastic — then pick the one that sounds like you</li>
-          </ul>
-        </div>
+        <div class="nw-body"><ul>
+          <li>LinkedIn messages getting ignored → paste your message and ask "what's wrong with this?" — one wrong word can kill the tone</li>
+          <li>Not sure who to contact → "Who is the best person to cold-message at a <span style="color:var(--accent2);font-style:italic">[company size]</span> company for <span style="color:var(--accent2);font-style:italic">[role]</span> — recruiter, hiring manager, or team lead?"</li>
+          <li>Follow-up feels awkward → ask for 3 tones: casual, professional, and enthusiastic, then pick the one that sounds like you</li>
+        </ul></div>
       </div>
-
     </div>
   </div>
 
-  <!-- ══ PHASE 5 ══ -->
+  <!-- PHASE 5 -->
   <div class="phase">
     <div class="spine"><div class="spine-dot filled"></div></div>
     <div class="phase-body">
       <div class="phase-lbl">Phase 5 — Next Level Strategy</div>
 
       <div class="node end">
-        <div class="node-prompt">"I've applied to <span class="tmpl">20+</span> positions related to <span class="tmpl">[field, e.g. UX design / software engineering / marketing]</span>, and <span class="tmpl">[follow-up activities, e.g. sent 8 LinkedIn messages, followed up on 5 applications, had 2 screening calls]</span>. My response rate is roughly <span class="tmpl">[X%]</span>. Based on this data, what should my next steps be — broaden my search, upskill, target different company sizes, or something else?"</div>
-        <div class="node-footer">
-          <div class="node-purpose">At 20+ applications you have real data. This turns your experience into a strategic pivot — not just more effort in the same direction.</div>
-          <div class="node-meta"><span class="tag iterate">Iterate</span><span class="tag research">Research</span><span class="freq">At 20+ apps</span></div>
-        </div>
+        <button class="copy-btn" onclick="copyNode(this)">Copy</button>
+        <div class="node-prompt">"I've applied to <span class="tmpl">20+</span> positions related to <span class="tmpl" data-key="field">[field]</span>, and <span class="tmpl">[follow-up activities, e.g. sent 8 LinkedIn messages, had 2 screening calls]</span>. My response rate is roughly <span class="tmpl">[X%]</span>. What should my next steps be — broaden my search, upskill, target different company sizes, or something else?"</div>
+        <div class="do-note"><strong>What to do with the answer</strong>Ask the AI for a specific 30-day action plan based on its recommendation — not just general advice. Then return each week: "I tried X and got Y result. What should I adjust?" Treat the AI as an ongoing coach, not a one-time tool.</div>
+        <div class="node-footer"><div class="node-purpose">At 20+ applications you have real data. This turns your experience into a strategic pivot.</div><div class="node-meta"><span class="tag iterate">Iterate</span><span class="tag research">Research</span><span class="freq">At 20+ apps</span></div></div>
       </div>
 
-      <!-- NOT WORKING for Phase 5 -->
       <div class="not-working">
         <div class="nw-header" onclick="toggleNW(this)"><span class="nw-arrow">▶</span> ⚠ Phase 5 advice still feels vague?</div>
-        <div class="nw-body">
-          <ul>
-            <li>Give the AI more data: include which specific companies you applied to, what types (startup/enterprise), and whether you got any feedback at all</li>
-            <li>Ask it to prioritize: "Give me the single highest-leverage change I should make this week"</li>
-            <li>Ask for a 30-day plan: "Build me a specific week-by-week job search plan for the next 30 days based on my situation"</li>
-          </ul>
-        </div>
+        <div class="nw-body"><ul>
+          <li>Give more data: which specific companies, what sizes (startup/enterprise), whether you got any feedback at all</li>
+          <li>Ask it to prioritize: "Give me the single highest-leverage change I should make this week"</li>
+          <li>Ask for a 30-day plan: "Build me a specific week-by-week job search plan for the next 30 days"</li>
+        </ul></div>
       </div>
 
-      <!-- POST PHASE 5 BRANCHES -->
       <div class="div-label">After Phase 5 — Where do you go from here?</div>
 
       <div class="post5-grid">
-
         <div class="post5-card">
           <div class="post5-header green">📞 Getting interviews but no offers</div>
           <div class="post5-body">
-            <div class="post5-prompt">"I've had <span class="tmpl">[X]</span> interviews for <span class="tmpl">[role]</span> but no offers. Here's how my last interview went: <span class="tmpl">[describe it]</span>. What specific things might be costing me the offer at the final stage?"</div>
-            <div class="post5-prompt">"Do a mock interview with me for a <span class="tmpl">[job title]</span> role. Ask me 5 questions one at a time, then give me honest feedback on each answer before moving to the next."</div>
-            <div class="post5-note">Focus: tighten your storytelling, refine your answers, work on negotiation confidence.</div>
+            <div class="post5-prompt"><button class="mcopy" onclick="copyMini(this)">Copy</button>"I've had <span class="tmpl">[X]</span> interviews for <span class="tmpl">[role]</span> but no offers. Here's how my last one went: <span class="tmpl">[describe it]</span>. What might be costing me the offer at the final stage?"</div>
+            <div class="post5-prompt"><button class="mcopy" onclick="copyMini(this)">Copy</button>"Do a mock interview with me for a <span class="tmpl" data-key="title">[job title]</span> role. Ask me 5 questions one at a time, give honest feedback on each before moving on."</div>
+            <div class="post5-note">Focus: tighten storytelling, refine answers, build negotiation confidence.</div>
           </div>
         </div>
-
         <div class="post5-card">
           <div class="post5-header blue">📭 Getting zero responses still</div>
           <div class="post5-body">
-            <div class="post5-prompt">"I've applied to 20+ jobs with almost no callbacks. What skills or certifications for <span class="tmpl">[field]</span> could I realistically earn in <span class="tmpl">[30–90 days]</span> that would meaningfully improve my employability?"</div>
-            <div class="post5-prompt">"What are the fastest ways someone in <span class="tmpl">[field]</span> with <span class="tmpl">[my background]</span> can build a portfolio or proof of work that gets attention from employers?"</div>
-            <div class="post5-note">Focus: upskill, build proof of work, try non-job-board channels like referrals and communities.</div>
+            <div class="post5-prompt"><button class="mcopy" onclick="copyMini(this)">Copy</button>"What skills or certifications for <span class="tmpl" data-key="field">[field]</span> could I realistically earn in <span class="tmpl">[30–90 days]</span> that would meaningfully improve my employability?"</div>
+            <div class="post5-prompt"><button class="mcopy" onclick="copyMini(this)">Copy</button>"What are the fastest ways someone in <span class="tmpl" data-key="field">[field]</span> with <span class="tmpl" data-key="bg">[my background]</span> can build a portfolio that gets attention from employers?"</div>
+            <div class="post5-note">Focus: upskill, build proof of work, try non-job-board channels.</div>
           </div>
         </div>
-
         <div class="post5-card">
           <div class="post5-header orange">🎉 You got an offer!</div>
           <div class="post5-body">
-            <div class="post5-prompt">"I received an offer for <span class="tmpl">[job title]</span> at <span class="tmpl">[company]</span> with a salary of <span class="tmpl">[X]</span>. Based on market rates for this role in <span class="tmpl">[location]</span>, should I negotiate? What should I say?"</div>
-            <div class="post5-prompt">"I have two offers: <span class="tmpl">[offer A details]</span> vs <span class="tmpl">[offer B details]</span>. Help me compare them across salary, growth, culture fit, and risk — and help me think through which to choose."</div>
-            <div class="post5-note">Focus: negotiate confidently, compare offers holistically, and don't leave money on the table.</div>
+            <div class="post5-prompt"><button class="mcopy" onclick="copyMini(this)">Copy</button>"I received an offer for <span class="tmpl" data-key="title">[job title]</span> at <span class="tmpl">[company]</span> paying <span class="tmpl">[X]</span>. Based on market rates in <span class="tmpl" data-key="city">[location]</span>, should I negotiate? What should I say?"</div>
+            <div class="post5-prompt"><button class="mcopy" onclick="copyMini(this)">Copy</button>"I have two offers: <span class="tmpl">[offer A]</span> vs <span class="tmpl">[offer B]</span>. Help me compare them across salary, growth, culture, and risk."</div>
+            <div class="post5-note">Focus: negotiate confidently, compare holistically, don't leave money on the table.</div>
           </div>
         </div>
-
       </div>
     </div>
   </div>
 
+</div><!-- /tree -->
+
+<!-- PROMPT HISTORY LOG -->
+<div class="history-section">
+  <button class="history-toggle" onclick="toggleSec(this,'history-body')"><span class="arrow">▶</span> 📝 Prompt History Log — track what you've sent &amp; notes on the AI's response</button>
+  <div class="history-body" id="history-body">
+    <p id="history-empty" class="history-empty">No prompts logged yet. Hit <strong>Copy</strong> on any prompt above — it logs here automatically. Add your notes on what the AI said.</p>
+    <div class="history-list" id="history-list"></div>
+    <button class="history-clear" id="history-clear-btn" style="display:none" onclick="clearHistory()">Clear all logs</button>
+  </div>
+</div>
+
+<!-- AI DISCLAIMER -->
+<div class="disclaimer" style="margin-top:32px;">
+  <h4>⚠ AI Limitations — Know What to Verify Independently</h4>
+  <div class="disclaimer-grid">
+    <div class="disc-item"><strong>Salary data may be stale.</strong> AI training data can be 1–2 years old. Always cross-check on Glassdoor, LinkedIn Salary, Levels.fyi, or the Bureau of Labor Statistics before negotiating.</div>
+    <div class="disc-item"><strong>Company info can be wrong.</strong> AI can hallucinate leadership names, funding rounds, and culture details. Verify on the company's own website and LinkedIn page before your interview.</div>
+    <div class="disc-item"><strong>Job market trends shift fast.</strong> Hiring conditions and in-demand skills change month to month. Supplement AI research with current industry news and job postings.</div>
+    <div class="disc-item"><strong>AI doesn't know your local market.</strong> Even with your city specified, AI has limited knowledge of regional salary differences, local employers, and area-specific hiring norms.</div>
+    <div class="disc-item"><strong>Resume output needs your voice.</strong> AI produces competent drafts, not final documents. Always edit so it sounds like you — recruiters notice when a resume doesn't match how someone speaks in interviews.</div>
+    <div class="disc-item"><strong>AI cannot predict outcomes.</strong> It can help you prepare and improve, but it cannot assess your actual fit, internal hiring politics, or how many candidates you're competing against.</div>
+  </div>
+  <div class="disc-footer">Verify salary data at: <a href="https://www.glassdoor.com" target="_blank">Glassdoor</a> · <a href="https://www.linkedin.com/salary/" target="_blank">LinkedIn Salary</a> · <a href="https://www.bls.gov/ooh/" target="_blank">Bureau of Labor Statistics</a> · <a href="https://levels.fyi" target="_blank">Levels.fyi (tech)</a></div>
 </div>
 
 <footer>
-  Fill in all <em>[bracketed templates]</em> with your own information before sending each prompt · Frequency key: ⬜ do once · ♻ repeat per application
+  Fill in all <em>[bracketed templates]</em> before sending each prompt · ⬜ do once · ♻ per application<br>
+  Floating buttons: 🔋 Burnout &nbsp;·&nbsp; 😶 Hopeless &nbsp;·&nbsp; 📋 Rejections &nbsp;·&nbsp; 📅 Weekly Check-In &nbsp;·&nbsp; 🤝 Networking &amp; Offers
 </footer>
 
+<!-- ══════════ MODALS ══════════ -->
+
+<!-- BURNOUT -->
+<div class="modal-overlay" id="burnout-modal" onclick="closeOverlay(event,this)">
+  <div class="modal" style="max-width:560px;">
+    <div class="modal-header"><h3>🔋 Feeling Burned Out?</h3><button class="modal-close" onclick="closeModal('burnout-modal')">✕</button></div>
+    <div class="modal-body">
+      <div class="burnout-intro">Job searching is exhausting. Rejection, silence, and uncertainty take a real toll. These prompts aren't about pushing harder — they're about helping you reset your perspective and keep going sustainably.</div>
+      <div class="burnout-prompts">
+        <div class="burnout-card">
+          <h4>Re-motivation</h4>
+          <p>"I've been job searching for <span class="tmpl">[X weeks/months]</span> in <span class="tmpl">[field]</span> and I'm losing motivation. Help me reframe my situation — what progress have I likely made that I might be undervaluing, and what's one small action I can take today that would be genuinely useful?"</p>
+          <button class="burnout-copy" onclick="copyBurnout(this)">Copy</button>
+        </div>
+        <div class="burnout-card">
+          <h4>Reframing rejection</h4>
+          <p>"I've received <span class="tmpl">[X]</span> rejections recently and I'm taking it personally. Help me understand objectively why most rejections aren't about my worth as a person, and give me a healthier mental model for this process."</p>
+          <button class="burnout-copy" onclick="copyBurnout(this)">Copy</button>
+        </div>
+        <div class="burnout-card">
+          <h4>Deciding when to take a break</h4>
+          <p>"I'm exhausted from job searching. Help me think through whether I should take a short intentional break, and if so, how to do it in a way that doesn't hurt my momentum or make me feel guilty."</p>
+          <button class="burnout-copy" onclick="copyBurnout(this)">Copy</button>
+        </div>
+        <div class="burnout-card">
+          <h4>Rebuilding confidence</h4>
+          <p>"I'm starting to doubt whether I'm actually qualified for the jobs I'm applying to. Here's my background: <span class="tmpl">[brief summary]</span>. Give me an honest assessment of whether I'm targeting appropriate roles, and if so, why I have a legitimate shot."</p>
+          <button class="burnout-copy" onclick="copyBurnout(this)">Copy</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HOPELESS -->
+<div class="modal-overlay" id="hopeless-modal" onclick="closeOverlay(event,this)">
+  <div class="modal" style="max-width:520px;">
+    <div class="modal-header"><h3>😶 This Feels Hopeless</h3><button class="modal-close" onclick="closeModal('hopeless-modal')">✕</button></div>
+    <div class="modal-body">
+      <div class="hopeless-content">
+        <span class="hopeless-emoji-big">😶</span>
+        <h3>That feeling is valid.</h3>
+        <p>When you've been putting in real effort and nothing is working, it's normal to feel like giving up. Copy the prompt below and send it to your AI tool — it's designed to give you an honest, grounded assessment instead of hollow encouragement.</p>
+        <div class="hopeless-prompt">
+          <button class="mcopy" onclick="copyMini(this)">Copy</button>
+          <p>"I've been searching for a job in <span class="tmpl">[field]</span> for <span class="tmpl">[X months]</span>. I've applied to <span class="tmpl">[X jobs]</span>, sent <span class="tmpl">[X outreach messages]</span>, and <span class="tmpl">[describe your results, e.g. had 1 interview, zero callbacks]</span>. I feel like it's hopeless. Help me objectively assess my situation: Is my strategy broken, my materials broken, my targets wrong, or is this just how long job searching takes? Please be honest, not reassuring."</p>
+        </div>
+        <p class="hopeless-note">This prompt works best when you fill in as much real data as possible. The more specific you are, the more honest and useful the AI's assessment will be.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- REJECTION TRACKER -->
+<div class="modal-overlay" id="reject-modal" onclick="closeOverlay(event,this)">
+  <div class="modal" style="max-width:620px;">
+    <div class="modal-header"><h3>📋 Rejection Tracker</h3><button class="modal-close" onclick="closeModal('reject-modal')">✕</button></div>
+    <div class="modal-body">
+      <p style="font-size:11px;color:var(--muted);margin-bottom:14px;line-height:1.6;">Log each rejection to spot patterns. After 5+ entries the AI debrief prompt below becomes much more powerful — it auto-fills with your data.</p>
+      <div class="reject-form">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+          <div><label>Company</label><input id="rj-company" placeholder="e.g. Acme Corp"></div>
+          <div><label>Role</label><input id="rj-role" placeholder="e.g. Junior Designer"></div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+          <div><label>Stage Rejected At</label>
+            <select id="rj-stage">
+              <option>No response / ghosted</option>
+              <option>Auto-rejected (ATS)</option>
+              <option>After phone screen</option>
+              <option>After 1st interview</option>
+              <option>After final round</option>
+            </select>
+          </div>
+          <div><label>Date</label><input id="rj-date" type="date"></div>
+        </div>
+        <div><label>Feedback received (optional)</label><textarea id="rj-notes" placeholder="e.g. 'Not enough experience with X' or no feedback given"></textarea></div>
+        <button class="reject-add-btn" onclick="addRejection()">+ Log This Rejection</button>
+      </div>
+      <div id="reject-empty" style="font-size:11px;color:var(--muted2);margin-bottom:14px;">No rejections logged yet.</div>
+      <div id="reject-list" class="reject-list"></div>
+      <div class="debrief-box">
+        <h4>AI Debrief Prompt — use after 5+ rejections</h4>
+        <div class="debrief-prompt-txt" id="debrief-txt">"I've been rejected from <span class="tmpl">[X]</span> positions. Here are the details: <span class="tmpl">[paste your rejection log]</span>. Can you identify any patterns — is there a consistent stage where I'm losing out, a type of company where I'm performing worse, and what that might indicate about what to fix?"</div>
+        <button class="debrief-copy-btn" onclick="copyDebriefPrompt()">Copy debrief prompt</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WEEKLY CHECK-IN -->
+<div class="modal-overlay" id="checkin-modal" onclick="closeOverlay(event,this)">
+  <div class="modal" style="max-width:580px;">
+    <div class="modal-header"><h3>📅 Weekly Check-In Prompt Generator</h3><button class="modal-close" onclick="closeModal('checkin-modal')">✕</button></div>
+    <div class="modal-body">
+      <p style="font-size:11px;color:var(--muted);margin-bottom:14px;line-height:1.6;">Fill in what happened this week to get 3 targeted prompts to send your AI tool on Monday.</p>
+      <div class="checkin-form">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+          <div><label>Applications sent this week</label><input id="ci-apps" type="number" placeholder="e.g. 5" min="0"></div>
+          <div><label>Responses / callbacks received</label><input id="ci-resp" type="number" placeholder="e.g. 1" min="0"></div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+          <div><label>Interviews this week</label><input id="ci-int" type="number" placeholder="e.g. 0" min="0"></div>
+          <div><label>Biggest challenge this week</label>
+            <select id="ci-challenge">
+              <option>Low response rate</option>
+              <option>Resume isn't working</option>
+              <option>Interview performance</option>
+              <option>Not enough time to apply</option>
+              <option>Running out of jobs to apply to</option>
+              <option>Feeling unmotivated</option>
+            </select>
+          </div>
+        </div>
+        <div><label>Field &amp; target role</label><input id="ci-field" placeholder="e.g. Marketing / Social Media Manager"></div>
+        <button class="checkin-gen-btn" onclick="generateCheckin()">Generate This Week's Prompts →</button>
+      </div>
+      <div class="checkin-results" id="checkin-results"></div>
+    </div>
+  </div>
+</div>
+
+<!-- NETWORKING + OFFERS -->
+<div class="modal-overlay" id="network-modal" onclick="closeOverlay(event,this)">
+  <div class="modal" style="max-width:660px;">
+    <div class="modal-header" style="border-bottom:none;padding-bottom:0;"><h3>🤝 Networking Scripts &amp; Offer Evaluation</h3><button class="modal-close" onclick="closeModal('network-modal')">✕</button></div>
+    <div class="modal-tabs">
+      <button class="modal-tab active" onclick="switchTab(this,'tab-net')">Networking Scripts</button>
+      <button class="modal-tab" onclick="switchTab(this,'tab-offers')">Job Offer Worksheet</button>
+    </div>
+    <div class="modal-tab-body active" id="tab-net">
+      <div class="net-section">
+        <h4>Coffee Chat / Informational Interview Request</h4>
+        <div class="net-card"><button class="mcopy" onclick="copyMini(this)">Copy</button><div class="nc-label">LinkedIn DM or Email</div><p>"Hi <span class="tmpl">[Name]</span> — I'm exploring a career in <span class="tmpl">[field]</span> and came across your profile. I'm particularly curious about <span class="tmpl">[specific aspect of their work]</span>. Would you be open to a 20-minute virtual coffee chat? I'd love to hear about your path and any advice you'd give someone starting out."</p></div>
+      </div>
+      <div class="net-section">
+        <h4>Asking for a Referral</h4>
+        <div class="net-card"><button class="mcopy" onclick="copyMini(this)">Copy</button><div class="nc-label">For someone you already know</div><p>"Hey <span class="tmpl">[Name]</span> — I saw that <span class="tmpl">[Company]</span> is hiring for a <span class="tmpl">[role]</span>. I think it could be a great fit for my background in <span class="tmpl">[your skills]</span>. Would you be comfortable referring me, or letting me know if there's a better way to get my application noticed there?"</p></div>
+        <div class="net-card"><button class="mcopy" onclick="copyMini(this)">Copy</button><div class="nc-label">AI prompt to help prepare the ask</div><p>"I want to ask <span class="tmpl">[Name]</span> for a referral at <span class="tmpl">[Company]</span>. Write a short message that makes it easy for them to say yes — include my relevant experience, why I want this role, and give them everything they'd need to refer me without extra effort on their part."</p></div>
+      </div>
+      <div class="net-section">
+        <h4>After the Coffee Chat — Following Up</h4>
+        <div class="net-card"><button class="mcopy" onclick="copyMini(this)">Copy</button><div class="nc-label">Thank-you within 24 hours</div><p>"Write a brief thank-you I can send to <span class="tmpl">[Name]</span> after our informational chat. Reference something specific they mentioned about <span class="tmpl">[topic]</span> and keep it to 3 sentences max."</p></div>
+      </div>
+      <div class="net-section">
+        <h4>Prep for the Actual Conversation</h4>
+        <div class="net-card"><button class="mcopy" onclick="copyMini(this)">Copy</button><div class="nc-label">Before your coffee chat</div><p>"I have a 20-minute informational interview with a <span class="tmpl">[job title]</span> at <span class="tmpl">[company]</span>. Give me 5 thoughtful questions to ask that will help me understand whether I'd thrive in this field and leave a memorable impression — not generic questions."</p></div>
+      </div>
+    </div>
+    <div class="modal-tab-body" id="tab-offers">
+      <div class="offer-section">
+        <h4>Before You Respond to an Offer</h4>
+        <div class="offer-card"><button class="mcopy" onclick="copyMini(this)">Copy</button><div class="oc-label">Evaluate the offer</div><p>"I received a job offer for <span class="tmpl">[job title]</span> at <span class="tmpl">[company]</span>. Salary: <span class="tmpl">[X]</span>. Benefits: <span class="tmpl">[list]</span>. Location: <span class="tmpl">[city/remote/hybrid]</span>. Evaluate this offer across: compensation vs. market rate, growth potential, work-life balance indicators, company stability, and culture fit. Flag anything that seems like a red flag."</p></div>
+      </div>
+      <div class="offer-section">
+        <h4>Negotiating the Offer</h4>
+        <div class="offer-card"><button class="mcopy" onclick="copyMini(this)">Copy</button><div class="oc-label">Negotiation script</div><p>"I want to negotiate my offer for <span class="tmpl">[role]</span> from <span class="tmpl">[offered salary]</span> to <span class="tmpl">[target salary]</span>. My justification: <span class="tmpl">[market data / competing offer / specific skills]</span>. Write me a script that's confident, non-confrontational, and leaves the relationship positive regardless of outcome."</p></div>
+        <div class="offer-card"><button class="mcopy" onclick="copyMini(this)">Copy</button><div class="oc-label">If they can't move on salary</div><p>"The company said they can't increase the salary for <span class="tmpl">[role]</span>. What other parts of the offer should I try to negotiate instead? Give me a prioritized list of non-salary items worth asking for in <span class="tmpl">[field/industry]</span>."</p></div>
+      </div>
+      <div class="offer-section">
+        <h4>Comparing Multiple Offers</h4>
+        <div class="offer-card"><button class="mcopy" onclick="copyMini(this)">Copy</button><div class="oc-label">Side-by-side comparison</div><p>"I have two offers. Offer A: <span class="tmpl">[company, salary, role, benefits, location]</span>. Offer B: <span class="tmpl">[company, salary, role, benefits, location]</span>. Compare them across total compensation, career trajectory, risk level, and day-to-day quality of life. My priorities are <span class="tmpl">[e.g. growth / stability / flexibility]</span>."</p></div>
+      </div>
+      <div class="offer-section">
+        <h4>Asking for More Time</h4>
+        <div class="offer-card"><button class="mcopy" onclick="copyMini(this)">Copy</button><div class="oc-label">Professional deadline extension</div><p>"Write a professional email asking <span class="tmpl">[company]</span> for a <span class="tmpl">[X day]</span> extension to consider their offer. I want to be honest that I'm being thorough without revealing I'm waiting on another offer. Keep it brief and warm."</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
-function toggleTips(btn) {
-  btn.classList.toggle('open');
-  document.getElementById('tips-body').classList.toggle('visible');
+// HELPERS
+function toggleSec(btn,id){btn.classList.toggle('open');document.getElementById(id).classList.toggle('visible');}
+function toggleDec(h){h.classList.toggle('open');h.nextElementSibling.classList.toggle('visible');}
+function toggleNW(h){h.classList.toggle('open');h.nextElementSibling.classList.toggle('visible');}
+function toggleQuiz(h){h.classList.toggle('open');document.getElementById('quiz-body').classList.toggle('visible');}
+
+// MODALS
+function openModal(id){document.getElementById(id).classList.add('visible');document.body.style.overflow='hidden';}
+function closeModal(id){document.getElementById(id).classList.remove('visible');document.body.style.overflow='';}
+function closeOverlay(e,el){if(e.target===el)closeModal(el.id);}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.modal-overlay.visible').forEach(m=>closeModal(m.id));});
+
+// TABS
+function switchTab(btn,tabId){
+  const modal=btn.closest('.modal');
+  modal.querySelectorAll('.modal-tab').forEach(t=>t.classList.remove('active'));
+  modal.querySelectorAll('.modal-tab-body').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(tabId).classList.add('active');
 }
 
-function toggleDecision(header) {
-  header.classList.toggle('open');
-  header.nextElementSibling.classList.toggle('visible');
+// TRACKER
+const stepsDone=new Array(8).fill(false);
+function toggleStep(el,idx){
+  stepsDone[idx]=!stepsDone[idx];
+  el.classList.toggle('done',stepsDone[idx]);
+  el.querySelector('.check').textContent=stepsDone[idx]?'✓':'○';
+  document.getElementById('tracker-progress').textContent=stepsDone.filter(Boolean).length+' / 8 complete';
 }
 
-function toggleNW(header) {
-  header.classList.toggle('open');
-  header.nextElementSibling.classList.toggle('visible');
+// COPY BUTTONS
+function copyNode(btn){
+  const txt=(btn.closest('.node').querySelector('.node-prompt').innerText||'').trim();
+  navigator.clipboard.writeText(txt).then(()=>{
+    btn.textContent='✓ Copied';btn.classList.add('copied');
+    logPrompt(txt);
+    setTimeout(()=>{btn.textContent='Copy';btn.classList.remove('copied');},2000);
+  });
+}
+function copyMini(btn){
+  const parent=btn.closest('[class]');
+  const p=parent.querySelector('p');
+  const txt=(p?p.innerText:parent.innerText).trim();
+  navigator.clipboard.writeText(txt).then(()=>{
+    const orig=btn.textContent;btn.textContent='✓';btn.classList.add('copied');
+    setTimeout(()=>{btn.textContent=orig;btn.classList.remove('copied');},1800);
+  });
+}
+function copyBurnout(btn){
+  const txt=(btn.closest('.burnout-card').querySelector('p').innerText||'').trim();
+  navigator.clipboard.writeText(txt).then(()=>{
+    const orig=btn.textContent;btn.textContent='✓ Copied';
+    setTimeout(()=>{btn.textContent=orig;},1800);
+  });
+}
+function copyDebriefPrompt(){
+  const txt=(document.getElementById('debrief-txt').innerText||'').trim();
+  navigator.clipboard.writeText(txt);
 }
 
-const stepsDone = new Array(8).fill(false);
-function toggleStep(el, idx) {
-  stepsDone[idx] = !stepsDone[idx];
-  el.classList.toggle('done', stepsDone[idx]);
-  el.querySelector('.check').textContent = stepsDone[idx] ? '✓' : '○';
-  const count = stepsDone.filter(Boolean).length;
-  document.getElementById('tracker-progress').textContent = `${count} / 8 complete`;
+// PROMPT HISTORY
+const historyLog=[];
+function detectPhase(t){
+  if(t.includes('entry-level job titles')||t.includes('hard skills'))return'Phase 1';
+  if(t.includes('resume summary')||t.includes('bullet points')||t.includes('cover letter')||t.includes('ATS'))return'Phase 2';
+  if(t.includes('culture')||t.includes('salary range')||t.includes('interview questions'))return'Phase 3';
+  if(t.includes('LinkedIn connection')||t.includes('follow-up email')||t.includes('response rate'))return'Phase 4';
+  if(t.includes('20+')||t.includes('next steps'))return'Phase 5';
+  return'Prompt';
+}
+function logPrompt(text){
+  const now=new Date();
+  const time=now.toLocaleDateString('en-US',{month:'short',day:'numeric'})+' '+now.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'});
+  historyLog.unshift({text,phase:detectPhase(text),time,note:''});
+  renderHistory();
+}
+function renderHistory(){
+  const list=document.getElementById('history-list');
+  const empty=document.getElementById('history-empty');
+  const clearBtn=document.getElementById('history-clear-btn');
+  if(!historyLog.length){empty.style.display='block';list.innerHTML='';clearBtn.style.display='none';return;}
+  empty.style.display='none';clearBtn.style.display='inline-block';
+  list.innerHTML=historyLog.map((item,i)=>`
+    <div class="history-item">
+      <div class="hi-meta">
+        <span class="hi-phase">${item.phase}</span>
+        <span style="display:flex;align-items:center;gap:8px;">
+          <span class="hi-time">${item.time}</span>
+          <button class="hi-del" onclick="delHistory(${i})">✕</button>
+        </span>
+      </div>
+      <div class="hi-prompt-text">${item.text.substring(0,160)}${item.text.length>160?'…':''}</div>
+      <textarea class="hi-note" placeholder="Notes on the AI's response..." onchange="historyLog[${i}].note=this.value">${item.note}</textarea>
+    </div>`).join('');
+}
+function delHistory(i){historyLog.splice(i,1);renderHistory();}
+function clearHistory(){historyLog.length=0;renderHistory();}
+
+// FILL TEMPLATES
+const defaultLabels={exp:'X years / no experience',field:'your field',title:'target job title',city:'city or remote',bg:'your background'};
+function fillTemplates(){
+  const vals={exp:document.getElementById('fi-exp').value,field:document.getElementById('fi-field').value,title:document.getElementById('fi-title').value,city:document.getElementById('fi-city').value,bg:document.getElementById('fi-bg').value};
+  document.querySelectorAll('.tmpl[data-key]').forEach(el=>{
+    const k=el.dataset.key;
+    if(vals[k]){el.textContent=vals[k];el.style.color='var(--accent)';el.style.fontWeight='500';}
+    else{el.textContent='['+defaultLabels[k]+']';el.style.color='var(--accent2)';el.style.fontWeight='';}
+  });
+}
+
+// QUIZ
+const qAnswers=[];
+function quizAnswer(step,choice){
+  qAnswers[step]=choice;
+  document.getElementById('qs-'+step).classList.remove('active');
+  const next=document.getElementById('qs-'+(step+1));
+  if(next)next.classList.add('active');
+  else showQuizResult();
+}
+function showQuizResult(){
+  document.querySelectorAll('.quiz-step').forEach(s=>s.classList.remove('active'));
+  const r=document.getElementById('quiz-result');r.classList.add('visible');
+  const[a0,a1,a2]=qAnswers;
+  let txt='';
+  if(a2===3||a0===3)txt='<strong>Start at Phase 4\'s diagnostic node.</strong> <span class="qr-path">→ Scroll to Phase 4.</span> Use the "I\'ve applied to [5–10] jobs" prompt to get a specific diagnosis. Also hit the 😶 button on the left if you\'re feeling defeated.';
+  else if(a1===0)txt='<strong>Start at Phase 1, then go straight to Phase 2.</strong> <span class="qr-path">→ Start from the top.</span> Identify your target titles before building materials — Phase 1\'s job title list becomes your keywords for Phase 2.';
+  else if(a2===1)txt='<strong>Start at Phase 2\'s ATS Check.</strong> <span class="qr-path">→ Scroll to the ATS Check in Phase 2.</span> A polished resume that fails keyword screening is invisible to employers. Then move to Phase 4\'s diagnostic to see the full picture.';
+  else if(a2===2)txt='<strong>Go to the Post-Phase 5 section — "Getting interviews but no offers."</strong> <span class="qr-path">→ Scroll to the bottom of Phase 5.</span> Your materials are working but something is happening in the room. Use the mock interview prompt.';
+  else if(a1===2)txt='<strong>Skip to Phase 3 — Target &amp; Research.</strong> <span class="qr-path">→ Scroll to Phase 3.</span> Your materials are solid. Focus on company targeting and interview prep before applying. Phases 1 and 2 can be skipped.';
+  else txt='<strong>Start at the beginning — Phase 1.</strong> <span class="qr-path">→ Scroll down to Phase 1.</span> Work through each phase in order. Each builds on the last, and jumping ahead typically leads to wasted applications.';
+  document.getElementById('quiz-result-text').innerHTML=txt;
+}
+function resetQuiz(){
+  qAnswers.length=0;
+  document.getElementById('quiz-result').classList.remove('visible');
+  document.querySelectorAll('.quiz-step').forEach((s,i)=>{s.classList.remove('active');if(i===0)s.classList.add('active');});
+}
+
+// WEEKLY CHECK-IN
+function generateCheckin(){
+  const apps=parseInt(document.getElementById('ci-apps').value)||0;
+  const resp=parseInt(document.getElementById('ci-resp').value)||0;
+  const ints=parseInt(document.getElementById('ci-int').value)||0;
+  const challenge=document.getElementById('ci-challenge').value;
+  const field=document.getElementById('ci-field').value||'[your field]';
+  const rate=apps>0?Math.round((resp/apps)*100):0;
+  const prompts=[];
+  if(apps===0){
+    prompts.push({n:'Prompt 1',t:`"I didn't apply to any jobs this week. My field is ${field} and my challenge is: ${challenge}. Help me identify the single biggest thing blocking me and give me a concrete 3-step plan to apply to at least 5 jobs next week."`});
+  }else{
+    prompts.push({n:'Prompt 1',t:`"This week I applied to ${apps} jobs in ${field} and got ${resp} responses (${rate}% response rate). Based on this, is my application volume the problem, my materials, or my targeting? What should I focus on most this coming week?"`});
+  }
+  if(challenge==='Interview performance'||ints>0){
+    prompts.push({n:'Prompt 2',t:`"I had ${ints} interview(s) this week for ${field} roles. Help me run a quick self-debrief: what are the 3 most important things to reflect on after an interview, and what would a strong vs. weak answer look like for each?"`});
+  }else if(challenge==='Running out of jobs to apply to'){
+    prompts.push({n:'Prompt 2',t:`"I'm running out of job postings to apply to in ${field}. Give me 5 specific strategies to find more opportunities I may have overlooked — including less obvious job boards, communities, or outreach methods."`});
+  }else{
+    prompts.push({n:'Prompt 2',t:`"My biggest challenge this week in my ${field} job search was: ${challenge}. Give me 3 concrete, specific actions I can take in the next 7 days to directly address this."`});
+  }
+  prompts.push({n:'Prompt 3 — Weekly Reset',t:`"Here's my job search status: field: ${field}, applications sent: ${apps}, responses: ${resp}, interviews: ${ints}. Write me a focused 5-item action plan for next week that balances applying, networking, and improving my materials."`});
+  document.getElementById('checkin-results').innerHTML=prompts.map(p=>`
+    <div class="checkin-prompt-card">
+      <button class="mcopy" onclick="copyMini(this)">Copy</button>
+      <div class="cp-num">${p.n}</div>
+      <p>${p.t}</p>
+    </div>`).join('');
+}
+
+// REJECTION TRACKER
+const rejections=[];
+function addRejection(){
+  const company=document.getElementById('rj-company').value.trim();
+  const role=document.getElementById('rj-role').value.trim();
+  const stage=document.getElementById('rj-stage').value;
+  const date=document.getElementById('rj-date').value;
+  const notes=document.getElementById('rj-notes').value.trim();
+  if(!company)return;
+  rejections.unshift({company,role,stage,date,notes});
+  document.getElementById('rj-company').value='';document.getElementById('rj-role').value='';document.getElementById('rj-notes').value='';
+  renderRejections();
+}
+function renderRejections(){
+  const list=document.getElementById('reject-list');
+  const empty=document.getElementById('reject-empty');
+  if(!rejections.length){empty.style.display='block';list.innerHTML='';return;}
+  empty.style.display='none';
+  list.innerHTML=rejections.map((r,i)=>`
+    <div class="reject-item">
+      <div class="reject-item-info">
+        <h5>${r.company}${r.role?' — '+r.role:''}</h5>
+        <p>${r.date||'No date'} · ${r.notes||'No feedback recorded'}</p>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0;">
+        <span class="reject-item-stage">${r.stage}</span>
+        <button onclick="rejections.splice(${i},1);renderRejections();" style="background:none;border:none;color:var(--muted2);cursor:pointer;font-size:10px;font-family:inherit;transition:color .2s;" onmouseover="this.style.color='var(--accent-red)'" onmouseout="this.style.color='var(--muted2)'">remove</button>
+      </div>
+    </div>`).join('');
+  if(rejections.length>=3){
+    const summary=rejections.slice(0,10).map(r=>`${r.company} (${r.stage}${r.notes?': '+r.notes:''})`).join('; ');
+    document.getElementById('debrief-txt').innerHTML=`"I've been rejected from ${rejections.length} positions. Here are the details: ${summary}. Can you identify any patterns — is there a consistent stage where I'm losing out, a type of company where I'm performing worse, and what that might indicate about what to fix?"`;
+  }
 }
 </script>
 </body>
