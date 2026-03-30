@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -9,119 +8,119 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Mono:wght@300;400;500&display=swap');
 
 :root {
-–bg: #0d0d0f;
-–surface: #131318;
-–surface2: #17171e;
-–border: #252530;
-–accent: #b8f058;
-–accent2: #58c4f0;
-–accent3: #f0a858;
-–accent4: #c896f0;
-–accent-red: #f05870;
-–text: #e8e8ec;
-–muted: #6b6b80;
-–muted2: #4a4a5a;
+  --bg: #0d0d0f;
+  --surface: #131318;
+  --surface2: #17171e;
+  --border: #252530;
+  --accent: #b8f058;
+  --accent2: #58c4f0;
+  --accent3: #f0a858;
+  --accent4: #c896f0;
+  --accent-red: #f05870;
+  --text: #e8e8ec;
+  --muted: #6b6b80;
+  --muted2: #4a4a5a;
 
-/* ── FLUID TYPE SCALE ──────────────────────────────────────────
-Each var scales smoothly between a min (mobile) and max (desktop).
-clamp(min, preferred-vw, max)
-Base reading text: 15px mobile → 17px desktop
-────────────────────────────────────────────────────────────── */
-–fs-2xs:  clamp(10px, 1.1vw, 11px);   /* micro labels, tags, freq badges   */
-–fs-xs:   clamp(11px, 1.3vw, 12px);   /* secondary labels, section headers */
-–fs-sm:   clamp(13px, 1.5vw, 14px);   /* supporting body copy, notes       */
-–fs-base: clamp(15px, 1.7vw, 17px);   /* primary prompts, main body        */
-–fs-md:   clamp(16px, 1.9vw, 18px);   /* quiz questions, modal body        */
-–fs-lg:   clamp(18px, 2.2vw, 21px);   /* section intros, card headers      */
-–fs-h1:   clamp(28px, 5vw, 52px);     /* page title                        */
+  /* ── FLUID TYPE SCALE ──────────────────────────────────────────
+     Each var scales smoothly between a min (mobile) and max (desktop).
+     clamp(min, preferred-vw, max)
+     Base reading text: 15px mobile → 17px desktop
+  ────────────────────────────────────────────────────────────── */
+  --fs-2xs:  clamp(10px, 1.1vw, 11px);   /* micro labels, tags, freq badges   */
+  --fs-xs:   clamp(11px, 1.3vw, 12px);   /* secondary labels, section headers */
+  --fs-sm:   clamp(13px, 1.5vw, 14px);   /* supporting body copy, notes       */
+  --fs-base: clamp(15px, 1.7vw, 17px);   /* primary prompts, main body        */
+  --fs-md:   clamp(16px, 1.9vw, 18px);   /* quiz questions, modal body        */
+  --fs-lg:   clamp(18px, 2.2vw, 21px);   /* section intros, card headers      */
+  --fs-h1:   clamp(28px, 5vw, 52px);     /* page title                        */
 }
 
-- { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: ‘DM Mono’, monospace; background: var(–bg); color: var(–text); min-height: 100vh; font-size: var(–fs-base); }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'DM Mono', monospace; background: var(--bg); color: var(--text); min-height: 100vh; font-size: var(--fs-base); }
 
-header { padding: 48px 48px 28px; border-bottom: 1px solid var(–border); }
-.eyebrow { font-size: var(–fs-2xs); letter-spacing: .22em; color: var(–accent); text-transform: uppercase; margin-bottom: 10px; }
-h1 { font-family: ‘Playfair Display’, serif; font-size: var(–fs-h1); line-height: 1.1; }
-h1 span { color: var(–accent); }
-.subtitle { font-size: var(–fs-sm); color: var(–muted); max-width: 640px; line-height: 1.7; margin-top: 10px; }
-.subtitle em { color: var(–accent2); font-style: italic; }
+header { padding: 48px 48px 28px; border-bottom: 1px solid var(--border); }
+.eyebrow { font-size: var(--fs-2xs); letter-spacing: .22em; color: var(--accent); text-transform: uppercase; margin-bottom: 10px; }
+h1 { font-family: 'Playfair Display', serif; font-size: var(--fs-h1); line-height: 1.1; }
+h1 span { color: var(--accent); }
+.subtitle { font-size: var(--fs-sm); color: var(--muted); max-width: 640px; line-height: 1.7; margin-top: 10px; }
+.subtitle em { color: var(--accent2); font-style: italic; }
 
 /* FLOATING SIDE BUTTONS */
 .float-btns { position: fixed; left: 12px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 8px; z-index: 200; }
-.float-btn { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(–border); background: var(–surface2); font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all .2s; position: relative; }
-.float-btn:hover { border-color: var(–muted); background: var(–surface); transform: scale(1.12); }
-.float-btn .fb-tip { position: absolute; left: 52px; background: var(–surface); border: 1px solid var(–border); border-radius: 3px; padding: 5px 11px; font-size: var(–fs-2xs); color: var(–text); white-space: nowrap; pointer-events: none; opacity: 0; transition: opacity .15s; letter-spacing: .04em; font-family: ‘DM Mono’, monospace; }
+.float-btn { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--border); background: var(--surface2); font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all .2s; position: relative; }
+.float-btn:hover { border-color: var(--muted); background: var(--surface); transform: scale(1.12); }
+.float-btn .fb-tip { position: absolute; left: 52px; background: var(--surface); border: 1px solid var(--border); border-radius: 3px; padding: 5px 11px; font-size: var(--fs-2xs); color: var(--text); white-space: nowrap; pointer-events: none; opacity: 0; transition: opacity .15s; letter-spacing: .04em; font-family: 'DM Mono', monospace; }
 .float-btn:hover .fb-tip { opacity: 1; }
 
 /* TIPS BAR */
-.tips-bar { background: #0f0f14; border-bottom: 1px solid var(–border); padding: 0 48px; }
-.tips-toggle { display: flex; align-items: center; gap: 10px; padding: 13px 0; cursor: pointer; user-select: none; font-size: var(–fs-xs); color: var(–accent3); letter-spacing: .12em; text-transform: uppercase; border: none; background: none; font-family: inherit; width: 100%; }
+.tips-bar { background: #0f0f14; border-bottom: 1px solid var(--border); padding: 0 48px; }
+.tips-toggle { display: flex; align-items: center; gap: 10px; padding: 13px 0; cursor: pointer; user-select: none; font-size: var(--fs-xs); color: var(--accent3); letter-spacing: .12em; text-transform: uppercase; border: none; background: none; font-family: inherit; width: 100%; }
 .tips-toggle .arrow, .fill-toggle .arrow, .history-toggle .arrow { transition: transform .3s; display: inline-block; }
 .tips-toggle.open .arrow, .fill-toggle.open .arrow, .history-toggle.open .arrow { transform: rotate(90deg); }
 .tips-body { display: none; padding: 16px 0 20px; grid-template-columns: repeat(auto-fit,minmax(210px,1fr)); gap: 12px; }
 .tips-body.visible { display: grid; }
-.tip-card { background: var(–surface); border: 1px solid var(–border); border-left: 2px solid var(–accent3); border-radius: 3px; padding: 12px 14px; }
-.tip-card h4 { font-size: var(–fs-2xs); color: var(–accent3); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 6px; }
-.tip-card p { font-size: var(–fs-sm); color: var(–muted); line-height: 1.6; }
+.tip-card { background: var(--surface); border: 1px solid var(--border); border-left: 2px solid var(--accent3); border-radius: 3px; padding: 12px 14px; }
+.tip-card h4 { font-size: var(--fs-2xs); color: var(--accent3); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 6px; }
+.tip-card p { font-size: var(--fs-sm); color: var(--muted); line-height: 1.6; }
 
 /* FILL-IN FORM */
-.fill-bar { background: #0c0c10; border-bottom: 1px solid var(–border); padding: 0 48px; }
-.fill-toggle { display: flex; align-items: center; gap: 10px; padding: 13px 0; cursor: pointer; user-select: none; font-size: var(–fs-xs); color: var(–accent2); letter-spacing: .12em; text-transform: uppercase; border: none; background: none; font-family: inherit; width: 100%; }
+.fill-bar { background: #0c0c10; border-bottom: 1px solid var(--border); padding: 0 48px; }
+.fill-toggle { display: flex; align-items: center; gap: 10px; padding: 13px 0; cursor: pointer; user-select: none; font-size: var(--fs-xs); color: var(--accent2); letter-spacing: .12em; text-transform: uppercase; border: none; background: none; font-family: inherit; width: 100%; }
 .fill-body { display: none; padding: 14px 0 20px; }
 .fill-body.visible { display: block; }
 .fill-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(190px,1fr)); gap: 10px; margin-bottom: 10px; }
-.fill-field label { display: block; font-size: var(–fs-2xs); color: var(–accent2); letter-spacing: .14em; text-transform: uppercase; margin-bottom: 5px; }
-.fill-field input { width: 100%; background: var(–surface); border: 1px solid var(–border); border-radius: 3px; padding: 9px 11px; color: var(–text); font-family: inherit; font-size: var(–fs-sm); outline: none; transition: border-color .2s; }
-.fill-field input:focus { border-color: var(–accent2); }
-.fill-field input::placeholder { color: var(–muted2); }
-.fill-note { font-size: var(–fs-2xs); color: var(–muted); margin-top: 8px; }
+.fill-field label { display: block; font-size: var(--fs-2xs); color: var(--accent2); letter-spacing: .14em; text-transform: uppercase; margin-bottom: 5px; }
+.fill-field input { width: 100%; background: var(--surface); border: 1px solid var(--border); border-radius: 3px; padding: 9px 11px; color: var(--text); font-family: inherit; font-size: var(--fs-sm); outline: none; transition: border-color .2s; }
+.fill-field input:focus { border-color: var(--accent2); }
+.fill-field input::placeholder { color: var(--muted2); }
+.fill-note { font-size: var(--fs-2xs); color: var(--muted); margin-top: 8px; }
 
 /* RECOMMENDED ORDER */
-.rec-order { background: rgba(184,240,88,.04); border: 1px solid rgba(184,240,88,.15); border-left: 3px solid var(–accent); border-radius: 3px; margin: 14px 48px 0; padding: 14px 18px; }
-.rec-order h4 { font-size: var(–fs-2xs); color: var(–accent); letter-spacing: .18em; text-transform: uppercase; margin-bottom: 8px; }
-.rec-order p { font-size: var(–fs-sm); color: var(–muted); line-height: 1.7; }
-.rec-order strong { color: var(–text); }
-.rec-order .skip-note { font-size: var(–fs-xs); color: var(–accent3); margin-top: 6px; }
+.rec-order { background: rgba(184,240,88,.04); border: 1px solid rgba(184,240,88,.15); border-left: 3px solid var(--accent); border-radius: 3px; margin: 14px 48px 0; padding: 14px 18px; }
+.rec-order h4 { font-size: var(--fs-2xs); color: var(--accent); letter-spacing: .18em; text-transform: uppercase; margin-bottom: 8px; }
+.rec-order p { font-size: var(--fs-sm); color: var(--muted); line-height: 1.7; }
+.rec-order strong { color: var(--text); }
+.rec-order .skip-note { font-size: var(--fs-xs); color: var(--accent3); margin-top: 6px; }
 
 /* QUIZ */
-.quiz-wrap { margin: 14px 48px 0; border: 1px solid var(–border); border-radius: 4px; overflow: hidden; }
-.quiz-header { padding: 13px 16px; background: var(–surface2); border-bottom: 1px solid var(–border); display: flex; align-items: center; gap: 10px; cursor: pointer; user-select: none; }
-.quiz-header h3 { font-size: var(–fs-xs); color: var(–text); letter-spacing: .1em; text-transform: uppercase; }
-.quiz-header .qh-badge { font-size: var(–fs-2xs); color: var(–accent); background: rgba(184,240,88,.1); border: 1px solid rgba(184,240,88,.2); border-radius: 20px; padding: 2px 9px; margin-left: auto; }
-.quiz-header .qh-arrow { transition: transform .25s; font-size: var(–fs-xs); color: var(–muted); }
+.quiz-wrap { margin: 14px 48px 0; border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
+.quiz-header { padding: 13px 16px; background: var(--surface2); border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 10px; cursor: pointer; user-select: none; }
+.quiz-header h3 { font-size: var(--fs-xs); color: var(--text); letter-spacing: .1em; text-transform: uppercase; }
+.quiz-header .qh-badge { font-size: var(--fs-2xs); color: var(--accent); background: rgba(184,240,88,.1); border: 1px solid rgba(184,240,88,.2); border-radius: 20px; padding: 2px 9px; margin-left: auto; }
+.quiz-header .qh-arrow { transition: transform .25s; font-size: var(--fs-xs); color: var(--muted); }
 .quiz-header.open .qh-arrow { transform: rotate(90deg); }
 .quiz-body { display: none; padding: 20px; background: #0e0e12; }
 .quiz-body.visible { display: block; }
 .quiz-step { display: none; }
 .quiz-step.active { display: block; }
-.quiz-q { font-size: var(–fs-md); color: var(–text); margin-bottom: 14px; line-height: 1.5; }
-.quiz-q span { color: var(–accent); }
+.quiz-q { font-size: var(--fs-md); color: var(--text); margin-bottom: 14px; line-height: 1.5; }
+.quiz-q span { color: var(--accent); }
 .quiz-options { display: flex; flex-direction: column; gap: 8px; }
-.quiz-opt { background: var(–surface); border: 1px solid var(–border); border-radius: 3px; padding: 11px 15px; cursor: pointer; font-family: inherit; font-size: var(–fs-sm); color: var(–muted); text-align: left; transition: all .18s; }
-.quiz-opt:hover { border-color: var(–accent); color: var(–text); }
+.quiz-opt { background: var(--surface); border: 1px solid var(--border); border-radius: 3px; padding: 11px 15px; cursor: pointer; font-family: inherit; font-size: var(--fs-sm); color: var(--muted); text-align: left; transition: all .18s; }
+.quiz-opt:hover { border-color: var(--accent); color: var(--text); }
 .quiz-result { display: none; background: rgba(184,240,88,.06); border: 1px solid rgba(184,240,88,.2); border-radius: 3px; padding: 16px 18px; }
 .quiz-result.visible { display: block; }
-.quiz-result h4 { font-size: var(–fs-xs); color: var(–accent); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 8px; }
-.quiz-result p { font-size: var(–fs-sm); color: var(–text); line-height: 1.7; }
-.quiz-result .qr-path { color: var(–accent2); }
-.quiz-restart { margin-top: 12px; background: none; border: 1px solid var(–border); color: var(–muted); font-family: inherit; font-size: var(–fs-2xs); padding: 6px 13px; border-radius: 3px; cursor: pointer; letter-spacing: .08em; transition: all .2s; }
-.quiz-restart:hover { border-color: var(–muted); color: var(–text); }
+.quiz-result h4 { font-size: var(--fs-xs); color: var(--accent); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 8px; }
+.quiz-result p { font-size: var(--fs-sm); color: var(--text); line-height: 1.7; }
+.quiz-result .qr-path { color: var(--accent2); }
+.quiz-restart { margin-top: 12px; background: none; border: 1px solid var(--border); color: var(--muted); font-family: inherit; font-size: var(--fs-2xs); padding: 6px 13px; border-radius: 3px; cursor: pointer; letter-spacing: .08em; transition: all .2s; }
+.quiz-restart:hover { border-color: var(--muted); color: var(--text); }
 
 /* LEGEND */
-.legend { display: flex; gap: 20px; padding: 14px 48px; border-bottom: 1px solid var(–border); flex-wrap: wrap; align-items: center; }
-.legend-item { display: flex; align-items: center; gap: 7px; font-size: var(–fs-2xs); color: var(–muted); letter-spacing: .05em; }
+.legend { display: flex; gap: 20px; padding: 14px 48px; border-bottom: 1px solid var(--border); flex-wrap: wrap; align-items: center; }
+.legend-item { display: flex; align-items: center; gap: 7px; font-size: var(--fs-2xs); color: var(--muted); letter-spacing: .05em; }
 .legend-dot { width: 9px; height: 9px; border-radius: 2px; }
-.legend-sep { color: var(–muted2); font-size: var(–fs-2xs); }
+.legend-sep { color: var(--muted2); font-size: var(--fs-2xs); }
 
 /* TRACKER */
-.tracker-bar { position: sticky; top: 0; z-index: 100; background: rgba(13,13,15,.96); backdrop-filter: blur(8px); border-bottom: 1px solid var(–border); padding: 10px 48px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
-.tracker-label { font-size: var(–fs-2xs); color: var(–muted); letter-spacing: .15em; text-transform: uppercase; flex-shrink: 0; }
+.tracker-bar { position: sticky; top: 0; z-index: 100; background: rgba(13,13,15,.96); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); padding: 10px 48px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.tracker-label { font-size: var(--fs-2xs); color: var(--muted); letter-spacing: .15em; text-transform: uppercase; flex-shrink: 0; }
 .tracker-steps { display: flex; gap: 6px; flex-wrap: wrap; }
-.tracker-step { display: flex; align-items: center; gap: 5px; font-size: var(–fs-2xs); color: var(–muted); cursor: pointer; padding: 4px 10px; border: 1px solid var(–border); border-radius: 20px; transition: all .2s; user-select: none; }
-.tracker-step:hover { border-color: var(–muted); color: var(–text); }
-.tracker-step.done { border-color: var(–accent); color: var(–accent); background: rgba(184,240,88,.08); }
-.tracker-step .check { font-size: var(–fs-2xs); }
-.tracker-progress { font-size: var(–fs-2xs); color: var(–muted); margin-left: auto; }
+.tracker-step { display: flex; align-items: center; gap: 5px; font-size: var(--fs-2xs); color: var(--muted); cursor: pointer; padding: 4px 10px; border: 1px solid var(--border); border-radius: 20px; transition: all .2s; user-select: none; }
+.tracker-step:hover { border-color: var(--muted); color: var(--text); }
+.tracker-step.done { border-color: var(--accent); color: var(--accent); background: rgba(184,240,88,.08); }
+.tracker-step .check { font-size: var(--fs-2xs); }
+.tracker-progress { font-size: var(--fs-2xs); color: var(--muted); margin-left: auto; }
 
 /* TREE */
 .tree { padding: 40px 48px 60px; max-width: 1080px; margin: 0 auto; }
@@ -129,233 +128,231 @@ h1 span { color: var(–accent); }
 /* PHASE */
 .phase { display: flex; gap: 28px; }
 .spine { display: flex; flex-direction: column; align-items: center; width: 36px; flex-shrink: 0; }
-.spine-dot { width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(–accent); background: var(–bg); flex-shrink: 0; z-index: 2; margin-top: 2px; }
-.spine-dot.blue { border-color: var(–accent2); }
-.spine-dot.orange { border-color: var(–accent3); }
-.spine-dot.purple { border-color: var(–accent4); }
-.spine-dot.filled { background: var(–accent); }
-.spine-line { width: 2px; background: var(–border); flex: 1; min-height: 20px; }
+.spine-dot { width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--accent); background: var(--bg); flex-shrink: 0; z-index: 2; margin-top: 2px; }
+.spine-dot.blue { border-color: var(--accent2); }
+.spine-dot.orange { border-color: var(--accent3); }
+.spine-dot.purple { border-color: var(--accent4); }
+.spine-dot.filled { background: var(--accent); }
+.spine-line { width: 2px; background: var(--border); flex: 1; min-height: 20px; }
 .phase-body { flex: 1; padding-bottom: 36px; }
-.phase-lbl { font-size: var(–fs-2xs); letter-spacing: .2em; text-transform: uppercase; color: var(–accent); margin-bottom: 14px; }
-.phase-lbl.blue { color: var(–accent2); }
-.phase-lbl.orange { color: var(–accent3); }
-.phase-lbl.purple { color: var(–accent4); }
+.phase-lbl { font-size: var(--fs-2xs); letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+.phase-lbl.blue { color: var(--accent2); }
+.phase-lbl.orange { color: var(--accent3); }
+.phase-lbl.purple { color: var(--accent4); }
 
 /* NODE */
-.node { background: var(–surface); border: 1px solid var(–border); border-left: 2.5px solid var(–accent); border-radius: 3px; padding: 30px 18px 18px; margin-bottom: 10px; transition: transform .18s, border-color .18s; position: relative; }
-.node:hover { transform: translateX(3px); border-color: var(–muted); }
-.node.blue { border-left-color: var(–accent2); }
-.node.orange { border-left-color: var(–accent3); }
-.node.purple { border-left-color: var(–accent4); }
-.node.end { border-left-color: var(–accent); border-color: var(–accent); background: #0f190f; }
-.node-prompt { font-size: var(–fs-base); color: var(–text); line-height: 1.7; margin-bottom: 8px; }
-.node-prompt .tmpl { color: var(–accent2); font-style: italic; }
-.copy-btn { position: absolute; top: 8px; right: 8px; background: rgba(255,255,255,.04); border: 1px solid var(–border); border-radius: 3px; color: var(–muted); font-size: var(–fs-2xs); padding: 4px 10px; cursor: pointer; font-family: inherit; letter-spacing: .06em; transition: all .18s; white-space: nowrap; }
-.copy-btn:hover { background: rgba(184,240,88,.08); border-color: var(–accent); color: var(–accent); }
-.copy-btn.copied { color: var(–accent); border-color: var(–accent); }
-.do-note { font-size: var(–fs-sm); color: var(–accent3); line-height: 1.6; border-top: 1px solid var(–border); padding-top: 9px; margin-top: 9px; }
-.do-note strong { font-size: var(–fs-2xs); letter-spacing: .12em; text-transform: uppercase; display: block; margin-bottom: 4px; color: var(–accent3); opacity: .7; }
+.node { background: var(--surface); border: 1px solid var(--border); border-left: 2.5px solid var(--accent); border-radius: 3px; padding: 30px 18px 18px; margin-bottom: 10px; transition: transform .18s, border-color .18s; position: relative; }
+.node:hover { transform: translateX(3px); border-color: var(--muted); }
+.node.blue { border-left-color: var(--accent2); }
+.node.orange { border-left-color: var(--accent3); }
+.node.purple { border-left-color: var(--accent4); }
+.node.end { border-left-color: var(--accent); border-color: var(--accent); background: #0f190f; }
+.node-prompt { font-size: var(--fs-base); color: var(--text); line-height: 1.7; margin-bottom: 8px; }
+.node-prompt .tmpl { color: var(--accent2); font-style: italic; }
+.copy-btn { position: absolute; top: 8px; right: 8px; background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 3px; color: var(--muted); font-size: var(--fs-2xs); padding: 4px 10px; cursor: pointer; font-family: inherit; letter-spacing: .06em; transition: all .18s; white-space: nowrap; }
+.copy-btn:hover { background: rgba(184,240,88,.08); border-color: var(--accent); color: var(--accent); }
+.copy-btn.copied { color: var(--accent); border-color: var(--accent); }
+.do-note { font-size: var(--fs-sm); color: var(--accent3); line-height: 1.6; border-top: 1px solid var(--border); padding-top: 9px; margin-top: 9px; }
+.do-note strong { font-size: var(--fs-2xs); letter-spacing: .12em; text-transform: uppercase; display: block; margin-bottom: 4px; color: var(--accent3); opacity: .7; }
 .node-footer { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-top: 10px; }
-.node-purpose { font-size: var(–fs-sm); color: var(–muted); line-height: 1.5; flex: 1; min-width: 180px; }
+.node-purpose { font-size: var(--fs-sm); color: var(--muted); line-height: 1.5; flex: 1; min-width: 180px; }
 .node-meta { display: flex; gap: 6px; flex-wrap: wrap; flex-shrink: 0; align-items: center; }
-.tag { font-size: var(–fs-2xs); padding: 3px 8px; border-radius: 2px; letter-spacing: .06em; text-transform: uppercase; font-weight: 500; }
-.tag.discover { background: rgba(184,240,88,.1); color: var(–accent); border: 1px solid rgba(184,240,88,.2); }
-.tag.craft { background: rgba(88,196,240,.1); color: var(–accent2); border: 1px solid rgba(88,196,240,.2); }
-.tag.research { background: rgba(240,168,88,.1); color: var(–accent3); border: 1px solid rgba(240,168,88,.2); }
-.tag.iterate { background: rgba(200,150,240,.1); color: var(–accent4); border: 1px solid rgba(200,150,240,.2); }
-.freq { font-size: var(–fs-2xs); padding: 3px 8px; border-radius: 2px; background: rgba(255,255,255,.04); color: var(–muted2); border: 1px solid var(–border); letter-spacing: .04em; white-space: nowrap; }
-.arrow-down { color: var(–muted2); font-size: 20px; margin: 2px 0 2px 6px; line-height: 1; }
+.tag { font-size: var(--fs-2xs); padding: 3px 8px; border-radius: 2px; letter-spacing: .06em; text-transform: uppercase; font-weight: 500; }
+.tag.discover { background: rgba(184,240,88,.1); color: var(--accent); border: 1px solid rgba(184,240,88,.2); }
+.tag.craft { background: rgba(88,196,240,.1); color: var(--accent2); border: 1px solid rgba(88,196,240,.2); }
+.tag.research { background: rgba(240,168,88,.1); color: var(--accent3); border: 1px solid rgba(240,168,88,.2); }
+.tag.iterate { background: rgba(200,150,240,.1); color: var(--accent4); border: 1px solid rgba(200,150,240,.2); }
+.freq { font-size: var(--fs-2xs); padding: 3px 8px; border-radius: 2px; background: rgba(255,255,255,.04); color: var(--muted2); border: 1px solid var(--border); letter-spacing: .04em; white-space: nowrap; }
+.arrow-down { color: var(--muted2); font-size: 20px; margin: 2px 0 2px 6px; line-height: 1; }
 .branch-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
-.branch-col-label { font-size: var(–fs-2xs); color: var(–muted); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 7px; }
-.div-label { display: flex; align-items: center; gap: 10px; margin: 14px 0; font-size: var(–fs-2xs); color: var(–muted2); letter-spacing: .12em; text-transform: uppercase; }
-.div-label::before, .div-label::after { content: ‘’; flex: 1; height: 1px; background: var(–border); }
+.branch-col-label { font-size: var(--fs-2xs); color: var(--muted); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 7px; }
+.div-label { display: flex; align-items: center; gap: 10px; margin: 14px 0; font-size: var(--fs-2xs); color: var(--muted2); letter-spacing: .12em; text-transform: uppercase; }
+.div-label::before, .div-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
 
 /* DECISION */
-.decision-block { border: 1px solid var(–border); border-radius: 3px; background: #0f0f14; margin: 10px 0 14px; overflow: hidden; }
-.decision-header { padding: 10px 14px; background: rgba(255,255,255,.02); border-bottom: 1px solid var(–border); font-size: var(–fs-2xs); color: var(–muted); letter-spacing: .14em; text-transform: uppercase; display: flex; align-items: center; gap: 8px; cursor: pointer; user-select: none; }
+.decision-block { border: 1px solid var(--border); border-radius: 3px; background: #0f0f14; margin: 10px 0 14px; overflow: hidden; }
+.decision-header { padding: 10px 14px; background: rgba(255,255,255,.02); border-bottom: 1px solid var(--border); font-size: var(--fs-2xs); color: var(--muted); letter-spacing: .14em; text-transform: uppercase; display: flex; align-items: center; gap: 8px; cursor: pointer; user-select: none; }
 .decision-header .dh-arrow { transition: transform .25s; }
 .decision-header.open .dh-arrow { transform: rotate(90deg); }
 .decision-rows { display: none; }
 .decision-rows.visible { display: block; }
-.decision-row { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(–border); }
+.decision-row { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--border); }
 .decision-row:last-child { border-bottom: none; }
-.decision-if { padding: 11px 14px; border-right: 1px solid var(–border); font-size: var(–fs-sm); color: var(–muted); line-height: 1.5; }
-.decision-if strong { color: var(–accent3); font-size: var(–fs-2xs); letter-spacing: .1em; text-transform: uppercase; display: block; margin-bottom: 4px; }
-.decision-then { padding: 11px 14px; font-size: var(–fs-sm); color: var(–text); line-height: 1.5; }
-.decision-then strong { color: var(–accent); font-size: var(–fs-2xs); letter-spacing: .1em; text-transform: uppercase; display: block; margin-bottom: 4px; }
-.decision-then .tmpl { color: var(–accent2); font-style: italic; }
+.decision-if { padding: 11px 14px; border-right: 1px solid var(--border); font-size: var(--fs-sm); color: var(--muted); line-height: 1.5; }
+.decision-if strong { color: var(--accent3); font-size: var(--fs-2xs); letter-spacing: .1em; text-transform: uppercase; display: block; margin-bottom: 4px; }
+.decision-then { padding: 11px 14px; font-size: var(--fs-sm); color: var(--text); line-height: 1.5; }
+.decision-then strong { color: var(--accent); font-size: var(--fs-2xs); letter-spacing: .1em; text-transform: uppercase; display: block; margin-bottom: 4px; }
+.decision-then .tmpl { color: var(--accent2); font-style: italic; }
 
 /* NOT WORKING */
-.not-working { border: 1px solid rgba(240,88,112,.2); border-left: 2.5px solid var(–accent-red); background: rgba(240,88,112,.04); border-radius: 3px; margin: 10px 0 14px; overflow: hidden; }
-.nw-header { padding: 9px 14px; display: flex; align-items: center; gap: 8px; cursor: pointer; user-select: none; font-size: var(–fs-2xs); color: var(–accent-red); letter-spacing: .14em; text-transform: uppercase; border-bottom: 1px solid rgba(240,88,112,.15); }
+.not-working { border: 1px solid rgba(240,88,112,.2); border-left: 2.5px solid var(--accent-red); background: rgba(240,88,112,.04); border-radius: 3px; margin: 10px 0 14px; overflow: hidden; }
+.nw-header { padding: 9px 14px; display: flex; align-items: center; gap: 8px; cursor: pointer; user-select: none; font-size: var(--fs-2xs); color: var(--accent-red); letter-spacing: .14em; text-transform: uppercase; border-bottom: 1px solid rgba(240,88,112,.15); }
 .nw-header .nw-arrow { transition: transform .25s; }
 .nw-header.open .nw-arrow { transform: rotate(90deg); }
 .nw-body { display: none; padding: 12px 14px; }
 .nw-body.visible { display: block; }
 .nw-body ul { list-style: none; display: flex; flex-direction: column; gap: 7px; }
-.nw-body li { font-size: var(–fs-sm); color: var(–muted); line-height: 1.6; padding-left: 16px; position: relative; }
-.nw-body li::before { content: ‘→’; position: absolute; left: 0; color: var(–accent-red); }
+.nw-body li { font-size: var(--fs-sm); color: var(--muted); line-height: 1.6; padding-left: 16px; position: relative; }
+.nw-body li::before { content: '→'; position: absolute; left: 0; color: var(--accent-red); }
 
 /* HISTORY */
-.history-section { max-width: 1080px; margin: 0 auto; padding: 0 48px; border-top: 1px solid var(–border); }
-.history-toggle { display: flex; align-items: center; gap: 10px; padding: 13px 0; cursor: pointer; user-select: none; font-size: var(–fs-xs); color: var(–accent4); letter-spacing: .12em; text-transform: uppercase; border: none; background: none; font-family: inherit; width: 100%; }
+.history-section { max-width: 1080px; margin: 0 auto; padding: 0 48px; border-top: 1px solid var(--border); }
+.history-toggle { display: flex; align-items: center; gap: 10px; padding: 13px 0; cursor: pointer; user-select: none; font-size: var(--fs-xs); color: var(--accent4); letter-spacing: .12em; text-transform: uppercase; border: none; background: none; font-family: inherit; width: 100%; }
 .history-body { display: none; padding: 0 0 20px; }
 .history-body.visible { display: block; }
-.history-empty { font-size: var(–fs-sm); color: var(–muted2); padding: 12px 0; }
+.history-empty { font-size: var(--fs-sm); color: var(--muted2); padding: 12px 0; }
 .history-list { display: flex; flex-direction: column; gap: 8px; max-height: 380px; overflow-y: auto; padding-right: 4px; }
 .history-list::-webkit-scrollbar { width: 4px; }
-.history-list::-webkit-scrollbar-thumb { background: var(–border); border-radius: 2px; }
-.history-item { background: var(–surface); border: 1px solid var(–border); border-radius: 3px; padding: 11px 13px; }
+.history-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+.history-item { background: var(--surface); border: 1px solid var(--border); border-radius: 3px; padding: 11px 13px; }
 .history-item .hi-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
-.history-item .hi-phase { font-size: var(–fs-2xs); color: var(–accent4); letter-spacing: .1em; text-transform: uppercase; }
-.history-item .hi-time { font-size: var(–fs-2xs); color: var(–muted2); }
-.history-item .hi-prompt-text { font-size: var(–fs-sm); color: var(–muted); line-height: 1.5; }
-.history-item .hi-note { font-size: var(–fs-sm); color: var(–text); background: var(–surface2); border: 1px solid var(–border); border-radius: 2px; padding: 7px 9px; margin-top: 7px; min-height: 40px; width: 100%; font-family: inherit; resize: vertical; outline: none; }
-.history-item .hi-note:focus { border-color: var(–accent4); }
-.history-item .hi-del { background: none; border: none; color: var(–muted2); cursor: pointer; font-size: var(–fs-sm); padding: 0; margin-left: 8px; transition: color .2s; font-family: inherit; }
-.history-item .hi-del:hover { color: var(–accent-red); }
-.history-clear { margin-top: 8px; background: none; border: 1px solid var(–border); color: var(–muted2); font-family: inherit; font-size: var(–fs-2xs); padding: 5px 11px; border-radius: 3px; cursor: pointer; letter-spacing: .08em; transition: all .2s; }
-.history-clear:hover { border-color: var(–accent-red); color: var(–accent-red); }
+.history-item .hi-phase { font-size: var(--fs-2xs); color: var(--accent4); letter-spacing: .1em; text-transform: uppercase; }
+.history-item .hi-time { font-size: var(--fs-2xs); color: var(--muted2); }
+.history-item .hi-prompt-text { font-size: var(--fs-sm); color: var(--muted); line-height: 1.5; }
+.history-item .hi-note { font-size: var(--fs-sm); color: var(--text); background: var(--surface2); border: 1px solid var(--border); border-radius: 2px; padding: 7px 9px; margin-top: 7px; min-height: 40px; width: 100%; font-family: inherit; resize: vertical; outline: none; }
+.history-item .hi-note:focus { border-color: var(--accent4); }
+.history-item .hi-del { background: none; border: none; color: var(--muted2); cursor: pointer; font-size: var(--fs-sm); padding: 0; margin-left: 8px; transition: color .2s; font-family: inherit; }
+.history-item .hi-del:hover { color: var(--accent-red); }
+.history-clear { margin-top: 8px; background: none; border: 1px solid var(--border); color: var(--muted2); font-family: inherit; font-size: var(--fs-2xs); padding: 5px 11px; border-radius: 3px; cursor: pointer; letter-spacing: .08em; transition: all .2s; }
+.history-clear:hover { border-color: var(--accent-red); color: var(--accent-red); }
 
 /* POST-PHASE 5 */
 .post5-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-top: 14px; }
-.post5-card { border: 1px solid var(–border); border-radius: 3px; background: var(–surface); overflow: hidden; }
-.post5-header { padding: 11px 13px; font-size: var(–fs-2xs); letter-spacing: .12em; text-transform: uppercase; font-weight: 500; border-bottom: 1px solid var(–border); }
-.post5-header.green { color: var(–accent); background: rgba(184,240,88,.05); border-left: 2px solid var(–accent); }
-.post5-header.blue { color: var(–accent2); background: rgba(88,196,240,.05); border-left: 2px solid var(–accent2); }
-.post5-header.orange { color: var(–accent3); background: rgba(240,168,88,.05); border-left: 2px solid var(–accent3); }
+.post5-card { border: 1px solid var(--border); border-radius: 3px; background: var(--surface); overflow: hidden; }
+.post5-header { padding: 11px 13px; font-size: var(--fs-2xs); letter-spacing: .12em; text-transform: uppercase; font-weight: 500; border-bottom: 1px solid var(--border); }
+.post5-header.green { color: var(--accent); background: rgba(184,240,88,.05); border-left: 2px solid var(--accent); }
+.post5-header.blue { color: var(--accent2); background: rgba(88,196,240,.05); border-left: 2px solid var(--accent2); }
+.post5-header.orange { color: var(--accent3); background: rgba(240,168,88,.05); border-left: 2px solid var(--accent3); }
 .post5-body { padding: 12px; }
-.post5-prompt { font-size: var(–fs-sm); color: var(–text); line-height: 1.65; margin-bottom: 8px; border: 1px solid var(–border); border-radius: 2px; padding: 24px 11px 10px; background: var(–surface2); position: relative; }
-.post5-prompt .tmpl { color: var(–accent2); font-style: italic; }
-.post5-note { font-size: var(–fs-2xs); color: var(–muted); line-height: 1.5; }
+.post5-prompt { font-size: var(--fs-sm); color: var(--text); line-height: 1.65; margin-bottom: 8px; border: 1px solid var(--border); border-radius: 2px; padding: 24px 11px 10px; background: var(--surface2); position: relative; }
+.post5-prompt .tmpl { color: var(--accent2); font-style: italic; }
+.post5-note { font-size: var(--fs-2xs); color: var(--muted); line-height: 1.5; }
 
 /* DISCLAIMER */
-.disclaimer { border: 1px solid rgba(240,88,112,.2); border-left: 3px solid var(–accent-red); background: rgba(240,88,112,.03); border-radius: 3px; padding: 16px 20px; max-width: 1080px; margin: 0 auto; }
-.disclaimer h4 { font-size: var(–fs-2xs); color: var(–accent-red); letter-spacing: .18em; text-transform: uppercase; margin-bottom: 10px; }
+.disclaimer { border: 1px solid rgba(240,88,112,.2); border-left: 3px solid var(--accent-red); background: rgba(240,88,112,.03); border-radius: 3px; padding: 16px 20px; max-width: 1080px; margin: 0 auto; }
+.disclaimer h4 { font-size: var(--fs-2xs); color: var(--accent-red); letter-spacing: .18em; text-transform: uppercase; margin-bottom: 10px; }
 .disclaimer-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 10px; }
-.disc-item { font-size: var(–fs-sm); color: var(–muted); line-height: 1.6; padding-left: 18px; position: relative; }
-.disc-item::before { content: ‘⚠’; position: absolute; left: 0; color: var(–accent-red); font-size: var(–fs-2xs); top: 2px; }
-.disc-item strong { color: var(–text); }
-.disc-footer { font-size: var(–fs-2xs); color: var(–muted2); margin-top: 12px; border-top: 1px solid rgba(240,88,112,.1); padding-top: 10px; line-height: 1.6; }
-.disc-footer a { color: var(–accent2); text-decoration: none; }
+.disc-item { font-size: var(--fs-sm); color: var(--muted); line-height: 1.6; padding-left: 18px; position: relative; }
+.disc-item::before { content: '⚠'; position: absolute; left: 0; color: var(--accent-red); font-size: var(--fs-2xs); top: 2px; }
+.disc-item strong { color: var(--text); }
+.disc-footer { font-size: var(--fs-2xs); color: var(--muted2); margin-top: 12px; border-top: 1px solid rgba(240,88,112,.1); padding-top: 10px; line-height: 1.6; }
+.disc-footer a { color: var(--accent2); text-decoration: none; }
 .disc-footer a:hover { text-decoration: underline; }
 
 /* MODAL */
 .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.76); backdrop-filter: blur(4px); z-index: 500; align-items: center; justify-content: center; padding: 20px; }
 .modal-overlay.visible { display: flex; }
-.modal { background: var(–surface); border: 1px solid var(–border); border-radius: 6px; width: 100%; max-width: 680px; max-height: 85vh; overflow-y: auto; position: relative; }
+.modal { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; width: 100%; max-width: 680px; max-height: 85vh; overflow-y: auto; position: relative; }
 .modal::-webkit-scrollbar { width: 4px; }
-.modal::-webkit-scrollbar-thumb { background: var(–border); border-radius: 2px; }
-.modal-header { padding: 18px 20px; border-bottom: 1px solid var(–border); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; background: var(–surface); z-index: 1; }
-.modal-header h3 { font-size: var(–fs-md); color: var(–text); letter-spacing: .06em; }
-.modal-close { background: none; border: 1px solid var(–border); color: var(–muted); width: 30px; height: 30px; border-radius: 3px; cursor: pointer; font-size: var(–fs-sm); display: flex; align-items: center; justify-content: center; transition: all .2s; flex-shrink: 0; font-family: inherit; }
-.modal-close:hover { border-color: var(–accent-red); color: var(–accent-red); }
+.modal::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+.modal-header { padding: 18px 20px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; background: var(--surface); z-index: 1; }
+.modal-header h3 { font-size: var(--fs-md); color: var(--text); letter-spacing: .06em; }
+.modal-close { background: none; border: 1px solid var(--border); color: var(--muted); width: 30px; height: 30px; border-radius: 3px; cursor: pointer; font-size: var(--fs-sm); display: flex; align-items: center; justify-content: center; transition: all .2s; flex-shrink: 0; font-family: inherit; }
+.modal-close:hover { border-color: var(--accent-red); color: var(--accent-red); }
 .modal-body { padding: 20px; }
 /* mini copy btn inside modal cards */
-.mcopy { position: absolute; top: 6px; right: 6px; background: rgba(255,255,255,.04); border: 1px solid var(–border); border-radius: 3px; color: var(–muted); font-size: var(–fs-2xs); padding: 3px 8px; cursor: pointer; font-family: inherit; letter-spacing: .06em; transition: all .18s; white-space: nowrap; }
-.mcopy:hover { border-color: var(–accent); color: var(–accent); }
-.mcopy.copied { color: var(–accent); border-color: var(–accent); }
+.mcopy { position: absolute; top: 6px; right: 6px; background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 3px; color: var(--muted); font-size: var(--fs-2xs); padding: 3px 8px; cursor: pointer; font-family: inherit; letter-spacing: .06em; transition: all .18s; white-space: nowrap; }
+.mcopy:hover { border-color: var(--accent); color: var(--accent); }
+.mcopy.copied { color: var(--accent); border-color: var(--accent); }
 
 /* BURNOUT MODAL */
-.burnout-intro { font-size: var(–fs-sm); color: var(–muted); line-height: 1.7; margin-bottom: 16px; padding: 12px 14px; background: var(–surface2); border-radius: 3px; border-left: 2px solid var(–accent3); }
+.burnout-intro { font-size: var(--fs-sm); color: var(--muted); line-height: 1.7; margin-bottom: 16px; padding: 12px 14px; background: var(--surface2); border-radius: 3px; border-left: 2px solid var(--accent3); }
 .burnout-prompts { display: flex; flex-direction: column; gap: 10px; }
-.burnout-card { background: var(–surface2); border: 1px solid var(–border); border-left: 2px solid var(–accent3); border-radius: 3px; padding: 12px 14px; }
-.burnout-card h4 { font-size: var(–fs-2xs); color: var(–accent3); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 6px; }
-.burnout-card p { font-size: var(–fs-sm); color: var(–text); line-height: 1.7; }
-.burnout-card .tmpl { color: var(–accent2); font-style: italic; }
-.burnout-copy { display: inline-block; margin-top: 8px; background: rgba(255,255,255,.04); border: 1px solid var(–border); border-radius: 3px; color: var(–muted); font-size: var(–fs-2xs); padding: 4px 9px; cursor: pointer; font-family: inherit; letter-spacing: .06em; transition: all .18s; }
-.burnout-copy:hover { border-color: var(–accent); color: var(–accent); }
+.burnout-card { background: var(--surface2); border: 1px solid var(--border); border-left: 2px solid var(--accent3); border-radius: 3px; padding: 12px 14px; }
+.burnout-card h4 { font-size: var(--fs-2xs); color: var(--accent3); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 6px; }
+.burnout-card p { font-size: var(--fs-sm); color: var(--text); line-height: 1.7; }
+.burnout-card .tmpl { color: var(--accent2); font-style: italic; }
+.burnout-copy { display: inline-block; margin-top: 8px; background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 3px; color: var(--muted); font-size: var(--fs-2xs); padding: 4px 9px; cursor: pointer; font-family: inherit; letter-spacing: .06em; transition: all .18s; }
+.burnout-copy:hover { border-color: var(--accent); color: var(--accent); }
 
 /* HOPELESS MODAL */
 .hopeless-content { text-align: center; padding: 10px 0; }
 .hopeless-emoji-big { font-size: clamp(40px,6vw,56px); margin-bottom: 14px; display: block; }
-.hopeless-content h3 { font-family: ‘Playfair Display’, serif; font-size: var(–fs-lg); color: var(–text); margin-bottom: 8px; }
-.hopeless-content p { font-size: var(–fs-sm); color: var(–muted); line-height: 1.7; margin-bottom: 18px; max-width: 480px; margin-left: auto; margin-right: auto; }
+.hopeless-content h3 { font-family: 'Playfair Display', serif; font-size: var(--fs-lg); color: var(--text); margin-bottom: 8px; }
+.hopeless-content p { font-size: var(--fs-sm); color: var(--muted); line-height: 1.7; margin-bottom: 18px; max-width: 480px; margin-left: auto; margin-right: auto; }
 .hopeless-prompt { background: rgba(184,240,88,.06); border: 1px solid rgba(184,240,88,.2); border-radius: 3px; padding: 26px 18px 16px; text-align: left; margin-bottom: 14px; position: relative; }
-.hopeless-prompt p { font-size: var(–fs-base); color: var(–text); line-height: 1.8; }
-.hopeless-prompt .tmpl { color: var(–accent2); font-style: italic; }
-.hopeless-note { font-size: var(–fs-sm); color: var(–muted); line-height: 1.6; }
+.hopeless-prompt p { font-size: var(--fs-base); color: var(--text); line-height: 1.8; }
+.hopeless-prompt .tmpl { color: var(--accent2); font-style: italic; }
+.hopeless-note { font-size: var(--fs-sm); color: var(--muted); line-height: 1.6; }
 
 /* REJECTION TRACKER */
 .reject-form { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
-.reject-form input, .reject-form select, .reject-form textarea { background: var(–surface2); border: 1px solid var(–border); border-radius: 3px; padding: 9px 11px; color: var(–text); font-family: inherit; font-size: var(–fs-sm); outline: none; transition: border-color .2s; }
-.reject-form input:focus, .reject-form select:focus, .reject-form textarea:focus { border-color: var(–accent4); }
-.reject-form select option { background: var(–surface2); }
-.reject-form label { font-size: var(–fs-2xs); color: var(–muted); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 4px; display: block; }
+.reject-form input, .reject-form select, .reject-form textarea { background: var(--surface2); border: 1px solid var(--border); border-radius: 3px; padding: 9px 11px; color: var(--text); font-family: inherit; font-size: var(--fs-sm); outline: none; transition: border-color .2s; }
+.reject-form input:focus, .reject-form select:focus, .reject-form textarea:focus { border-color: var(--accent4); }
+.reject-form select option { background: var(--surface2); }
+.reject-form label { font-size: var(--fs-2xs); color: var(--muted); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 4px; display: block; }
 .reject-form textarea { resize: vertical; min-height: 56px; }
-.reject-add-btn { background: var(–accent4); color: #000; border: none; border-radius: 3px; padding: 9px 17px; font-family: inherit; font-size: var(–fs-sm); font-weight: 500; cursor: pointer; letter-spacing: .06em; transition: opacity .2s; }
+.reject-add-btn { background: var(--accent4); color: #000; border: none; border-radius: 3px; padding: 9px 17px; font-family: inherit; font-size: var(--fs-sm); font-weight: 500; cursor: pointer; letter-spacing: .06em; transition: opacity .2s; }
 .reject-add-btn:hover { opacity: .85; }
 .reject-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
-.reject-item { background: var(–surface2); border: 1px solid var(–border); border-radius: 3px; padding: 11px 13px; display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
-.reject-item-info h5 { font-size: var(–fs-sm); color: var(–text); margin-bottom: 3px; }
-.reject-item-info p { font-size: var(–fs-2xs); color: var(–muted); }
-.reject-item-stage { font-size: var(–fs-2xs); padding: 3px 8px; border-radius: 2px; background: rgba(200,150,240,.1); color: var(–accent4); border: 1px solid rgba(200,150,240,.2); white-space: nowrap; }
+.reject-item { background: var(--surface2); border: 1px solid var(--border); border-radius: 3px; padding: 11px 13px; display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+.reject-item-info h5 { font-size: var(--fs-sm); color: var(--text); margin-bottom: 3px; }
+.reject-item-info p { font-size: var(--fs-2xs); color: var(--muted); }
+.reject-item-stage { font-size: var(--fs-2xs); padding: 3px 8px; border-radius: 2px; background: rgba(200,150,240,.1); color: var(--accent4); border: 1px solid rgba(200,150,240,.2); white-space: nowrap; }
 .debrief-box { background: rgba(200,150,240,.05); border: 1px solid rgba(200,150,240,.2); border-radius: 3px; padding: 14px; }
-.debrief-box h4 { font-size: var(–fs-2xs); color: var(–accent4); letter-spacing: .14em; text-transform: uppercase; margin-bottom: 8px; }
-.debrief-prompt-txt { font-size: var(–fs-sm); color: var(–text); line-height: 1.7; }
-.debrief-prompt-txt .tmpl { color: var(–accent2); font-style: italic; }
-.debrief-copy-btn { display: inline-block; margin-top: 10px; background: rgba(255,255,255,.04); border: 1px solid var(–border); border-radius: 3px; color: var(–muted); font-size: var(–fs-2xs); padding: 4px 9px; cursor: pointer; font-family: inherit; letter-spacing: .06em; transition: all .18s; }
-.debrief-copy-btn:hover { border-color: var(–accent4); color: var(–accent4); }
+.debrief-box h4 { font-size: var(--fs-2xs); color: var(--accent4); letter-spacing: .14em; text-transform: uppercase; margin-bottom: 8px; }
+.debrief-prompt-txt { font-size: var(--fs-sm); color: var(--text); line-height: 1.7; }
+.debrief-prompt-txt .tmpl { color: var(--accent2); font-style: italic; }
+.debrief-copy-btn { display: inline-block; margin-top: 10px; background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 3px; color: var(--muted); font-size: var(--fs-2xs); padding: 4px 9px; cursor: pointer; font-family: inherit; letter-spacing: .06em; transition: all .18s; }
+.debrief-copy-btn:hover { border-color: var(--accent4); color: var(--accent4); }
 
 /* WEEKLY CHECK-IN */
 .checkin-form { display: flex; flex-direction: column; gap: 10px; margin-bottom: 14px; }
-.checkin-form input, .checkin-form select { background: var(–surface2); border: 1px solid var(–border); border-radius: 3px; padding: 9px 11px; color: var(–text); font-family: inherit; font-size: var(–fs-sm); outline: none; }
-.checkin-form input:focus, .checkin-form select:focus { border-color: var(–accent); }
-.checkin-form label { font-size: var(–fs-2xs); color: var(–muted); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 4px; display: block; }
-.checkin-form select option { background: var(–surface2); }
-.checkin-gen-btn { background: var(–accent); color: #000; border: none; border-radius: 3px; padding: 9px 17px; font-family: inherit; font-size: var(–fs-sm); font-weight: 500; cursor: pointer; letter-spacing: .06em; transition: opacity .2s; }
+.checkin-form input, .checkin-form select { background: var(--surface2); border: 1px solid var(--border); border-radius: 3px; padding: 9px 11px; color: var(--text); font-family: inherit; font-size: var(--fs-sm); outline: none; }
+.checkin-form input:focus, .checkin-form select:focus { border-color: var(--accent); }
+.checkin-form label { font-size: var(--fs-2xs); color: var(--muted); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 4px; display: block; }
+.checkin-form select option { background: var(--surface2); }
+.checkin-gen-btn { background: var(--accent); color: #000; border: none; border-radius: 3px; padding: 9px 17px; font-family: inherit; font-size: var(--fs-sm); font-weight: 500; cursor: pointer; letter-spacing: .06em; transition: opacity .2s; }
 .checkin-gen-btn:hover { opacity: .85; }
 .checkin-results { display: flex; flex-direction: column; gap: 8px; }
-.checkin-prompt-card { background: var(–surface2); border: 1px solid var(–border); border-left: 2px solid var(–accent); border-radius: 3px; padding: 24px 14px 13px; position: relative; }
-.checkin-prompt-card p { font-size: var(–fs-sm); color: var(–text); line-height: 1.7; }
-.checkin-prompt-card .tmpl { color: var(–accent2); font-style: italic; }
-.checkin-prompt-card .cp-num { font-size: var(–fs-2xs); color: var(–accent); letter-spacing: .14em; text-transform: uppercase; margin-bottom: 5px; }
+.checkin-prompt-card { background: var(--surface2); border: 1px solid var(--border); border-left: 2px solid var(--accent); border-radius: 3px; padding: 24px 14px 13px; position: relative; }
+.checkin-prompt-card p { font-size: var(--fs-sm); color: var(--text); line-height: 1.7; }
+.checkin-prompt-card .tmpl { color: var(--accent2); font-style: italic; }
+.checkin-prompt-card .cp-num { font-size: var(--fs-2xs); color: var(--accent); letter-spacing: .14em; text-transform: uppercase; margin-bottom: 5px; }
 
 /* NETWORKING + OFFERS TABS */
-.modal-tabs { display: flex; border-bottom: 1px solid var(–border); }
-.modal-tab { padding: 11px 18px; font-size: var(–fs-sm); color: var(–muted); cursor: pointer; border: none; border-bottom: 2px solid transparent; margin-bottom: -1px; letter-spacing: .08em; background: none; font-family: inherit; transition: all .2s; }
-.modal-tab:hover { color: var(–text); }
-.modal-tab.active { color: var(–accent2); border-bottom-color: var(–accent2); }
+.modal-tabs { display: flex; border-bottom: 1px solid var(--border); }
+.modal-tab { padding: 11px 18px; font-size: var(--fs-sm); color: var(--muted); cursor: pointer; border: none; border-bottom: 2px solid transparent; margin-bottom: -1px; letter-spacing: .08em; background: none; font-family: inherit; transition: all .2s; }
+.modal-tab:hover { color: var(--text); }
+.modal-tab.active { color: var(--accent2); border-bottom-color: var(--accent2); }
 .modal-tab-body { display: none; padding: 18px 20px; }
 .modal-tab-body.active { display: block; }
 .net-section { margin-bottom: 20px; }
-.net-section h4 { font-size: var(–fs-2xs); color: var(–accent2); letter-spacing: .16em; text-transform: uppercase; margin-bottom: 10px; border-bottom: 1px solid var(–border); padding-bottom: 6px; }
-.net-card { background: var(–surface2); border: 1px solid var(–border); border-left: 2px solid var(–accent2); border-radius: 3px; padding: 24px 13px 13px; margin-bottom: 8px; position: relative; }
-.net-card p { font-size: var(–fs-sm); color: var(–text); line-height: 1.7; }
-.net-card .tmpl { color: var(–accent2); font-style: italic; }
-.net-card .nc-label { font-size: var(–fs-2xs); color: var(–muted); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 5px; }
+.net-section h4 { font-size: var(--fs-2xs); color: var(--accent2); letter-spacing: .16em; text-transform: uppercase; margin-bottom: 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.net-card { background: var(--surface2); border: 1px solid var(--border); border-left: 2px solid var(--accent2); border-radius: 3px; padding: 24px 13px 13px; margin-bottom: 8px; position: relative; }
+.net-card p { font-size: var(--fs-sm); color: var(--text); line-height: 1.7; }
+.net-card .tmpl { color: var(--accent2); font-style: italic; }
+.net-card .nc-label { font-size: var(--fs-2xs); color: var(--muted); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 5px; }
 .offer-section { margin-bottom: 20px; }
-.offer-section h4 { font-size: var(–fs-2xs); color: var(–accent3); letter-spacing: .16em; text-transform: uppercase; margin-bottom: 10px; border-bottom: 1px solid var(–border); padding-bottom: 6px; }
-.offer-card { background: var(–surface2); border: 1px solid var(–border); border-left: 2px solid var(–accent3); border-radius: 3px; padding: 24px 13px 13px; margin-bottom: 8px; position: relative; }
-.offer-card p { font-size: var(–fs-sm); color: var(–text); line-height: 1.7; }
-.offer-card .tmpl { color: var(–accent2); font-style: italic; }
-.offer-card .oc-label { font-size: var(–fs-2xs); color: var(–muted); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 5px; }
+.offer-section h4 { font-size: var(--fs-2xs); color: var(--accent3); letter-spacing: .16em; text-transform: uppercase; margin-bottom: 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.offer-card { background: var(--surface2); border: 1px solid var(--border); border-left: 2px solid var(--accent3); border-radius: 3px; padding: 24px 13px 13px; margin-bottom: 8px; position: relative; }
+.offer-card p { font-size: var(--fs-sm); color: var(--text); line-height: 1.7; }
+.offer-card .tmpl { color: var(--accent2); font-style: italic; }
+.offer-card .oc-label { font-size: var(--fs-2xs); color: var(--muted); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 5px; }
 
-footer { text-align: center; padding: 20px 48px 40px; font-size: var(–fs-2xs); color: var(–muted2); line-height: 1.7; border-top: 1px solid var(–border); }
-footer em { color: var(–accent2); font-style: italic; }
+footer { text-align: center; padding: 20px 48px 40px; font-size: var(--fs-2xs); color: var(--muted2); line-height: 1.7; border-top: 1px solid var(--border); }
+footer em { color: var(--accent2); font-style: italic; }
 
 /* ── MODAL BODY BASE TEXT ── */
-.modal-body p { font-size: var(–fs-sm); }
+.modal-body p { font-size: var(--fs-sm); }
 
 @media(max-width:700px){
-header,.tips-bar,.fill-bar,.legend,.tracker-bar,.tree,.history-section,.disclaimer,footer{padding-left:18px;padding-right:18px;}
-.rec-order,.quiz-wrap{margin-left:14px;margin-right:14px;}
-.branch-grid,.post5-grid{grid-template-columns:1fr;}
-.decision-row{grid-template-columns:1fr;}
-.decision-if{border-right:none;border-bottom:1px solid var(–border);}
-.float-btns{left:4px;}
-.float-btn .fb-tip{display:none;}
-.float-btn{width:38px;height:38px;font-size:17px;}
-/* tighten tracker on mobile */
-.tracker-bar{padding-left:18px;padding-right:18px;gap:10px;}
+  header,.tips-bar,.fill-bar,.legend,.tracker-bar,.tree,.history-section,.disclaimer,footer{padding-left:18px;padding-right:18px;}
+  .rec-order,.quiz-wrap{margin-left:14px;margin-right:14px;}
+  .branch-grid,.post5-grid{grid-template-columns:1fr;}
+  .decision-row{grid-template-columns:1fr;}
+  .decision-if{border-right:none;border-bottom:1px solid var(--border);}
+  .float-btns{left:4px;}
+  .float-btn .fb-tip{display:none;}
+  .float-btn{width:38px;height:38px;font-size:17px;}
+  /* tighten tracker on mobile */
+  .tracker-bar{padding-left:18px;padding-right:18px;gap:10px;}
 }
 </style>
-
 </head>
 <body>
 
 <!-- FLOATING SIDE BUTTONS -->
-
 <div class="float-btns">
   <button class="float-btn" onclick="openModal('burnout-modal')">🔋<span class="fb-tip">Feeling burned out?</span></button>
   <button class="float-btn" onclick="openModal('hopeless-modal')">😶<span class="fb-tip">This feels hopeless</span></button>
@@ -365,7 +362,6 @@ header,.tips-bar,.fill-bar,.legend,.tracker-bar,.tree,.history-section,.disclaim
 </div>
 
 <!-- HEADER -->
-
 <header>
   <div class="eyebrow">Newbie Guide · AI-Assisted Job Search</div>
   <h1>The <span>Think Tree</span><br>for Job Hunters</h1>
@@ -373,7 +369,6 @@ header,.tips-bar,.fill-bar,.legend,.tracker-bar,.tree,.history-section,.disclaim
 </header>
 
 <!-- TIPS BAR -->
-
 <div class="tips-bar">
   <button class="tips-toggle" onclick="toggleSec(this,'tips-body')"><span class="arrow">▶</span> Tips: How to get better answers from your AI tool</button>
   <div class="tips-body" id="tips-body">
@@ -387,7 +382,6 @@ header,.tips-bar,.fill-bar,.legend,.tracker-bar,.tree,.history-section,.disclaim
 </div>
 
 <!-- FILL-IN FORM -->
-
 <div class="fill-bar">
   <button class="fill-toggle" onclick="toggleSec(this,'fill-body')"><span class="arrow">▶</span> ✏ Fill in your details once — highlights your info throughout the page</button>
   <div class="fill-body" id="fill-body">
@@ -403,7 +397,6 @@ header,.tips-bar,.fill-bar,.legend,.tracker-bar,.tree,.history-section,.disclaim
 </div>
 
 <!-- RECOMMENDED ORDER -->
-
 <div class="rec-order">
   <h4>📌 Recommended Order &amp; How to Use This Page</h4>
   <p>Start at <strong>Phase 1</strong> and work downward — each phase builds on the last. <strong>Phase 2</strong> (materials) should be done before you apply anywhere. <strong>Phase 3</strong> (research) should be repeated for every company. <strong>Phase 4</strong> starts once you're actively applying. Use the <strong>Copy</strong> button on any prompt, then paste it directly into your AI tool.</p>
@@ -411,7 +404,6 @@ header,.tips-bar,.fill-bar,.legend,.tracker-bar,.tree,.history-section,.disclaim
 </div>
 
 <!-- QUIZ -->
-
 <div class="quiz-wrap">
   <div class="quiz-header" onclick="toggleQuiz(this)">
     <h3>🧭 Not sure where to start? Take the quick quiz</h3>
@@ -454,7 +446,6 @@ header,.tips-bar,.fill-bar,.legend,.tracker-bar,.tree,.history-section,.disclaim
 </div>
 
 <!-- LEGEND -->
-
 <div class="legend" style="margin-top:14px;">
   <div class="legend-item"><div class="legend-dot" style="background:rgba(184,240,88,.6)"></div>Discover</div>
   <div class="legend-item"><div class="legend-dot" style="background:rgba(88,196,240,.6)"></div>Craft</div>
@@ -467,7 +458,6 @@ header,.tips-bar,.fill-bar,.legend,.tracker-bar,.tree,.history-section,.disclaim
 </div>
 
 <!-- TRACKER -->
-
 <div class="tracker-bar">
   <span class="tracker-label">Progress:</span>
   <div class="tracker-steps">
@@ -484,307 +474,285 @@ header,.tips-bar,.fill-bar,.legend,.tracker-bar,.tree,.history-section,.disclaim
 </div>
 
 <!-- ══════════ TREE ══════════ -->
-
 <div class="tree">
 
   <!-- PHASE 1 -->
-
   <div class="phase">
     <div class="spine"><div class="spine-dot"></div><div class="spine-line"></div></div>
     <div class="phase-body">
       <div class="phase-lbl">Phase 1 — Orientation</div>
 
-```
-  <div class="node">
-    <button class="copy-btn" onclick="copyNode(this)">Copy</button>
-    <div class="node-prompt">"I'm looking to start applying for jobs. I have <span class="tmpl" data-key="exp">[X years / no professional experience]</span> in <span class="tmpl" data-key="field">[your field]</span>. My background includes <span class="tmpl" data-key="bg">[relevant education, skills, or projects]</span>. Can you give me a realistic overview of entry-level job titles I should be targeting and what employers typically expect at my level?"</div>
-    <div class="do-note"><strong>What to do with the answer</strong>Save the list of job titles — these become your search keywords on LinkedIn, Indeed, and Google Jobs. If any title is unfamiliar, ask the AI to explain what that role does day-to-day before deciding to pursue it.</div>
-    <div class="node-footer">
-      <div class="node-purpose">Sets the foundation — gets you a realistic map so you don't chase the wrong titles.</div>
-      <div class="node-meta"><span class="tag discover">Discover</span><span class="freq">⬜ Once</span></div>
+      <div class="node">
+        <button class="copy-btn" onclick="copyNode(this)">Copy</button>
+        <div class="node-prompt">"I'm looking to start applying for jobs. I have <span class="tmpl" data-key="exp">[X years / no professional experience]</span> in <span class="tmpl" data-key="field">[your field]</span>. My background includes <span class="tmpl" data-key="bg">[relevant education, skills, or projects]</span>. Can you give me a realistic overview of entry-level job titles I should be targeting and what employers typically expect at my level?"</div>
+        <div class="do-note"><strong>What to do with the answer</strong>Save the list of job titles — these become your search keywords on LinkedIn, Indeed, and Google Jobs. If any title is unfamiliar, ask the AI to explain what that role does day-to-day before deciding to pursue it.</div>
+        <div class="node-footer">
+          <div class="node-purpose">Sets the foundation — gets you a realistic map so you don't chase the wrong titles.</div>
+          <div class="node-meta"><span class="tag discover">Discover</span><span class="freq">⬜ Once</span></div>
+        </div>
+      </div>
+
+      <div class="arrow-down">↓</div>
+
+      <div class="node">
+        <button class="copy-btn" onclick="copyNode(this)">Copy</button>
+        <div class="node-prompt">"Based on those job titles, what are the 5–7 most important hard skills and 3–4 soft skills I should highlight? Which do I likely already have given my background in <span class="tmpl" data-key="bg">[your background]</span>? List what I'm missing too."</div>
+        <div class="do-note"><strong>What to do with the answer</strong>Make two columns: "Have" and "Need to build." For anything in "Need," follow up: "What's the fastest free way to learn [skill] with proof I can show employers?"</div>
+        <div class="node-footer">
+          <div class="node-purpose">Identifies your skill gaps and strengths before writing a single word of your resume.</div>
+          <div class="node-meta"><span class="tag discover">Discover</span><span class="freq">⬜ Once</span></div>
+        </div>
+      </div>
+
+      <div class="decision-block">
+        <div class="decision-header" onclick="toggleDec(this)"><span class="dh-arrow">▶</span> If / Then — Which path fits your situation?</div>
+        <div class="decision-rows">
+          <div class="decision-row"><div class="decision-if"><strong>If</strong>You have no work experience at all</div><div class="decision-then"><strong>Then try</strong>"I have no professional experience. What projects, volunteer work, or coursework could I highlight instead? Give me 3 prompts to build a portfolio from scratch for <span class="tmpl">[field]</span>."</div></div>
+          <div class="decision-row"><div class="decision-if"><strong>If</strong>You're switching careers</div><div class="decision-then"><strong>Then try</strong>"I'm transitioning from <span class="tmpl">[old field]</span> to <span class="tmpl">[new field]</span>. What transferable skills should I emphasize, and how do I frame my experience so it doesn't look like a liability?"</div></div>
+          <div class="decision-row"><div class="decision-if"><strong>If</strong>You have an employment gap</div><div class="decision-then"><strong>Then try</strong>"I have a <span class="tmpl">[X month/year]</span> gap due to <span class="tmpl">[reason]</span>. How should I address this honestly without hurting my chances?"</div></div>
+        </div>
+      </div>
+
+      <div class="not-working">
+        <div class="nw-header" onclick="toggleNW(this)"><span class="nw-arrow">▶</span> ⚠ Not getting useful answers from Phase 1?</div>
+        <div class="nw-body"><ul>
+          <li>Titles feel too broad → add "focus on roles available in <span style="color:var(--accent2);font-style:italic">[your city]</span> at companies under 500 employees"</li>
+          <li>Skills list feels generic → paste an actual job posting and ask it to analyze that specific one instead</li>
+          <li>Don't know what field you want → try "compare these 3 career paths for someone with my background: <span style="color:var(--accent2);font-style:italic">[A, B, C]</span>"</li>
+        </ul></div>
+      </div>
     </div>
-  </div>
-
-  <div class="arrow-down">↓</div>
-
-  <div class="node">
-    <button class="copy-btn" onclick="copyNode(this)">Copy</button>
-    <div class="node-prompt">"Based on those job titles, what are the 5–7 most important hard skills and 3–4 soft skills I should highlight? Which do I likely already have given my background in <span class="tmpl" data-key="bg">[your background]</span>? List what I'm missing too."</div>
-    <div class="do-note"><strong>What to do with the answer</strong>Make two columns: "Have" and "Need to build." For anything in "Need," follow up: "What's the fastest free way to learn [skill] with proof I can show employers?"</div>
-    <div class="node-footer">
-      <div class="node-purpose">Identifies your skill gaps and strengths before writing a single word of your resume.</div>
-      <div class="node-meta"><span class="tag discover">Discover</span><span class="freq">⬜ Once</span></div>
-    </div>
-  </div>
-
-  <div class="decision-block">
-    <div class="decision-header" onclick="toggleDec(this)"><span class="dh-arrow">▶</span> If / Then — Which path fits your situation?</div>
-    <div class="decision-rows">
-      <div class="decision-row"><div class="decision-if"><strong>If</strong>You have no work experience at all</div><div class="decision-then"><strong>Then try</strong>"I have no professional experience. What projects, volunteer work, or coursework could I highlight instead? Give me 3 prompts to build a portfolio from scratch for <span class="tmpl">[field]</span>."</div></div>
-      <div class="decision-row"><div class="decision-if"><strong>If</strong>You're switching careers</div><div class="decision-then"><strong>Then try</strong>"I'm transitioning from <span class="tmpl">[old field]</span> to <span class="tmpl">[new field]</span>. What transferable skills should I emphasize, and how do I frame my experience so it doesn't look like a liability?"</div></div>
-      <div class="decision-row"><div class="decision-if"><strong>If</strong>You have an employment gap</div><div class="decision-then"><strong>Then try</strong>"I have a <span class="tmpl">[X month/year]</span> gap due to <span class="tmpl">[reason]</span>. How should I address this honestly without hurting my chances?"</div></div>
-    </div>
-  </div>
-
-  <div class="not-working">
-    <div class="nw-header" onclick="toggleNW(this)"><span class="nw-arrow">▶</span> ⚠ Not getting useful answers from Phase 1?</div>
-    <div class="nw-body"><ul>
-      <li>Titles feel too broad → add "focus on roles available in <span style="color:var(--accent2);font-style:italic">[your city]</span> at companies under 500 employees"</li>
-      <li>Skills list feels generic → paste an actual job posting and ask it to analyze that specific one instead</li>
-      <li>Don't know what field you want → try "compare these 3 career paths for someone with my background: <span style="color:var(--accent2);font-style:italic">[A, B, C]</span>"</li>
-    </ul></div>
-  </div>
-</div>
-```
-
   </div>
 
   <!-- PHASE 2 -->
-
   <div class="phase">
     <div class="spine"><div class="spine-dot blue"></div><div class="spine-line"></div></div>
     <div class="phase-body">
       <div class="phase-lbl blue">Phase 2 — Build Your Materials</div>
 
-```
-  <div class="branch-grid">
-    <div>
-      <div class="branch-col-label">Resume</div>
-      <div class="node blue">
-        <button class="copy-btn" onclick="copyNode(this)">Copy</button>
-        <div class="node-prompt">"Help me write a resume summary (3 sentences max) for a <span class="tmpl" data-key="title">[target job title]</span> role. I am a <span class="tmpl" data-key="bg">[recent grad / career changer / self-taught]</span> with experience in <span class="tmpl">[skills/projects]</span>. Make it confident and results-oriented."</div>
-        <div class="do-note"><strong>What to do with the answer</strong>Paste it at the top of your resume. Then ask: "Give me 2 alternate versions — one more formal, one more casual." Pick the tone that best matches the companies you're targeting.</div>
-        <div class="node-footer"><div class="node-purpose">The first 3 lines decide if a recruiter reads further.</div><div class="node-meta"><span class="tag craft">Craft</span><span class="freq">⬜ Once</span></div></div>
+      <div class="branch-grid">
+        <div>
+          <div class="branch-col-label">Resume</div>
+          <div class="node blue">
+            <button class="copy-btn" onclick="copyNode(this)">Copy</button>
+            <div class="node-prompt">"Help me write a resume summary (3 sentences max) for a <span class="tmpl" data-key="title">[target job title]</span> role. I am a <span class="tmpl" data-key="bg">[recent grad / career changer / self-taught]</span> with experience in <span class="tmpl">[skills/projects]</span>. Make it confident and results-oriented."</div>
+            <div class="do-note"><strong>What to do with the answer</strong>Paste it at the top of your resume. Then ask: "Give me 2 alternate versions — one more formal, one more casual." Pick the tone that best matches the companies you're targeting.</div>
+            <div class="node-footer"><div class="node-purpose">The first 3 lines decide if a recruiter reads further.</div><div class="node-meta"><span class="tag craft">Craft</span><span class="freq">⬜ Once</span></div></div>
+          </div>
+          <div class="node blue">
+            <button class="copy-btn" onclick="copyNode(this)">Copy</button>
+            <div class="node-prompt">"Here are my bullet points from <span class="tmpl">[job/project]</span>: <span class="tmpl">[paste bullets]</span>. Rewrite them using strong action verbs and quantified impact wherever possible. Keep each under 15 words."</div>
+            <div class="do-note"><strong>What to do with the answer</strong>Replace your old bullets one section at a time. If the AI can't quantify something, say: "I don't have numbers — what's a realistic way to estimate impact so I can add them?"</div>
+            <div class="node-footer"><div class="node-purpose">Transforms vague descriptions into achievement statements.</div><div class="node-meta"><span class="tag craft">Craft</span><span class="freq">⬜ Once</span></div></div>
+          </div>
+        </div>
+        <div>
+          <div class="branch-col-label">Cover Letter</div>
+          <div class="node blue">
+            <button class="copy-btn" onclick="copyNode(this)">Copy</button>
+            <div class="node-prompt">"Write a cover letter opening paragraph for a <span class="tmpl" data-key="title">[job title]</span> at <span class="tmpl">[company name]</span>. Don't start with 'I am excited...' — make it specific to <span class="tmpl">[something real about the company or role]</span>."</div>
+            <div class="do-note"><strong>What to do with the answer</strong>Use this as the hook only. Ask the AI to write the middle paragraph (your top 2 experiences) and the closing separately — it's easier to edit in pieces than as one long block.</div>
+            <div class="node-footer"><div class="node-purpose">Most cover letters are generic — this hooks the reader immediately.</div><div class="node-meta"><span class="tag craft">Craft</span><span class="freq">♻ Per application</span></div></div>
+          </div>
+          <div class="node blue">
+            <button class="copy-btn" onclick="copyNode(this)">Copy</button>
+            <div class="node-prompt">"Here is the job description: <span class="tmpl">[paste JD]</span>. Here is my resume: <span class="tmpl">[paste resume]</span>. Write a full cover letter that mirrors the JD language and highlights my top 2 most relevant experiences."</div>
+            <div class="do-note"><strong>What to do with the answer</strong>Read it out loud. If any sentence sounds like something you'd never say, flag it: "Rewrite this sentence to sound more like how I actually speak — less formal."</div>
+            <div class="node-footer"><div class="node-purpose">Tailors your letter to the exact role — the biggest factor in effectiveness.</div><div class="node-meta"><span class="tag craft">Craft</span><span class="freq">♻ Per application</span></div></div>
+          </div>
+        </div>
       </div>
+
+      <div class="div-label">Then — ATS Keyword Check</div>
+
       <div class="node blue">
         <button class="copy-btn" onclick="copyNode(this)">Copy</button>
-        <div class="node-prompt">"Here are my bullet points from <span class="tmpl">[job/project]</span>: <span class="tmpl">[paste bullets]</span>. Rewrite them using strong action verbs and quantified impact wherever possible. Keep each under 15 words."</div>
-        <div class="do-note"><strong>What to do with the answer</strong>Replace your old bullets one section at a time. If the AI can't quantify something, say: "I don't have numbers — what's a realistic way to estimate impact so I can add them?"</div>
-        <div class="node-footer"><div class="node-purpose">Transforms vague descriptions into achievement statements.</div><div class="node-meta"><span class="tag craft">Craft</span><span class="freq">⬜ Once</span></div></div>
+        <div class="node-prompt">"Here is a job description: <span class="tmpl">[paste JD]</span>. Here is my resume: <span class="tmpl">[paste resume]</span>. Identify the top keywords from the JD missing from my resume and suggest where I can naturally incorporate them without keyword stuffing."</div>
+        <div class="do-note"><strong>What to do with the answer</strong>Add the top 3–5 keywords only. Don't cram them all in — a keyword-stuffed resume reads as unnatural to human reviewers even if it passes ATS filters.</div>
+        <div class="node-footer"><div class="node-purpose">Many companies filter before a human reads your resume. This bridges that gap.</div><div class="node-meta"><span class="tag craft">Craft</span><span class="freq">♻ Per application</span></div></div>
+      </div>
+
+      <div class="decision-block">
+        <div class="decision-header" onclick="toggleDec(this)"><span class="dh-arrow">▶</span> If / Then — Tailoring your materials</div>
+        <div class="decision-rows">
+          <div class="decision-row"><div class="decision-if"><strong>If</strong>Applying to a large corporate company</div><div class="decision-then"><strong>Then try</strong>"Adjust my resume to sound more structured and metric-driven. Corporate recruiters want to see scale and process."</div></div>
+          <div class="decision-row"><div class="decision-if"><strong>If</strong>Applying to a startup</div><div class="decision-then"><strong>Then try</strong>"Rewrite my summary to sound scrappy and versatile. Startups want generalists who can wear multiple hats."</div></div>
+          <div class="decision-row"><div class="decision-if"><strong>If</strong>You have no degree</div><div class="decision-then"><strong>Then try</strong>"Help me build a resume that leads with skills and projects instead of education, without the education section looking like it's being hidden."</div></div>
+        </div>
+      </div>
+
+      <div class="not-working">
+        <div class="nw-header" onclick="toggleNW(this)"><span class="nw-arrow">▶</span> ⚠ Not happy with the resume or cover letter output?</div>
+        <div class="nw-body"><ul>
+          <li>Output sounds generic → say "this sounds like every other resume — rewrite it to sound more like a real human wrote it"</li>
+          <li>Cover letter feels stiff → add "write this in a warm, direct tone — no corporate jargon"</li>
+          <li>Bullets don't reflect what you did → paste a description of the project in your own words first, then ask it to turn that into bullets</li>
+        </ul></div>
       </div>
     </div>
-    <div>
-      <div class="branch-col-label">Cover Letter</div>
-      <div class="node blue">
-        <button class="copy-btn" onclick="copyNode(this)">Copy</button>
-        <div class="node-prompt">"Write a cover letter opening paragraph for a <span class="tmpl" data-key="title">[job title]</span> at <span class="tmpl">[company name]</span>. Don't start with 'I am excited...' — make it specific to <span class="tmpl">[something real about the company or role]</span>."</div>
-        <div class="do-note"><strong>What to do with the answer</strong>Use this as the hook only. Ask the AI to write the middle paragraph (your top 2 experiences) and the closing separately — it's easier to edit in pieces than as one long block.</div>
-        <div class="node-footer"><div class="node-purpose">Most cover letters are generic — this hooks the reader immediately.</div><div class="node-meta"><span class="tag craft">Craft</span><span class="freq">♻ Per application</span></div></div>
-      </div>
-      <div class="node blue">
-        <button class="copy-btn" onclick="copyNode(this)">Copy</button>
-        <div class="node-prompt">"Here is the job description: <span class="tmpl">[paste JD]</span>. Here is my resume: <span class="tmpl">[paste resume]</span>. Write a full cover letter that mirrors the JD language and highlights my top 2 most relevant experiences."</div>
-        <div class="do-note"><strong>What to do with the answer</strong>Read it out loud. If any sentence sounds like something you'd never say, flag it: "Rewrite this sentence to sound more like how I actually speak — less formal."</div>
-        <div class="node-footer"><div class="node-purpose">Tailors your letter to the exact role — the biggest factor in effectiveness.</div><div class="node-meta"><span class="tag craft">Craft</span><span class="freq">♻ Per application</span></div></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="div-label">Then — ATS Keyword Check</div>
-
-  <div class="node blue">
-    <button class="copy-btn" onclick="copyNode(this)">Copy</button>
-    <div class="node-prompt">"Here is a job description: <span class="tmpl">[paste JD]</span>. Here is my resume: <span class="tmpl">[paste resume]</span>. Identify the top keywords from the JD missing from my resume and suggest where I can naturally incorporate them without keyword stuffing."</div>
-    <div class="do-note"><strong>What to do with the answer</strong>Add the top 3–5 keywords only. Don't cram them all in — a keyword-stuffed resume reads as unnatural to human reviewers even if it passes ATS filters.</div>
-    <div class="node-footer"><div class="node-purpose">Many companies filter before a human reads your resume. This bridges that gap.</div><div class="node-meta"><span class="tag craft">Craft</span><span class="freq">♻ Per application</span></div></div>
-  </div>
-
-  <div class="decision-block">
-    <div class="decision-header" onclick="toggleDec(this)"><span class="dh-arrow">▶</span> If / Then — Tailoring your materials</div>
-    <div class="decision-rows">
-      <div class="decision-row"><div class="decision-if"><strong>If</strong>Applying to a large corporate company</div><div class="decision-then"><strong>Then try</strong>"Adjust my resume to sound more structured and metric-driven. Corporate recruiters want to see scale and process."</div></div>
-      <div class="decision-row"><div class="decision-if"><strong>If</strong>Applying to a startup</div><div class="decision-then"><strong>Then try</strong>"Rewrite my summary to sound scrappy and versatile. Startups want generalists who can wear multiple hats."</div></div>
-      <div class="decision-row"><div class="decision-if"><strong>If</strong>You have no degree</div><div class="decision-then"><strong>Then try</strong>"Help me build a resume that leads with skills and projects instead of education, without the education section looking like it's being hidden."</div></div>
-    </div>
-  </div>
-
-  <div class="not-working">
-    <div class="nw-header" onclick="toggleNW(this)"><span class="nw-arrow">▶</span> ⚠ Not happy with the resume or cover letter output?</div>
-    <div class="nw-body"><ul>
-      <li>Output sounds generic → say "this sounds like every other resume — rewrite it to sound more like a real human wrote it"</li>
-      <li>Cover letter feels stiff → add "write this in a warm, direct tone — no corporate jargon"</li>
-      <li>Bullets don't reflect what you did → paste a description of the project in your own words first, then ask it to turn that into bullets</li>
-    </ul></div>
-  </div>
-</div>
-```
-
   </div>
 
   <!-- PHASE 3 -->
-
   <div class="phase">
     <div class="spine"><div class="spine-dot orange"></div><div class="spine-line"></div></div>
     <div class="phase-body">
       <div class="phase-lbl orange">Phase 3 — Target &amp; Research</div>
 
-```
-  <div class="node orange">
-    <button class="copy-btn" onclick="copyNode(this)">Copy</button>
-    <div class="node-prompt">"I'm applying to <span class="tmpl">[company name]</span> for a <span class="tmpl" data-key="title">[job title]</span> role. What do you know about this company's culture, values, and recent news? What 2–3 talking points should I weave into my application?"</div>
-    <div class="do-note"><strong>What to do with the answer</strong>Add one talking point to your cover letter opening and one to your "why this company" answer for interviews. Verify any specific facts (funding, leadership) on the company's actual website — AI company data can be outdated.</div>
-    <div class="node-footer"><div class="node-purpose">Shows genuine interest. Targeted applications dramatically outperform mass-blasts.</div><div class="node-meta"><span class="tag research">Research</span><span class="freq">♻ Per company</span></div></div>
-  </div>
+      <div class="node orange">
+        <button class="copy-btn" onclick="copyNode(this)">Copy</button>
+        <div class="node-prompt">"I'm applying to <span class="tmpl">[company name]</span> for a <span class="tmpl" data-key="title">[job title]</span> role. What do you know about this company's culture, values, and recent news? What 2–3 talking points should I weave into my application?"</div>
+        <div class="do-note"><strong>What to do with the answer</strong>Add one talking point to your cover letter opening and one to your "why this company" answer for interviews. Verify any specific facts (funding, leadership) on the company's actual website — AI company data can be outdated.</div>
+        <div class="node-footer"><div class="node-purpose">Shows genuine interest. Targeted applications dramatically outperform mass-blasts.</div><div class="node-meta"><span class="tag research">Research</span><span class="freq">♻ Per company</span></div></div>
+      </div>
 
-  <div class="arrow-down">↓</div>
+      <div class="arrow-down">↓</div>
 
-  <div class="branch-grid">
-    <div class="node orange">
-      <button class="copy-btn" onclick="copyNode(this)">Copy</button>
-      <div class="node-prompt">"What are the most common interview questions for a <span class="tmpl" data-key="title">[job title]</span> role? Give me a framework for answering each and an example I can adapt based on my experience in <span class="tmpl" data-key="bg">[background]</span>."</div>
-      <div class="do-note"><strong>What to do with the answer</strong>Write out your actual answers using STAR (Situation, Task, Action, Result). Then paste each back and ask: "Is this answer compelling or does it sound rehearsed? How can I improve it?"</div>
-      <div class="node-footer"><div class="node-purpose">Prep before you apply, not after. Shortens panic time significantly.</div><div class="node-meta"><span class="tag research">Research</span><span class="freq">⬜ Once per role type</span></div></div>
+      <div class="branch-grid">
+        <div class="node orange">
+          <button class="copy-btn" onclick="copyNode(this)">Copy</button>
+          <div class="node-prompt">"What are the most common interview questions for a <span class="tmpl" data-key="title">[job title]</span> role? Give me a framework for answering each and an example I can adapt based on my experience in <span class="tmpl" data-key="bg">[background]</span>."</div>
+          <div class="do-note"><strong>What to do with the answer</strong>Write out your actual answers using STAR (Situation, Task, Action, Result). Then paste each back and ask: "Is this answer compelling or does it sound rehearsed? How can I improve it?"</div>
+          <div class="node-footer"><div class="node-purpose">Prep before you apply, not after. Shortens panic time significantly.</div><div class="node-meta"><span class="tag research">Research</span><span class="freq">⬜ Once per role type</span></div></div>
+        </div>
+        <div class="node orange">
+          <button class="copy-btn" onclick="copyNode(this)">Copy</button>
+          <div class="node-prompt">"What salary range should I expect for a <span class="tmpl" data-key="title">[job title]</span> in <span class="tmpl" data-key="city">[city or remote]</span> with <span class="tmpl" data-key="exp">[experience level]</span>? What non-salary perks should I also negotiate for?"</div>
+          <div class="do-note"><strong>What to do with the answer</strong>Cross-reference these numbers on Glassdoor, LinkedIn Salary, and Levels.fyi (for tech). AI salary data can be 1–2 years stale. Use it as a starting estimate only — always verify before negotiating.</div>
+          <div class="node-footer"><div class="node-purpose">Know your number before you're asked. Never negotiate blind.</div><div class="node-meta"><span class="tag research">Research</span><span class="freq">⬜ Once</span></div></div>
+        </div>
+      </div>
+
+      <div class="decision-block">
+        <div class="decision-header" onclick="toggleDec(this)"><span class="dh-arrow">▶</span> If / Then — What kind of company are you targeting?</div>
+        <div class="decision-rows">
+          <div class="decision-row"><div class="decision-if"><strong>If</strong>The company has Glassdoor reviews</div><div class="decision-then"><strong>Then try</strong>"The Glassdoor reviews for <span class="tmpl">[company]</span> mention <span class="tmpl">[theme]</span>. What questions should I ask in the interview to understand if this is still an issue?"</div></div>
+          <div class="decision-row"><div class="decision-if"><strong>If</strong>It's a company you don't know much about</div><div class="decision-then"><strong>Then try</strong>"I know very little about <span class="tmpl">[company]</span>. What search terms and sources should I use to understand if this is a good place to work before investing time applying?"</div></div>
+        </div>
+      </div>
+
+      <div class="not-working">
+        <div class="nw-header" onclick="toggleNW(this)"><span class="nw-arrow">▶</span> ⚠ Research phase feeling overwhelming or shallow?</div>
+        <div class="nw-body"><ul>
+          <li>AI doesn't know the specific company → ask "what search terms should I use to research <span style="color:var(--accent2);font-style:italic">[company]</span> before applying?"</li>
+          <li>Interview prep answers feel rehearsed → say "make this sound more natural, like I'm telling a story to a friend"</li>
+          <li>Salary range is unclear → ask for ranges by company size: "What's the range at startups vs. mid-size vs. enterprise for this role?"</li>
+        </ul></div>
+      </div>
     </div>
-    <div class="node orange">
-      <button class="copy-btn" onclick="copyNode(this)">Copy</button>
-      <div class="node-prompt">"What salary range should I expect for a <span class="tmpl" data-key="title">[job title]</span> in <span class="tmpl" data-key="city">[city or remote]</span> with <span class="tmpl" data-key="exp">[experience level]</span>? What non-salary perks should I also negotiate for?"</div>
-      <div class="do-note"><strong>What to do with the answer</strong>Cross-reference these numbers on Glassdoor, LinkedIn Salary, and Levels.fyi (for tech). AI salary data can be 1–2 years stale. Use it as a starting estimate only — always verify before negotiating.</div>
-      <div class="node-footer"><div class="node-purpose">Know your number before you're asked. Never negotiate blind.</div><div class="node-meta"><span class="tag research">Research</span><span class="freq">⬜ Once</span></div></div>
-    </div>
-  </div>
-
-  <div class="decision-block">
-    <div class="decision-header" onclick="toggleDec(this)"><span class="dh-arrow">▶</span> If / Then — What kind of company are you targeting?</div>
-    <div class="decision-rows">
-      <div class="decision-row"><div class="decision-if"><strong>If</strong>The company has Glassdoor reviews</div><div class="decision-then"><strong>Then try</strong>"The Glassdoor reviews for <span class="tmpl">[company]</span> mention <span class="tmpl">[theme]</span>. What questions should I ask in the interview to understand if this is still an issue?"</div></div>
-      <div class="decision-row"><div class="decision-if"><strong>If</strong>It's a company you don't know much about</div><div class="decision-then"><strong>Then try</strong>"I know very little about <span class="tmpl">[company]</span>. What search terms and sources should I use to understand if this is a good place to work before investing time applying?"</div></div>
-    </div>
-  </div>
-
-  <div class="not-working">
-    <div class="nw-header" onclick="toggleNW(this)"><span class="nw-arrow">▶</span> ⚠ Research phase feeling overwhelming or shallow?</div>
-    <div class="nw-body"><ul>
-      <li>AI doesn't know the specific company → ask "what search terms should I use to research <span style="color:var(--accent2);font-style:italic">[company]</span> before applying?"</li>
-      <li>Interview prep answers feel rehearsed → say "make this sound more natural, like I'm telling a story to a friend"</li>
-      <li>Salary range is unclear → ask for ranges by company size: "What's the range at startups vs. mid-size vs. enterprise for this role?"</li>
-    </ul></div>
-  </div>
-</div>
-```
-
   </div>
 
   <!-- PHASE 4 -->
-
   <div class="phase">
     <div class="spine"><div class="spine-dot purple"></div><div class="spine-line"></div></div>
     <div class="phase-body">
       <div class="phase-lbl purple">Phase 4 — Apply &amp; Iterate</div>
 
-```
-  <div class="node purple">
-    <button class="copy-btn" onclick="copyNode(this)">Copy</button>
-    <div class="node-prompt">"I've applied to <span class="tmpl">[5–10]</span> jobs and haven't heard back from most. Here are the roles I've applied to: <span class="tmpl" data-key="field">[list roles/industries]</span>. Review my resume summary and top bullet points for red flags that might be hurting my response rate."</div>
-    <div class="do-note"><strong>What to do with the answer</strong>Don't make all suggested changes at once. Pick the top 2–3 highest-impact edits, update your resume, apply to 5 more jobs, then evaluate again. Changing everything at once makes it impossible to know what worked.</div>
-    <div class="node-footer"><div class="node-purpose">Early diagnostic. Catch problems before wasting more applications.</div><div class="node-meta"><span class="tag iterate">Iterate</span><span class="freq">After 5–10 apps</span></div></div>
-  </div>
-
-  <div class="arrow-down">↓</div>
-
-  <div class="branch-grid">
-    <div>
-      <div class="branch-col-label">Outreach</div>
       <div class="node purple">
         <button class="copy-btn" onclick="copyNode(this)">Copy</button>
-        <div class="node-prompt">"Help me write a LinkedIn connection message to a <span class="tmpl">[job title / recruiter / hiring manager]</span> at <span class="tmpl">[company]</span>. Keep it under 5 sentences, don't ask for a job directly, and make it feel genuine — not scripted."</div>
-        <div class="do-note"><strong>What to do with the answer</strong>Read it and ask: "Does this sound like me?" If not, tell the AI your natural speaking style ("I'm usually direct / laid-back / formal") and ask it to rewrite accordingly.</div>
-        <div class="node-footer"><div class="node-purpose">Warm outreach dramatically increases callback rate.</div><div class="node-meta"><span class="tag craft">Craft</span><span class="freq">♻ Per contact</span></div></div>
+        <div class="node-prompt">"I've applied to <span class="tmpl">[5–10]</span> jobs and haven't heard back from most. Here are the roles I've applied to: <span class="tmpl" data-key="field">[list roles/industries]</span>. Review my resume summary and top bullet points for red flags that might be hurting my response rate."</div>
+        <div class="do-note"><strong>What to do with the answer</strong>Don't make all suggested changes at once. Pick the top 2–3 highest-impact edits, update your resume, apply to 5 more jobs, then evaluate again. Changing everything at once makes it impossible to know what worked.</div>
+        <div class="node-footer"><div class="node-purpose">Early diagnostic. Catch problems before wasting more applications.</div><div class="node-meta"><span class="tag iterate">Iterate</span><span class="freq">After 5–10 apps</span></div></div>
+      </div>
+
+      <div class="arrow-down">↓</div>
+
+      <div class="branch-grid">
+        <div>
+          <div class="branch-col-label">Outreach</div>
+          <div class="node purple">
+            <button class="copy-btn" onclick="copyNode(this)">Copy</button>
+            <div class="node-prompt">"Help me write a LinkedIn connection message to a <span class="tmpl">[job title / recruiter / hiring manager]</span> at <span class="tmpl">[company]</span>. Keep it under 5 sentences, don't ask for a job directly, and make it feel genuine — not scripted."</div>
+            <div class="do-note"><strong>What to do with the answer</strong>Read it and ask: "Does this sound like me?" If not, tell the AI your natural speaking style ("I'm usually direct / laid-back / formal") and ask it to rewrite accordingly.</div>
+            <div class="node-footer"><div class="node-purpose">Warm outreach dramatically increases callback rate.</div><div class="node-meta"><span class="tag craft">Craft</span><span class="freq">♻ Per contact</span></div></div>
+          </div>
+        </div>
+        <div>
+          <div class="branch-col-label">Follow-Up</div>
+          <div class="node purple">
+            <button class="copy-btn" onclick="copyNode(this)">Copy</button>
+            <div class="node-prompt">"I applied to <span class="tmpl">[company]</span> <span class="tmpl">[X weeks]</span> ago and haven't heard back. Write a brief polite follow-up email. Don't sound desperate. Include a specific reason I'm still interested."</div>
+            <div class="do-note"><strong>What to do with the answer</strong>Send it only if it's under 5 sentences. If longer, ask: "Cut this in half." Brevity signals confidence. Wait at least 1–2 weeks before a second follow-up, and never follow up more than twice total.</div>
+            <div class="node-footer"><div class="node-purpose">Following up sets you apart — most applicants never do it.</div><div class="node-meta"><span class="tag craft">Craft</span><span class="freq">♻ Per application</span></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="decision-block">
+        <div class="decision-header" onclick="toggleDec(this)"><span class="dh-arrow">▶</span> If / Then — What's happening after you apply?</div>
+        <div class="decision-rows">
+          <div class="decision-row"><div class="decision-if"><strong>If</strong>Getting to phone screens but failing them</div><div class="decision-then"><strong>Then try</strong>"I keep failing phone screens for <span class="tmpl">[job title]</span> roles. Here's how my last one went: <span class="tmpl">[describe it]</span>. What am I doing wrong and how should I answer differently?"</div></div>
+          <div class="decision-row"><div class="decision-if"><strong>If</strong>Getting zero callbacks at all</div><div class="decision-then"><strong>Then try</strong>"I've applied to <span class="tmpl">[X]</span> jobs with a 0% response rate. Review my resume for the top 3 reasons a recruiter might immediately pass on me."</div></div>
+          <div class="decision-row"><div class="decision-if"><strong>If</strong>Applying feels like shouting into a void</div><div class="decision-then"><strong>Then try</strong>"What are 5 ways to find jobs for <span class="tmpl">[field]</span> that don't involve submitting on job boards? I want to try a completely different channel."</div></div>
+        </div>
+      </div>
+
+      <div class="not-working">
+        <div class="nw-header" onclick="toggleNW(this)"><span class="nw-arrow">▶</span> ⚠ Outreach and follow-ups not landing?</div>
+        <div class="nw-body"><ul>
+          <li>LinkedIn messages getting ignored → paste your message and ask "what's wrong with this?" — one wrong word can kill the tone</li>
+          <li>Not sure who to contact → "Who is the best person to cold-message at a <span style="color:var(--accent2);font-style:italic">[company size]</span> company for <span style="color:var(--accent2);font-style:italic">[role]</span> — recruiter, hiring manager, or team lead?"</li>
+          <li>Follow-up feels awkward → ask for 3 tones: casual, professional, and enthusiastic, then pick the one that sounds like you</li>
+        </ul></div>
       </div>
     </div>
-    <div>
-      <div class="branch-col-label">Follow-Up</div>
-      <div class="node purple">
-        <button class="copy-btn" onclick="copyNode(this)">Copy</button>
-        <div class="node-prompt">"I applied to <span class="tmpl">[company]</span> <span class="tmpl">[X weeks]</span> ago and haven't heard back. Write a brief polite follow-up email. Don't sound desperate. Include a specific reason I'm still interested."</div>
-        <div class="do-note"><strong>What to do with the answer</strong>Send it only if it's under 5 sentences. If longer, ask: "Cut this in half." Brevity signals confidence. Wait at least 1–2 weeks before a second follow-up, and never follow up more than twice total.</div>
-        <div class="node-footer"><div class="node-purpose">Following up sets you apart — most applicants never do it.</div><div class="node-meta"><span class="tag craft">Craft</span><span class="freq">♻ Per application</span></div></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="decision-block">
-    <div class="decision-header" onclick="toggleDec(this)"><span class="dh-arrow">▶</span> If / Then — What's happening after you apply?</div>
-    <div class="decision-rows">
-      <div class="decision-row"><div class="decision-if"><strong>If</strong>Getting to phone screens but failing them</div><div class="decision-then"><strong>Then try</strong>"I keep failing phone screens for <span class="tmpl">[job title]</span> roles. Here's how my last one went: <span class="tmpl">[describe it]</span>. What am I doing wrong and how should I answer differently?"</div></div>
-      <div class="decision-row"><div class="decision-if"><strong>If</strong>Getting zero callbacks at all</div><div class="decision-then"><strong>Then try</strong>"I've applied to <span class="tmpl">[X]</span> jobs with a 0% response rate. Review my resume for the top 3 reasons a recruiter might immediately pass on me."</div></div>
-      <div class="decision-row"><div class="decision-if"><strong>If</strong>Applying feels like shouting into a void</div><div class="decision-then"><strong>Then try</strong>"What are 5 ways to find jobs for <span class="tmpl">[field]</span> that don't involve submitting on job boards? I want to try a completely different channel."</div></div>
-    </div>
-  </div>
-
-  <div class="not-working">
-    <div class="nw-header" onclick="toggleNW(this)"><span class="nw-arrow">▶</span> ⚠ Outreach and follow-ups not landing?</div>
-    <div class="nw-body"><ul>
-      <li>LinkedIn messages getting ignored → paste your message and ask "what's wrong with this?" — one wrong word can kill the tone</li>
-      <li>Not sure who to contact → "Who is the best person to cold-message at a <span style="color:var(--accent2);font-style:italic">[company size]</span> company for <span style="color:var(--accent2);font-style:italic">[role]</span> — recruiter, hiring manager, or team lead?"</li>
-      <li>Follow-up feels awkward → ask for 3 tones: casual, professional, and enthusiastic, then pick the one that sounds like you</li>
-    </ul></div>
-  </div>
-</div>
-```
-
   </div>
 
   <!-- PHASE 5 -->
-
   <div class="phase">
     <div class="spine"><div class="spine-dot filled"></div></div>
     <div class="phase-body">
       <div class="phase-lbl">Phase 5 — Next Level Strategy</div>
 
-```
-  <div class="node end">
-    <button class="copy-btn" onclick="copyNode(this)">Copy</button>
-    <div class="node-prompt">"I've applied to <span class="tmpl">20+</span> positions related to <span class="tmpl" data-key="field">[field]</span>, and <span class="tmpl">[follow-up activities, e.g. sent 8 LinkedIn messages, had 2 screening calls]</span>. My response rate is roughly <span class="tmpl">[X%]</span>. What should my next steps be — broaden my search, upskill, target different company sizes, or something else?"</div>
-    <div class="do-note"><strong>What to do with the answer</strong>Ask the AI for a specific 30-day action plan based on its recommendation — not just general advice. Then return each week: "I tried X and got Y result. What should I adjust?" Treat the AI as an ongoing coach, not a one-time tool.</div>
-    <div class="node-footer"><div class="node-purpose">At 20+ applications you have real data. This turns your experience into a strategic pivot.</div><div class="node-meta"><span class="tag iterate">Iterate</span><span class="tag research">Research</span><span class="freq">At 20+ apps</span></div></div>
-  </div>
+      <div class="node end">
+        <button class="copy-btn" onclick="copyNode(this)">Copy</button>
+        <div class="node-prompt">"I've applied to <span class="tmpl">20+</span> positions related to <span class="tmpl" data-key="field">[field]</span>, and <span class="tmpl">[follow-up activities, e.g. sent 8 LinkedIn messages, had 2 screening calls]</span>. My response rate is roughly <span class="tmpl">[X%]</span>. What should my next steps be — broaden my search, upskill, target different company sizes, or something else?"</div>
+        <div class="do-note"><strong>What to do with the answer</strong>Ask the AI for a specific 30-day action plan based on its recommendation — not just general advice. Then return each week: "I tried X and got Y result. What should I adjust?" Treat the AI as an ongoing coach, not a one-time tool.</div>
+        <div class="node-footer"><div class="node-purpose">At 20+ applications you have real data. This turns your experience into a strategic pivot.</div><div class="node-meta"><span class="tag iterate">Iterate</span><span class="tag research">Research</span><span class="freq">At 20+ apps</span></div></div>
+      </div>
 
-  <div class="not-working">
-    <div class="nw-header" onclick="toggleNW(this)"><span class="nw-arrow">▶</span> ⚠ Phase 5 advice still feels vague?</div>
-    <div class="nw-body"><ul>
-      <li>Give more data: which specific companies, what sizes (startup/enterprise), whether you got any feedback at all</li>
-      <li>Ask it to prioritize: "Give me the single highest-leverage change I should make this week"</li>
-      <li>Ask for a 30-day plan: "Build me a specific week-by-week job search plan for the next 30 days"</li>
-    </ul></div>
-  </div>
+      <div class="not-working">
+        <div class="nw-header" onclick="toggleNW(this)"><span class="nw-arrow">▶</span> ⚠ Phase 5 advice still feels vague?</div>
+        <div class="nw-body"><ul>
+          <li>Give more data: which specific companies, what sizes (startup/enterprise), whether you got any feedback at all</li>
+          <li>Ask it to prioritize: "Give me the single highest-leverage change I should make this week"</li>
+          <li>Ask for a 30-day plan: "Build me a specific week-by-week job search plan for the next 30 days"</li>
+        </ul></div>
+      </div>
 
-  <div class="div-label">After Phase 5 — Where do you go from here?</div>
+      <div class="div-label">After Phase 5 — Where do you go from here?</div>
 
-  <div class="post5-grid">
-    <div class="post5-card">
-      <div class="post5-header green">📞 Getting interviews but no offers</div>
-      <div class="post5-body">
-        <div class="post5-prompt"><button class="mcopy" onclick="copyMini(this)">Copy</button>"I've had <span class="tmpl">[X]</span> interviews for <span class="tmpl">[role]</span> but no offers. Here's how my last one went: <span class="tmpl">[describe it]</span>. What might be costing me the offer at the final stage?"</div>
-        <div class="post5-prompt"><button class="mcopy" onclick="copyMini(this)">Copy</button>"Do a mock interview with me for a <span class="tmpl" data-key="title">[job title]</span> role. Ask me 5 questions one at a time, give honest feedback on each before moving on."</div>
-        <div class="post5-note">Focus: tighten storytelling, refine answers, build negotiation confidence.</div>
+      <div class="post5-grid">
+        <div class="post5-card">
+          <div class="post5-header green">📞 Getting interviews but no offers</div>
+          <div class="post5-body">
+            <div class="post5-prompt"><button class="mcopy" onclick="copyMini(this)">Copy</button>"I've had <span class="tmpl">[X]</span> interviews for <span class="tmpl">[role]</span> but no offers. Here's how my last one went: <span class="tmpl">[describe it]</span>. What might be costing me the offer at the final stage?"</div>
+            <div class="post5-prompt"><button class="mcopy" onclick="copyMini(this)">Copy</button>"Do a mock interview with me for a <span class="tmpl" data-key="title">[job title]</span> role. Ask me 5 questions one at a time, give honest feedback on each before moving on."</div>
+            <div class="post5-note">Focus: tighten storytelling, refine answers, build negotiation confidence.</div>
+          </div>
+        </div>
+        <div class="post5-card">
+          <div class="post5-header blue">📭 Getting zero responses still</div>
+          <div class="post5-body">
+            <div class="post5-prompt"><button class="mcopy" onclick="copyMini(this)">Copy</button>"What skills or certifications for <span class="tmpl" data-key="field">[field]</span> could I realistically earn in <span class="tmpl">[30–90 days]</span> that would meaningfully improve my employability?"</div>
+            <div class="post5-prompt"><button class="mcopy" onclick="copyMini(this)">Copy</button>"What are the fastest ways someone in <span class="tmpl" data-key="field">[field]</span> with <span class="tmpl" data-key="bg">[my background]</span> can build a portfolio that gets attention from employers?"</div>
+            <div class="post5-note">Focus: upskill, build proof of work, try non-job-board channels.</div>
+          </div>
+        </div>
+        <div class="post5-card">
+          <div class="post5-header orange">🎉 You got an offer!</div>
+          <div class="post5-body">
+            <div class="post5-prompt"><button class="mcopy" onclick="copyMini(this)">Copy</button>"I received an offer for <span class="tmpl" data-key="title">[job title]</span> at <span class="tmpl">[company]</span> paying <span class="tmpl">[X]</span>. Based on market rates in <span class="tmpl" data-key="city">[location]</span>, should I negotiate? What should I say?"</div>
+            <div class="post5-prompt"><button class="mcopy" onclick="copyMini(this)">Copy</button>"I have two offers: <span class="tmpl">[offer A]</span> vs <span class="tmpl">[offer B]</span>. Help me compare them across salary, growth, culture, and risk."</div>
+            <div class="post5-note">Focus: negotiate confidently, compare holistically, don't leave money on the table.</div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="post5-card">
-      <div class="post5-header blue">📭 Getting zero responses still</div>
-      <div class="post5-body">
-        <div class="post5-prompt"><button class="mcopy" onclick="copyMini(this)">Copy</button>"What skills or certifications for <span class="tmpl" data-key="field">[field]</span> could I realistically earn in <span class="tmpl">[30–90 days]</span> that would meaningfully improve my employability?"</div>
-        <div class="post5-prompt"><button class="mcopy" onclick="copyMini(this)">Copy</button>"What are the fastest ways someone in <span class="tmpl" data-key="field">[field]</span> with <span class="tmpl" data-key="bg">[my background]</span> can build a portfolio that gets attention from employers?"</div>
-        <div class="post5-note">Focus: upskill, build proof of work, try non-job-board channels.</div>
-      </div>
-    </div>
-    <div class="post5-card">
-      <div class="post5-header orange">🎉 You got an offer!</div>
-      <div class="post5-body">
-        <div class="post5-prompt"><button class="mcopy" onclick="copyMini(this)">Copy</button>"I received an offer for <span class="tmpl" data-key="title">[job title]</span> at <span class="tmpl">[company]</span> paying <span class="tmpl">[X]</span>. Based on market rates in <span class="tmpl" data-key="city">[location]</span>, should I negotiate? What should I say?"</div>
-        <div class="post5-prompt"><button class="mcopy" onclick="copyMini(this)">Copy</button>"I have two offers: <span class="tmpl">[offer A]</span> vs <span class="tmpl">[offer B]</span>. Help me compare them across salary, growth, culture, and risk."</div>
-        <div class="post5-note">Focus: negotiate confidently, compare holistically, don't leave money on the table.</div>
-      </div>
-    </div>
-  </div>
-</div>
-```
-
   </div>
 
 </div><!-- /tree -->
 
 <!-- PROMPT HISTORY LOG -->
-
 <div class="history-section">
   <button class="history-toggle" onclick="toggleSec(this,'history-body')"><span class="arrow">▶</span> 📝 Prompt History Log — track what you've sent &amp; notes on the AI's response</button>
   <div class="history-body" id="history-body">
@@ -795,7 +763,6 @@ header,.tips-bar,.fill-bar,.legend,.tracker-bar,.tree,.history-section,.disclaim
 </div>
 
 <!-- AI DISCLAIMER -->
-
 <div class="disclaimer" style="margin-top:32px;">
   <h4>⚠ AI Limitations — Know What to Verify Independently</h4>
   <div class="disclaimer-grid">
@@ -818,7 +785,6 @@ header,.tips-bar,.fill-bar,.legend,.tracker-bar,.tree,.history-section,.disclaim
 <!-- ══════════ MODALS ══════════ -->
 
 <!-- BURNOUT -->
-
 <div class="modal-overlay" id="burnout-modal" onclick="closeOverlay(event,this)">
   <div class="modal" style="max-width:560px;">
     <div class="modal-header"><h3>🔋 Feeling Burned Out?</h3><button class="modal-close" onclick="closeModal('burnout-modal')">✕</button></div>
@@ -851,7 +817,6 @@ header,.tips-bar,.fill-bar,.legend,.tracker-bar,.tree,.history-section,.disclaim
 </div>
 
 <!-- HOPELESS -->
-
 <div class="modal-overlay" id="hopeless-modal" onclick="closeOverlay(event,this)">
   <div class="modal" style="max-width:520px;">
     <div class="modal-header"><h3>😶 This Feels Hopeless</h3><button class="modal-close" onclick="closeModal('hopeless-modal')">✕</button></div>
@@ -871,7 +836,6 @@ header,.tips-bar,.fill-bar,.legend,.tracker-bar,.tree,.history-section,.disclaim
 </div>
 
 <!-- REJECTION TRACKER -->
-
 <div class="modal-overlay" id="reject-modal" onclick="closeOverlay(event,this)">
   <div class="modal" style="max-width:620px;">
     <div class="modal-header"><h3>📋 Rejection Tracker</h3><button class="modal-close" onclick="closeModal('reject-modal')">✕</button></div>
@@ -909,7 +873,6 @@ header,.tips-bar,.fill-bar,.legend,.tracker-bar,.tree,.history-section,.disclaim
 </div>
 
 <!-- WEEKLY CHECK-IN -->
-
 <div class="modal-overlay" id="checkin-modal" onclick="closeOverlay(event,this)">
   <div class="modal" style="max-width:580px;">
     <div class="modal-header"><h3>📅 Weekly Check-In Prompt Generator</h3><button class="modal-close" onclick="closeModal('checkin-modal')">✕</button></div>
@@ -942,7 +905,6 @@ header,.tips-bar,.fill-bar,.legend,.tracker-bar,.tree,.history-section,.disclaim
 </div>
 
 <!-- NETWORKING + OFFERS -->
-
 <div class="modal-overlay" id="network-modal" onclick="closeOverlay(event,this)">
   <div class="modal" style="max-width:660px;">
     <div class="modal-header" style="border-bottom:none;padding-bottom:0;"><h3>🤝 Networking Scripts &amp; Offer Evaluation</h3><button class="modal-close" onclick="closeModal('network-modal')">✕</button></div>
@@ -1106,104 +1068,114 @@ function renderHistory(){
       </div>
       <div class="hi-prompt-text">${item.text.substring(0,160)}${item.text.length>160?'…':''}</div>
       <textarea class="hi-note" placeholder="Notes on the AI's response..." onchange="historyLog[${i}].note=this.value">${item.note}</textarea>
-
-```
-</div>`).join('');
-```
-
+    </div>`).join('');
 }
 function delHistory(i){historyLog.splice(i,1);renderHistory();}
 function clearHistory(){historyLog.length=0;renderHistory();}
 
 // FILL TEMPLATES
-const defaultLabels={exp:‘X years / no experience’,field:‘your field’,title:‘target job title’,city:‘city or remote’,bg:‘your background’};
+const defaultLabels={exp:'X years / no experience',field:'your field',title:'target job title',city:'city or remote',bg:'your background'};
 function fillTemplates(){
-const vals={exp:document.getElementById(‘fi-exp’).value,field:document.getElementById(‘fi-field’).value,title:document.getElementById(‘fi-title’).value,city:document.getElementById(‘fi-city’).value,bg:document.getElementById(‘fi-bg’).value};
-document.querySelectorAll(’.tmpl[data-key]’).forEach(el=>{
-const k=el.dataset.key;
-if(vals[k]){el.textContent=vals[k];el.style.color=‘var(–accent)’;el.style.fontWeight=‘500’;}
-else{el.textContent=’[’+defaultLabels[k]+’]’;el.style.color=‘var(–accent2)’;el.style.fontWeight=’’;}
-});
+  const vals={exp:document.getElementById('fi-exp').value,field:document.getElementById('fi-field').value,title:document.getElementById('fi-title').value,city:document.getElementById('fi-city').value,bg:document.getElementById('fi-bg').value};
+  document.querySelectorAll('.tmpl[data-key]').forEach(el=>{
+    const k=el.dataset.key;
+    if(vals[k]){el.textContent=vals[k];el.style.color='var(--accent)';el.style.fontWeight='500';}
+    else{el.textContent='['+defaultLabels[k]+']';el.style.color='var(--accent2)';el.style.fontWeight='';}
+  });
 }
 
 // QUIZ
 const qAnswers=[];
 function quizAnswer(step,choice){
-qAnswers[step]=choice;
-document.getElementById(‘qs-’+step).classList.remove(‘active’);
-const next=document.getElementById(‘qs-’+(step+1));
-if(next)next.classList.add(‘active’);
-else showQuizResult();
+  qAnswers[step]=choice;
+  document.getElementById('qs-'+step).classList.remove('active');
+  const next=document.getElementById('qs-'+(step+1));
+  if(next)next.classList.add('active');
+  else showQuizResult();
 }
 function showQuizResult(){
-document.querySelectorAll(’.quiz-step’).forEach(s=>s.classList.remove(‘active’));
-const r=document.getElementById(‘quiz-result’);r.classList.add(‘visible’);
-const[a0,a1,a2]=qAnswers;
-let txt=’’;
-if(a2===3||a0===3)txt=’<strong>Start at Phase 4's diagnostic node.</strong> <span class="qr-path">→ Scroll to Phase 4.</span> Use the “I've applied to [5–10] jobs” prompt to get a specific diagnosis. Also hit the 😶 button on the left if you're feeling defeated.’;
-else if(a1===0)txt=’<strong>Start at Phase 1, then go straight to Phase 2.</strong> <span class="qr-path">→ Start from the top.</span> Identify your target titles before building materials — Phase 1's job title list becomes your keywords for Phase 2.’;
-else if(a2===1)txt=’<strong>Start at Phase 2's ATS Check.</strong> <span class="qr-path">→ Scroll to the ATS Check in Phase 2.</span> A polished resume that fails keyword screening is invisible to employers. Then move to Phase 4's diagnostic to see the full picture.’;
-else if(a2===2)txt=’<strong>Go to the Post-Phase 5 section — “Getting interviews but no offers.”</strong> <span class="qr-path">→ Scroll to the bottom of Phase 5.</span> Your materials are working but something is happening in the room. Use the mock interview prompt.’;
-else if(a1===2)txt=’<strong>Skip to Phase 3 — Target & Research.</strong> <span class="qr-path">→ Scroll to Phase 3.</span> Your materials are solid. Focus on company targeting and interview prep before applying. Phases 1 and 2 can be skipped.’;
-else txt=’<strong>Start at the beginning — Phase 1.</strong> <span class="qr-path">→ Scroll down to Phase 1.</span> Work through each phase in order. Each builds on the last, and jumping ahead typically leads to wasted applications.’;
-document.getElementById(‘quiz-result-text’).innerHTML=txt;
+  document.querySelectorAll('.quiz-step').forEach(s=>s.classList.remove('active'));
+  const r=document.getElementById('quiz-result');r.classList.add('visible');
+  const[a0,a1,a2]=qAnswers;
+  let txt='';
+  if(a2===3||a0===3)txt='<strong>Start at Phase 4\'s diagnostic node.</strong> <span class="qr-path">→ Scroll to Phase 4.</span> Use the "I\'ve applied to [5–10] jobs" prompt to get a specific diagnosis. Also hit the 😶 button on the left if you\'re feeling defeated.';
+  else if(a1===0)txt='<strong>Start at Phase 1, then go straight to Phase 2.</strong> <span class="qr-path">→ Start from the top.</span> Identify your target titles before building materials — Phase 1\'s job title list becomes your keywords for Phase 2.';
+  else if(a2===1)txt='<strong>Start at Phase 2\'s ATS Check.</strong> <span class="qr-path">→ Scroll to the ATS Check in Phase 2.</span> A polished resume that fails keyword screening is invisible to employers. Then move to Phase 4\'s diagnostic to see the full picture.';
+  else if(a2===2)txt='<strong>Go to the Post-Phase 5 section — "Getting interviews but no offers."</strong> <span class="qr-path">→ Scroll to the bottom of Phase 5.</span> Your materials are working but something is happening in the room. Use the mock interview prompt.';
+  else if(a1===2)txt='<strong>Skip to Phase 3 — Target &amp; Research.</strong> <span class="qr-path">→ Scroll to Phase 3.</span> Your materials are solid. Focus on company targeting and interview prep before applying. Phases 1 and 2 can be skipped.';
+  else txt='<strong>Start at the beginning — Phase 1.</strong> <span class="qr-path">→ Scroll down to Phase 1.</span> Work through each phase in order. Each builds on the last, and jumping ahead typically leads to wasted applications.';
+  document.getElementById('quiz-result-text').innerHTML=txt;
 }
 function resetQuiz(){
-qAnswers.length=0;
-document.getElementById(‘quiz-result’).classList.remove(‘visible’);
-document.querySelectorAll(’.quiz-step’).forEach((s,i)=>{s.classList.remove(‘active’);if(i===0)s.classList.add(‘active’);});
+  qAnswers.length=0;
+  document.getElementById('quiz-result').classList.remove('visible');
+  document.querySelectorAll('.quiz-step').forEach((s,i)=>{s.classList.remove('active');if(i===0)s.classList.add('active');});
 }
 
 // WEEKLY CHECK-IN
 function generateCheckin(){
-const apps=parseInt(document.getElementById(‘ci-apps’).value)||0;
-const resp=parseInt(document.getElementById(‘ci-resp’).value)||0;
-const ints=parseInt(document.getElementById(‘ci-int’).value)||0;
-const challenge=document.getElementById(‘ci-challenge’).value;
-const field=document.getElementById(‘ci-field’).value||’[your field]’;
-const rate=apps>0?Math.round((resp/apps)*100):0;
-const prompts=[];
-if(apps===0){
-prompts.push({n:‘Prompt 1’,t:`"I didn't apply to any jobs this week. My field is ${field} and my challenge is: ${challenge}. Help me identify the single biggest thing blocking me and give me a concrete 3-step plan to apply to at least 5 jobs next week."`});
-}else{
-prompts.push({n:‘Prompt 1’,t:`"This week I applied to ${apps} jobs in ${field} and got ${resp} responses (${rate}% response rate). Based on this, is my application volume the problem, my materials, or my targeting? What should I focus on most this coming week?"`});
-}
-if(challenge===‘Interview performance’||ints>0){
-prompts.push({n:‘Prompt 2’,t:`"I had ${ints} interview(s) this week for ${field} roles. Help me run a quick self-debrief: what are the 3 most important things to reflect on after an interview, and what would a strong vs. weak answer look like for each?"`});
-}else if(challenge===‘Running out of jobs to apply to’){
-prompts.push({n:‘Prompt 2’,t:`"I'm running out of job postings to apply to in ${field}. Give me 5 specific strategies to find more opportunities I may have overlooked — including less obvious job boards, communities, or outreach methods."`});
-}else{
-prompts.push({n:‘Prompt 2’,t:`"My biggest challenge this week in my ${field} job search was: ${challenge}. Give me 3 concrete, specific actions I can take in the next 7 days to directly address this."`});
-}
-prompts.push({n:‘Prompt 3 — Weekly Reset’,t:`"Here's my job search status: field: ${field}, applications sent: ${apps}, responses: ${resp}, interviews: ${ints}. Write me a focused 5-item action plan for next week that balances applying, networking, and improving my materials."`});
-document.getElementById(‘checkin-results’).innerHTML=prompts.map(p=>` <div class="checkin-prompt-card"> <button class="mcopy" onclick="copyMini(this)">Copy</button> <div class="cp-num">${p.n}</div> <p>${p.t}</p> </div>`).join(’’);
+  const apps=parseInt(document.getElementById('ci-apps').value)||0;
+  const resp=parseInt(document.getElementById('ci-resp').value)||0;
+  const ints=parseInt(document.getElementById('ci-int').value)||0;
+  const challenge=document.getElementById('ci-challenge').value;
+  const field=document.getElementById('ci-field').value||'[your field]';
+  const rate=apps>0?Math.round((resp/apps)*100):0;
+  const prompts=[];
+  if(apps===0){
+    prompts.push({n:'Prompt 1',t:`"I didn't apply to any jobs this week. My field is ${field} and my challenge is: ${challenge}. Help me identify the single biggest thing blocking me and give me a concrete 3-step plan to apply to at least 5 jobs next week."`});
+  }else{
+    prompts.push({n:'Prompt 1',t:`"This week I applied to ${apps} jobs in ${field} and got ${resp} responses (${rate}% response rate). Based on this, is my application volume the problem, my materials, or my targeting? What should I focus on most this coming week?"`});
+  }
+  if(challenge==='Interview performance'||ints>0){
+    prompts.push({n:'Prompt 2',t:`"I had ${ints} interview(s) this week for ${field} roles. Help me run a quick self-debrief: what are the 3 most important things to reflect on after an interview, and what would a strong vs. weak answer look like for each?"`});
+  }else if(challenge==='Running out of jobs to apply to'){
+    prompts.push({n:'Prompt 2',t:`"I'm running out of job postings to apply to in ${field}. Give me 5 specific strategies to find more opportunities I may have overlooked — including less obvious job boards, communities, or outreach methods."`});
+  }else{
+    prompts.push({n:'Prompt 2',t:`"My biggest challenge this week in my ${field} job search was: ${challenge}. Give me 3 concrete, specific actions I can take in the next 7 days to directly address this."`});
+  }
+  prompts.push({n:'Prompt 3 — Weekly Reset',t:`"Here's my job search status: field: ${field}, applications sent: ${apps}, responses: ${resp}, interviews: ${ints}. Write me a focused 5-item action plan for next week that balances applying, networking, and improving my materials."`});
+  document.getElementById('checkin-results').innerHTML=prompts.map(p=>`
+    <div class="checkin-prompt-card">
+      <button class="mcopy" onclick="copyMini(this)">Copy</button>
+      <div class="cp-num">${p.n}</div>
+      <p>${p.t}</p>
+    </div>`).join('');
 }
 
 // REJECTION TRACKER
 const rejections=[];
 function addRejection(){
-const company=document.getElementById(‘rj-company’).value.trim();
-const role=document.getElementById(‘rj-role’).value.trim();
-const stage=document.getElementById(‘rj-stage’).value;
-const date=document.getElementById(‘rj-date’).value;
-const notes=document.getElementById(‘rj-notes’).value.trim();
-if(!company)return;
-rejections.unshift({company,role,stage,date,notes});
-document.getElementById(‘rj-company’).value=’’;document.getElementById(‘rj-role’).value=’’;document.getElementById(‘rj-notes’).value=’’;
-renderRejections();
+  const company=document.getElementById('rj-company').value.trim();
+  const role=document.getElementById('rj-role').value.trim();
+  const stage=document.getElementById('rj-stage').value;
+  const date=document.getElementById('rj-date').value;
+  const notes=document.getElementById('rj-notes').value.trim();
+  if(!company)return;
+  rejections.unshift({company,role,stage,date,notes});
+  document.getElementById('rj-company').value='';document.getElementById('rj-role').value='';document.getElementById('rj-notes').value='';
+  renderRejections();
 }
 function renderRejections(){
-const list=document.getElementById(‘reject-list’);
-const empty=document.getElementById(‘reject-empty’);
-if(!rejections.length){empty.style.display=‘block’;list.innerHTML=’’;return;}
-empty.style.display=‘none’;
-list.innerHTML=rejections.map((r,i)=>` <div class="reject-item"> <div class="reject-item-info"> <h5>${r.company}${r.role?' — '+r.role:''}</h5> <p>${r.date||'No date'} · ${r.notes||'No feedback recorded'}</p> </div> <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0;"> <span class="reject-item-stage">${r.stage}</span> <button onclick="rejections.splice(${i},1);renderRejections();" style="background:none;border:none;color:var(--muted2);cursor:pointer;font-size:10px;font-family:inherit;transition:color .2s;" onmouseover="this.style.color='var(--accent-red)'" onmouseout="this.style.color='var(--muted2)'">remove</button> </div> </div>`).join(’’);
-if(rejections.length>=3){
-const summary=rejections.slice(0,10).map(r=>`${r.company} (${r.stage}${r.notes?': '+r.notes:''})`).join(’; ’);
-document.getElementById(‘debrief-txt’).innerHTML=`"I've been rejected from ${rejections.length} positions. Here are the details: ${summary}. Can you identify any patterns — is there a consistent stage where I'm losing out, a type of company where I'm performing worse, and what that might indicate about what to fix?"`;
-}
+  const list=document.getElementById('reject-list');
+  const empty=document.getElementById('reject-empty');
+  if(!rejections.length){empty.style.display='block';list.innerHTML='';return;}
+  empty.style.display='none';
+  list.innerHTML=rejections.map((r,i)=>`
+    <div class="reject-item">
+      <div class="reject-item-info">
+        <h5>${r.company}${r.role?' — '+r.role:''}</h5>
+        <p>${r.date||'No date'} · ${r.notes||'No feedback recorded'}</p>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0;">
+        <span class="reject-item-stage">${r.stage}</span>
+        <button onclick="rejections.splice(${i},1);renderRejections();" style="background:none;border:none;color:var(--muted2);cursor:pointer;font-size:10px;font-family:inherit;transition:color .2s;" onmouseover="this.style.color='var(--accent-red)'" onmouseout="this.style.color='var(--muted2)'">remove</button>
+      </div>
+    </div>`).join('');
+  if(rejections.length>=3){
+    const summary=rejections.slice(0,10).map(r=>`${r.company} (${r.stage}${r.notes?': '+r.notes:''})`).join('; ');
+    document.getElementById('debrief-txt').innerHTML=`"I've been rejected from ${rejections.length} positions. Here are the details: ${summary}. Can you identify any patterns — is there a consistent stage where I'm losing out, a type of company where I'm performing worse, and what that might indicate about what to fix?"`;
+  }
 }
 </script>
-
 </body>
 </html>
